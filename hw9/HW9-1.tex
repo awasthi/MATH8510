@@ -1,0 +1,474 @@
+\documentclass{amsart}
+
+% PACKAGES
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb,enumerate}
+\usepackage{amsthm,stmaryrd}
+\usepackage[all]{xy}
+\usepackage{hyperref}
+
+%\theoremstyle{definition}
+%\newtheorem{exer}{Exercise}
+
+\newcommand{\bbr}{\mathbb{R}}
+\newcommand{\bbc}{\mathbb{C}}
+\newcommand{\bbz}{\mathbb{Z}}
+\newcommand{\bbq}{\mathbb{Q}}
+\newcommand{\bbn}{\mathbb{N}}
+\newcommand{\be}{\mathbf{e}}
+\newcommand{\ba}{\mathbf{a}}
+\newcommand{\fm}{\mathfrak{m}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\renewcommand{\ker}{\operatorname{Ker}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\xra}{\xrightarrow}
+\newcommand{\wti}{\widetilde}
+
+\theoremstyle{plain}
+\newtheorem{lem}{Lemma}
+\newtheorem{cor}[lem]{Corollary}
+\newtheorem{prop}[lem]{Proposition}
+\newtheorem{thm}[lem]{Theorem}
+\newtheorem{conj}[lem]{Conjecture}
+\newtheorem{intthm}{Theorem}
+\renewcommand{\theintthm}{\Alph{intthm}}
+
+\theoremstyle{definition}
+\newtheorem{defn}[lem]{Definition}
+\newtheorem{ex}[lem]{Example}
+\newtheorem{question}[lem]{Question}
+\newtheorem{questions}[lem]{Questions}
+\newtheorem{problem}[lem]{Problem}
+\newtheorem{disc}[lem]{Remark}
+\newtheorem{rmk}[lem]{Remark}
+\newtheorem{construction}[lem]{Construction}
+\newtheorem{notn}[lem]{Notation}
+\newtheorem{fact}[lem]{Fact}
+\newtheorem{para}[lem]{}
+\newtheorem{exer}[lem]{Exercise}
+\newtheorem{remarkdefinition}[lem]{Remark/Definition}
+\newtheorem{notation}[lem]{Notation}
+\newtheorem{step}{Step}
+\newtheorem{convention}[lem]{Convention}
+\newtheorem*{Convention}{Convention}
+\newtheorem{assumption}[lem]{Assumption}
+
+\newcommand{\fmn}{F^{m\times n}}
+\newcommand{\fnn}{F^{n\times n}}
+\newcommand{\col}{\operatorname{Col}}
+\newcommand{\row}{\operatorname{Row}}
+\newcommand{\Span}{\operatorname{Span}}	
+\newcommand{\rank}{\operatorname{rank}}	
+\newcommand{\OO}[1]{\mathcal{O}_{#1}}
+\begin{document}
+
+\noindent MATH 8510, Abstract Algebra I \\
+Fall 2016\\
+Exercises 9-1\\
+Name: Shuai Wei\\
+Collaborator: DaoZhou Zhu, XiaoYuan Liu
+
+\
+
+%\noindent
+%Throughout this homework set, let $F$ be a field
+%
+%
+%\
+
+\begin{exer}[5.5.1--2]
+Let $H$ and $K$ be groups, let $\varphi\colon K\to \operatorname{Aut}(H)$ be a homomorphism, and let $\wti H,\wti K$ be as in the Theorem~5.5.3.
+Prove that $C_{\wti K}(\wti H)\cong\ker(\varphi)$
+and $C_{\wti H}(\wti K)=N_{\wti H}(\wti K)$.
+
+\begin{proof}
+	Define $\phi$ as
+	\begin{align*}
+	  \phi: \ker(\varphi) & \to C_{\wti K}(\wti H)\\
+	  	k &\mapsto (e_H,k)
+	\end{align*}
+	First we show $\phi$ is well defined.\\
+	Let $k \in \ker(\varphi)$, then $k \in \ker(\varphi) \leq K$ by the definition of $\varphi$.\\ 
+	$\forall (h,e_K) \in \wti H$, where $h \in H$, by the Theorem 5.5.3 (d), we have 
+	\begin{align*}
+	  (e_H,k)(h,e_K)(e_H,k)^{-1} &= (\varphi(k)h, e_K).
+	\end{align*}
+	Since $k \in \ker(\varphi)$, $\varphi(k) = e_{\operatorname{Aut}(H)} $, where $e_{\operatorname{Aut}(H)}$ is the identity map from $H$ to $H$.\\
+	  Besides, $h \in H$, so 
+	  \[\varphi(k)h  = e_{\operatorname{Aut}(H)}h =h.\]
+	  Then 
+	  \[(e_H,k)(h,e_K)(e_H,k)^{-1} =(h, e_K) \in \wti H.\]
+	  So $(e_H,k) \in C_{\wti K}(\wti H)$.\\
+	  Therefore, $\phi$ is well defined. \\
+	  Next we show $\phi$ is a homomorphism.\\
+	 $\forall\ k_1,k_2 \in \ker(\varphi)$, 
+	 \begin{align*}
+	   \phi(k_1k_2) &=(e_H,k_1k_2) \\
+	   			    &=\left(e_H\cdot\varphi(k_1)(e_H),k_1k_2\right)\\
+	   				&=(e_H,k_1)(e_H,k_2)\\
+	   				&=\phi(k_1)\phi(k_2),
+	 \end{align*}
+	 so $\phi$ is a homomorphism.\\
+	Let $k \in \ker(\varphi)$.\\
+	Then
+	\begin{align*}
+	  k \in \ker(\phi) &\Leftrightarrow \phi(k) = (e_H,e_K) \\
+	 				   &\Leftrightarrow (e_H,k) = (e_H,e_K) \\
+	  				   &\Leftrightarrow k = e_K.
+	\end{align*}
+   So 
+   \[\ker(\phi) = \{e_K\} = \{e_{\ker(\varphi)}\}.\]
+   Thus, $\phi$ is 1-1.\\
+   Let $(e_H,k) \in C_{\wti K}(\wti H)$, where $k \in K$.\\
+   Then $\forall\ (h,e_K) \in \wti H$, we have $h\in H$ is arbitrary,\\
+   and by the Theorem 5.5.3 (d),
+   \begin{align*}
+   	 (e_H,k) \in C_{\wti K}(\wti H) &\Leftrightarrow  (e_H,k) (h,e_K)(e_H,k)^{-1}  = (h,e_K), \ \ \forall\ h \in H\\
+   	 								&\Leftrightarrow (\varphi(k)h,e_K) = (h,e_K), \ \ \forall\ h \in H\\
+   	 								&\Leftrightarrow \varphi(k)h = h, \ \ \forall\ h \in H\\
+   	 								&\Leftrightarrow \varphi(k) = e_{\operatorname{Aut}(H)}\\
+  									&\Leftrightarrow k \in \ker(\varphi).
+   \end{align*}
+  	Namely, for any $(e_H,k) \in C_{\wti K}(\wti H)$, we have $\ k \in \ker(\varphi)$ such that $\phi(k) = (e_H,k)$.\\
+  	Thus, $\phi$ is onto.\\
+  	Next we show 
+  	\[C_{\wti H}(\wti K) = N_{\wti H}(\wti K)\]
+  	By the definition of $C_{\wti H}(\wti K)$ and $N_{\wti H}(\wti K)$, we have
+  	\[C_{\wti H}(\wti K) \subset N_{\wti H}(\wti K).\]
+  	Let $(h,e_K) \in N_{\wti H}(\wti K)$, where $h \in H$.\\
+  	Let $(e_H,k) \in \wti K$, where $k \in K$.\\ 
+  	Since $\varphi$ is a homomorphism and $\varphi(e_K) = e_{\operatorname{Aut}(H)}$,
+	\begin{align*}
+	   		  (h,e_K) (e_H,k)(h,e_K)^{-1} &=(h\cdot \varphi(e_K)(e_H),e_Kk)(h,e_K)^{-1} \\
+			   &=(he_H,k)\left(\varphi(e_K^{-1})(h^{-1}),e_K^{-1}\right)\\
+			   &=(h,k)(\varphi(e_K)h^{-1},e_K)\\
+	  			&=(h,k)\left(h^{-1},e_K\right)\\
+	  		    &=\left(h\cdot\varphi(k)(h^{-1}),ke_K\right)\\
+	  			&=\left(h\cdot\varphi(k)(h^{-1}),k\right)\\
+	  		  	&\in \wti K.
+	\end{align*}
+	So
+	\[h\cdot\varphi(k)(h^{-1}) = e_H.\]
+	Namely, $\forall\ (h,e_K) \in N_{\wti H}(\wti K)$, $\forall\ (e_H,k)\in \wti K$, we have
+	\[(h,e_K) (e_H,k)(h,e_K)^{-1} = \left(e_H,k\right).\]
+	So
+	\[(h,e_K) \in C_{\wti H}(\wti K).\]
+	Thus,
+	\[N_{\wti H}(\wti K) \subset C_{\wti H}(\wti K).\]
+	As a result,
+	\[C_{\wti H}(\wti K) = N_{\wti H}(\wti K).\]
+\end{proof}
+
+
+\end{exer}
+
+\begin{exer}[5.5.11]
+Classify all groups of order 28. (There are four isomorphism types. Feel free to use Proposition 11 and/or Exercise 6 from this section of the text;
+You do not need to solve Exercise 6.)\\
+\textbf{soln:} Let $G$ be a group of order 28.\\
+If $G$ is abelian, since $28 = 2^2\times7$ and $2=2 = 1+1$, by the FTFGAG, \\
+we have 2 types of isomorphic groups of order 28 and they are 
+\begin{gather*}
+	G \cong \bbz/4\bbz \times \bbz/7\bbz\\
+	G \cong \bbz/2\bbz \times \bbz/2\bbz  \times \bbz/7\bbz.
+\end{gather*}
+The invariant factor decomposition of them are 
+\begin{gather*}
+	G \cong \bbz/28\bbz \\
+	G \cong \bbz/14\bbz \times \bbz/2\bbz.	
+\end{gather*}
+Next we discuss the case when $G$ is not abelian.\\
+By the Sylow theorem $4.5.4$, we have $n_7 \equiv (1 \mod{11})$ and $n_7 | 4$.\\
+$n_7 | 4$, so $n_7 =1$ or $2$ or $4$.\\
+Besides, $n_7 \equiv (1 \mod{11})$, so $n_7 = 1$.\\
+Let $H \in Syl_{7}(G)$, then $|H| = 7$.\\
+Then by the Corollary 4.5.5, we have 
+\[H \unlhd G.\] 
+Let $K \in Syl_2(G)$, then $|K| = 4$.\\
+Then $KH \leq G$ by the Corollary 3.2.7.\\
+So 
+\[HK=KH \leq G\] 
+by the Theorem 3.2.6.\\
+We claim $H\cap K = \{e_G\}$.\\
+Assume $\exists\ x \in G$ and $x \neq e_G$ such that $x\in H\cap K$.\\
+Then $\langle x \rangle \leq H$.\\
+So $|x| \mid |H|$.\\
+Since $|x| \neq 1$ and $|H| = 7$, we have $|x| = 7 > |K|$, which is a contradiction since $x \in K$.\\
+Thus, 
+\[H\cap K = \{e_G\}.\]
+Then by the Theorem 5.5.5, $\exists\ \varphi:K \to \operatorname{Aut}(H)$ such that 
+\[G=HK \cong H\ \rtimes_\varphi K. \]
+Moreover, let $x \in H$ and $x \neq e_G$, similarly, we have 
+\[H = \langle x \rangle.\]
+We claim $K$ is abelian.\\
+By the Cauchy Theorem, $\exists\ x \in K$ such that $|x| = 2$.\\
+Then $x^{-1} = x$.\\
+So $\{e_G,x\} \subset G$.
+Since $|K|  =4$, $\exists \ y \in K$ such that $y\neq e_G$ and $y\neq x$.\\
+If $y^{-1} = x$, then $x = x^{-1} = y$, which is a contradiction.\\
+So $y^{-1} \neq x$.\\
+Similarly, we have $y^{-1}\neq e_G$ and $y^{-1} \neq y$.\\
+Then 
+\[K =\{e_G,x,y,y^{-1}\}.\] 
+So we have $xy, yx\in K$.\\
+Since $x,y,\neq e_G$ and $y^{-1} \neq x$, we have $xy = y^{-1}$.\\
+Similarly, we have $yx = y^{-1}$. \\
+So 
+\[y^{-1}= xy = yx.\]
+Similarly, we have 
+\[y=xy^{-1} = y^{-1}x .\]
+Thus, $K$ is abelian of order 4.\\
+Since $4 = 2^2$ and $2=2=1+1$, by the FTFGAG,
+\[K \cong Z_4.\]
+and \[K \cong Z_2 \times Z_2.\]
+Since we consider the types of groups which is isomorphic to non-abelian groups of order 28, we can set $H = \bbz/7\bbz$ and $K = \bbz/4\bbz$ or $K= \bbz/2\bbz \times \bbz/2\bbz$. \\
+Since 
+\[\operatorname{Aut}(H) \cong (\bbz /7\bbz)^{\times},\]
+we have
+\[|\operatorname{Aut}(H)| = |(\bbz /7\bbz)^{\times}| = \varphi(7)=6.\]
+Since $(\bbz /7\bbz)^{\times}$ is abelian and $6 = 2\times 3$, by the FTFGAG,
+\[(\bbz /7\bbz)^{\times} \cong \bbz/6\bbz.\]
+Since $\bbz/6\bbz$ is cyclic, we have $\operatorname{Aut}(H)$ is also cyclic.\\
+Let $\operatorname{Aut}(H) = \langle \bar{1}_6 \rangle$.
+\begin{enumerate}[(a)]
+	\item Consider $K=\bbz/4\bbz$.\\
+	  Let $K=\bbz/4\bbz = \langle \bar{1}_4 \rangle$.\\
+	  Then we consider the homomorphism 
+	  \begin{align*}
+		\varphi: \langle \bar{1}_4& \rangle \to \langle \bar{1}_6 \rangle 
+  	  \end{align*}
+	  Since $\bbz/4\bbz = \langle \bar{1}_4 \rangle$ , $\varphi$ is uniquely determined by $\varphi(\bar{1}_4)$.\\
+	  Write $\varphi(\bar{1}_4) = \bar{a} \in \langle \bar{1}_6 \rangle$.\\
+	  Since $\varphi$ is a homomorphism and $|\bar{1}_4| = 4$,
+  	  \[4\varphi(\bar{1}_4) = \varphi(\bar{4}_4) = \varphi(\bar{0}_4) = \bar{0}_6.\]
+  	  Then  
+  	  \[\varphi(\bar{1}_4) =\overline{3k}_6, \]
+  	  where $k=\{0\} \cup \bbn$.\\
+	  Since $\langle \bar{1}_6 \rangle = \{\bar{0}_6,\bar{1}_6,\bar{2}_6,\bar{3}_6,\bar{4}_6,\bar{5}_6\}$,
+	  \[\varphi(\bar{1}_4) = \bar{0}_6 \text{ or } \bar{3}_6.\]
+	  If $\varphi(\bar{1}_4) = \bar{0}_6$, then $\varphi$ is a trival homomorphism and then $G \cong H \rtimes_\varphi K$ becomes 
+	  \[G \cong H \times K = \bbz/7\bbz \times \bbz/4\bbz,\]
+	  which is a contradiction since $G$ is non-abelian by assumption.\\
+	  So 
+	  \[\varphi(\bar{1}_4) = \bar{3}_6.\]
+	Thus, 
+	\[G \cong ( \bbz/7\bbz) \rtimes_\varphi ( \bbz/4\bbz),\]
+	with the homomorphism $\varphi$ determined by $\varphi(\bar{1}_4) = \bar{3}_6$.\\
+	\item Consider $K = \bbz/2\bbz \times \bbz/2\bbz$.\\
+	  Let $K=\langle \bar{1_a} \rangle \times \langle \bar{1_b} \rangle$.\\
+	Then $\varphi$ is uniquely determined by $\varphi(\bar{1}_a)$ and $\varphi(\bar{1}_b)$.\\
+	Let $\varphi:  \bbz/2\bbz \to \langle \bar{1}_6 \rangle$ determined by $\varphi(\bar{1}_a)$ be a homomorphism. \\
+	Write $\varphi(\bar{1}_a) = \bar{x} \in \langle \bar{1}_6 \rangle $.\\
+	  Since $\varphi$ is a homomorphism and $|\bar{1}_a| = 2$,
+  	  \[2\varphi(\bar{1}_a) = \varphi(\bar{2}_a) = \varphi(\bar{0}_a) = \bar{0}_6.\]
+  	  Then  
+  	  \[\varphi(\bar{1}_a) =\overline{3k}_6, \]
+  	  where $k=\{0\} \cup \bbn$.\\
+	  Since $\langle \bar{1}_6 \rangle = \{\bar{0}_6,\bar{1}_6,\bar{2}_6,\bar{3}_6,\bar{4}_6,\bar{5}_6\}$,
+	  \[\varphi(\bar{1}_a) = \bar{0}_6 \text{ or } \bar{3}_6.\]
+	  Let $\varphi:  \bbz/2\bbz \to \langle \bar{1}_6 \rangle$ determined by $\varphi(\bar{1}_b)$ be a homomorphism.\\
+	  Similarly, we have
+		\[\varphi(\bar{1}_b) = \bar{0}_6 \text{ or } \bar{3}_6.\]
+	  \begin{enumerate}[(i)]
+		\item
+		  If $\varphi(\bar{1}_a) = \varphi(\bar{1}_b) = \bar{0}_6$, then $\phi$ is trivial, similarly, we can find this is contradicted by that $G$ is non-abelian.\\
+		\item
+		  If $\varphi(\bar{1}_a) = \bar{0}_6$ and $\varphi(\bar{1}_b) = \bar{3}_6$, then 
+		  \[G \cong \bbz/7\bbz \rtimes_\varphi (\bbz/2\bbz \times \bbz/2\bbz). \]
+		\item
+		  If $\varphi(\bar{1}_b) = \bar{0}_6$ and $\varphi(\bar{1}_a) = \bar{3}_6$,\\ 
+		  let $\varphi$ determined by $\varphi(\bar{1}_a) = \bar{0}_6$ and $\varphi(\bar{1}_b) = \bar{3}_6$ be $\varphi_1$.\\
+		  let $\varphi$ determined by $\varphi(\bar{1}_b) = \bar{0}_6$ and $\varphi(\bar{1}_a) = \bar{3}_6$ be $\varphi_2$.\\
+		  By Symmetry, we have 
+		  \[\varphi_1(\bbz/2\bbz \times \bbz/2\bbz) = \varphi_2(\bbz/2\bbz \times \bbz/2\bbz).\]
+		  Since $\bbz/2\bbz \times \bbz/2\bbz$ is cyclic, by Exercise 6 from this section of the text,\\
+		  we have 
+		  \[\bbz/7\bbz \rtimes_{\varphi_1} (\bbz/2\bbz \times \bbz/2\bbz) \cong \bbz/7\bbz \rtimes_{\varphi_2} (\bbz/2\bbz \times \bbz/2\bbz)\]
+		 \item
+		  If $\varphi(\bar{1}_a) = \bar{3}_6$ and $\varphi(\bar{1}_b) = \bar{3}_6$, it seems no new homomorphism produced.\\ 
+	\end{enumerate}
+	In summary, we have 4 types of isomorphisms, and they are
+	\begin{enumerate}[(a)]
+	\item
+	$\bbz/28\bbz$.
+	\item
+	$\bbz/14\bbz \times \bbz/2\bbz$.
+	\item
+	$\bbz/7\bbz) \rtimes_\varphi ( \bbz/4\bbz)$ with the homomorphism $\varphi$ determined by $\varphi(\bar{1}_4) = \bar{3}_6$.
+	\item
+	$\bbz/7\bbz \rtimes_\varphi (\bbz/2\bbz \times \bbz/2\bbz)$ with the homomorphism $\varphi$ determined by $\varphi(\bar{1}_a) = \bar{0}_6$ and $\varphi(\bar{1}_b) = \bar{3}_6$. 
+
+	\end{enumerate}
+
+\end{enumerate}
+
+
+\end{exer}
+
+
+\begin{exer}[6.1.1]
+Let $G$ be a group. 
+Prove that $Z_i(G)$ is a characteristic subgroup of $G$ for all $i$. 
+\begin{proof}
+	We will show it by induction.\\
+	\textbf{ Basic steps:}\\
+	Let $\sigma \in \operatorname{Aut}(G)$.\\
+	$Z_0(G) =\{e_G\}$.\\
+	Since $\sigma \in \operatorname{Aut}(G)$, $\sigma(e_G) = e_G$. \\
+	So
+	\[\sigma(Z_0(G)) = \sigma(Z_0(G)).\]
+	Thus, $Z_0(G)$ is a characteristic subgroup of $G$.\\
+	$Z_1(G) = Z(G)$. \\
+	Since $\sigma \in \operatorname{Aut}(G)$, $\sigma(g^{-1})  = (\sigma(g))^{-1} \in G, \forall\ g \in G$.\\
+	Let $z \in Z(G)$\\
+	Then $z\sigma(g^{-1}) = \sigma(g^{-1})z, \forall\ g \in G$.\\
+    Then
+    \[\sigma(z\sigma(g^{-1})) = \sigma(\sigma(g^{-1})z), \forall\ g \in G\]
+    Since $\sigma \in \operatorname{Aut}(G)$, we have 
+    \[\sigma(z)\sigma\left(\sigma(g^{-1})\right) = \sigma\left(\sigma(g^{-1})\right)\sigma(z), \forall\ g \in G.\]
+    Namely,
+    \[\sigma(z)g = g\sigma(z), \forall\ g \in G.\]
+    Then 
+    \[\sigma(z) \in Z(G).\]
+    So
+	\[\sigma(Z(G)) \subset Z(G).\]
+	By the Theorem 4.4.8, $Z(G)$ is a characteristic subgroup of $G$.\\
+	\textbf{Induction steps: }\\
+	Assume $Z_i(G)$ is a characteristic subgroup of $G$.\\
+	Let $\sigma \in \operatorname{Aut}(G)$.\\
+	Then $\sigma(Z_i(G)) = Z_i(G)$.\\
+	Define 
+	\begin{align*}
+	  \overline{\sigma} : G/Z_i(G) &\to G/Z_i(G) \\
+	  						gZ_i(G) &\to \sigma(g)Z_i(G)  
+	\end{align*}
+	Then $\overline{\sigma}$ is well-defined since $Z_i(G) \unlhd G$ and $\sigma:G\to G$ is a isomomorphism.\\
+	Next we show $\overline{\sigma}$ is an automomorphism.\\
+	Let $gZ_i(G), hZ_i(G) \in G/Z_i(G)$, where $g,h\in G$.\\
+	Since $Z_i(G) \unlhd G$,
+	\begin{align*}
+	  \overline{\sigma}(gZ_i(G)hZ_i(G)) &= \overline{\sigma}(ghZ_i(G))\\
+	  								 	&= \sigma(gh)Z_i(G)\\
+	  									&=\sigma(g)\sigma(h)Z_i(G) \\
+	  									&= \sigma(g)Z_i(G)\sigma(h)Z_i(G) \\
+	  									&= \overline{\sigma}(gZ_i(G)) \overline{\sigma}(hZ_i(G)).
+  	\end{align*}
+  	So $\overline{\sigma}$ is a homomorphism.\\
+  	Since $\sigma$ is a homomorphism, and $Z_i(G)$ is a characteristic subgroup of $G$.
+  	\begin{align*}
+  	gZ_i(G) \in \ker\left(\overline{\sigma}\right) &\Leftrightarrow \overline{\sigma}(gZ_i(G)) = Z_i(G) \\
+  												   &\Leftrightarrow \sigma(g)Z_i(G) = Z_i(G) \\
+  	  											   &\Leftrightarrow \sigma(g) \in Z_i(G) \\
+  	  											   &\Leftrightarrow \sigma^{-1}(\sigma(g)) \in Z_i(G) \\
+  	  											   &\Leftrightarrow g \in Z_i(G).
+  	\end{align*}
+	So
+	\[\ker(\overline{\sigma}) = Z_i(G).\]
+	So $\overline{\sigma}$ is 1-1.\\
+	Let $kZ_i(G) \in G/Z_i(G)$, where $k \in G$.\\
+	We know $\sigma^{-1}(k) \in G$ since $\sigma^{-1} \in \operatorname{Aut}(G)$.\\
+	Then 
+	\[\sigma^{-1}(k) Z_i(G) \in G/Z_i(G).\]
+	Since 
+	\[\overline{\sigma} \left(\sigma^{-1}(k)Z_i(G)\right) = \sigma(\sigma^{-1}(k)) Z_i(G) = kZ_i(G),\]
+	$\overline{\sigma}$ is onto.\\
+	Thus, 
+	\[\overline{\sigma} \in \operatorname{Aut}\left(G/Z_i(G)\right).\]
+	Since in basic steps we have shown the center of a group is a characteristic subgroup of the group,\\
+	\[\overline{\sigma}\left(Z\left(G/Z_i(G)\right)\right) = Z\left(G/Z_i(G)\right). \]
+	By definition, we have 
+	\[Z\left(G/Z_i(G)\right)  = Z_{i+1}(G)/Z_i(G).\]
+	So
+  	\[\overline{\sigma}\left( Z_{i+1}(G)/Z_i(G) \right) = Z_{i+1}(G)/Z_i(G). \]
+	Let $z \in Z_{i+1}(G)$, then 
+		\[zZ_i(G) \in Z_{i+1}(G)/Z_i(G).\]
+	Then
+	\[\overline{\sigma}( zZ_i(G)) \in Z_{i+1}(G)/Z_i(G). \]
+	Namely,
+	\[\sigma(z)Z_i(G) \in  Z_{i+1}(G)/Z_i(G).\]
+	So 
+  	\[\sigma(z) \in Z_{i+1}(G).\]
+	Thus,
+  	\[\sigma\left(Z_{i+1}(G)\right) \subset Z_{i+1}(G).\]
+	By the Theorem 4.4.8, $Z_{i+1}(G)$ is a characteristic subgroup of $G$.\\
+	So the assumption also holds for $Z_{i+1}(G)$.\\
+	Thus, we conclude that $Z_i(G)$ is a characteristic subgroup of $G$ for each $i$.
+ \end{proof}
+\end{exer}
+
+\begin{exer}[6.1.6]
+Let $G$ be a group. 
+Prove that $G/Z(G)$ is nilpotent if and only if $G$ is nilpotent.
+\end{exer}
+\begin{proof}
+  We first find the relationship between $({G/Z(G)})^n$ and $G^n$.\\
+    $(G/Z(G))^0 = (G/Z(G)$.\\
+	 Since $Z(G) \unlhd G$,
+	\begin{align*}
+  	  ({G/Z(G)})^1 &= [G/Z(G),(G/Z(G))^0] \\ 
+  	  			 &= [G/Z(G),G/Z(G)] \\
+  	  		 	 &= \left\langle [hZ(G), kZ(G)]|hZ(G),kZ(G) \in G/Z(G)\right\rangle \\
+  	  			 &= \langle (hZ(G))^{-1}(kZ(G))^{-1}(hZ(G))(kZ(G)) | hZ(G),kZ(G) \in G/Z(G) \rangle\\
+  	  			 &=\langle (h^{-1}Z(G))(k^{-1}Z(G))(hZ(G))(kZ(G)) |  hZ(G),kZ(G) \in G/Z(G) \rangle \\
+  	  			 &=\langle h^{-1}k^{-1}hkZ(G) | h,k \in G \rangle.\\
+  	  			 &=[G,G]/Z(G)\\
+  	  			 &=G^1 / Z(G) 
+	\end{align*}
+	Then 
+	\begin{align*}
+	({G/Z(G)})^2 &=[G/Z(G),({G/Z(G)})^1] \\
+	  			 &=[G/Z(G), G^1 Z(G)]\\
+				 &= \left\langle [hZ(G), kZ(G)]|hZ(G) \in G/Z(G), kZ(G) \in G^1/ Z(G)\right\rangle \\
+  	  			 &=\langle h^{-1}k^{-1}hkZ(G) | h \in G, k \in G^1 \rangle.\\
+  	  			 &=[G,G^1]/Z(G).\\
+  	  			 &=G^2/Z(G).
+	\end{align*}
+	We guess $({G/Z(G)})^n = G^n/Z(G)$.\\
+	We will show it by induction.\\
+	We have shown the basic steps.\\
+	\textbf{Induction steps: }\\
+	Assume $({G/Z(G)})^n = G^n/Z(G)$.
+	\begin{align*}
+	  ({G/Z(G)})^{n+1} &=[G/Z(G),({G/Z(G)})^n] \\
+	  			 &=[G/Z(G), G^n/Z(G)]\\
+				 &= \left\langle [hZ(G), kZ(G)]|hZ(G) \in G/Z(G), kZ(G) \in G^n /Z(G)\right\rangle \\
+  	  			 &=\langle h^{-1}k^{-1}hkZ(G) | h \in G, k \in G^n \rangle.\\
+  	  			 &=[G,G^n]/Z(G).\\
+  	  			 &=G^{n+1}/Z(G).
+	\end{align*}
+	So the assumption holds for the $n+1$ case.\\
+	Thus, for $n \in \bbn$,
+	\[({G/Z(G)})^n = G^n/Z(G).\]
+	"$\Leftarrow$". Assume $G$ is nilpotent.\\
+	Then $G^m = e_G$ for some $m \geq 0$.\\
+	So
+	\[({G/Z(G)})^m = G^m/Z(G) = Z(G).\]
+	So $G/Z(G)$ is nilpotent.\\
+	"$\Rightarrow$". Assume $G/Z(G)$ is nilpotent.\\
+	Then $(G/Z(G))^n = Z_G$ for some $n \geq 0$.\\
+	So
+	\[G^n/Z(G) = ({G/Z(G)})^n = Z(G).\]
+	As a result, we have 
+	\[G^n \subset Z(G).\]
+	Therefore,
+	\begin{align*}
+	 	G^{n+1} &= [G,G^n] \\
+				&=\left\langle [h, k]|h \in G, k \in G^n \right\rangle \\
+				&=\left\langle h^{-1}k^{-1}hk|h \in G, k \in G^n \right\rangle \\
+				&=\left\langle h^{-1}k^{-1}kh|h \in G, k \in G^n \right\rangle \\
+				&=\left\langle e_G|h \in G, k \in G^n \right\rangle \\
+	  			&=\langle e_G \rangle \\
+	  			&= e_G,
+  	\end{align*}
+  	since $G^n \subset Z(G)$.\\
+	Thus, $G$ is nilpotent.\\
+Therefore, $G/Z(G)$ is nilpotent if and only if $G$ is nilpotent.
+ \end{proof}
+
+\end{document}
+
+
+
+

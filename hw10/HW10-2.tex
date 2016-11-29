@@ -1,0 +1,200 @@
+\documentclass{amsart}
+
+% PACKAGES
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb,enumerate}
+\usepackage{amsthm,stmaryrd}
+\usepackage[all]{xy}
+\usepackage{hyperref}
+
+%\theoremstyle{definition}
+%\newtheorem{exer}{Exercise}
+
+\newcommand{\bbr}{\mathbb{R}}
+\newcommand{\bbc}{\mathbb{C}}
+\newcommand{\bbz}{\mathbb{Z}}
+\newcommand{\bbq}{\mathbb{Q}}
+\newcommand{\bbn}{\mathbb{N}}
+\newcommand{\be}{\mathbf{e}}
+\newcommand{\ba}{\mathbf{a}}
+\newcommand{\fm}{\mathfrak{m}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\renewcommand{\ker}{\operatorname{Ker}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\xra}{\xrightarrow}
+\newcommand{\wti}{\widetilde}
+
+\theoremstyle{plain}
+\newtheorem{lem}{Lemma}
+\newtheorem{cor}[lem]{Corollary}
+\newtheorem{prop}[lem]{Proposition}
+\newtheorem{thm}[lem]{Theorem}
+\newtheorem{conj}[lem]{Conjecture}
+\newtheorem{intthm}{Theorem}
+\renewcommand{\theintthm}{\Alph{intthm}}
+
+\theoremstyle{definition}
+\newtheorem{defn}[lem]{Definition}
+\newtheorem{ex}[lem]{Example}
+\newtheorem{question}[lem]{Question}
+\newtheorem{questions}[lem]{Questions}
+\newtheorem{problem}[lem]{Problem}
+\newtheorem{disc}[lem]{Remark}
+\newtheorem{rmk}[lem]{Remark}
+\newtheorem{construction}[lem]{Construction}
+\newtheorem{notn}[lem]{Notation}
+\newtheorem{fact}[lem]{Fact}
+\newtheorem{para}[lem]{}
+\newtheorem{exer}[lem]{Exercise}
+\newtheorem{remarkdefinition}[lem]{Remark/Definition}
+\newtheorem{notation}[lem]{Notation}
+\newtheorem{step}{Step}
+\newtheorem{convention}[lem]{Convention}
+\newtheorem*{Convention}{Convention}
+\newtheorem{assumption}[lem]{Assumption}
+
+\newcommand{\fmn}{F^{m\times n}}
+\newcommand{\fnn}{F^{n\times n}}
+\newcommand{\col}{\operatorname{Col}}
+\newcommand{\row}{\operatorname{Row}}
+\newcommand{\Span}{\operatorname{Span}}	
+\newcommand{\rank}{\operatorname{rank}}	
+\newcommand{\OO}[1]{\mathcal{O}_{#1}}
+\begin{document}
+
+\noindent MATH 8510, Abstract Algebra I \\
+Fall 2016\\
+Exercises 10-2\\
+Due date Thu 03 Nov 4:00PM
+
+\
+
+%\noindent
+%Throughout this homework set, let $F$ be a field
+%
+%
+%\
+
+\begin{exer}[Binomial Theorem]
+Let $R$ be a commutative ring with identity.
+Prove that for all $a,b\in R$ and for all integers $n\geq 1$, we have
+$(a+b)^n=\sum_{i=0}^n\binom nia^ib^{n-i}$.
+\end{exer}
+\begin{proof}
+  	We will show it by inducition.\\
+	\textbf{Basic step:}\\
+	When $n=1$, since $(R,+)$ is an abelian group and R has multiplicative identity $1_R$.
+	\begin{align*}
+	 		\binom 10a^0b +	\binom 11 a^1b^0 &=a^0b + a^1b^0 \\
+	 				  &= 1_Rb+a1_R \\
+	  				  &=b+a\\
+	  		          &=a+b.
+	\end{align*}
+	\textbf{Inducitve step:}\\
+	Assume $(a+b)^n=\sum_{i=0}^n\binom nia^ib^{n-i}$.\\
+	Then by the distributive law and the commutative and associative law of addition of $R$,
+	\begin{align*}
+	  (a+b)^{n+1} &=(a+b)(a+b)^n \\
+	  			  &=(a+b)\sum_{i=0}^n\binom nia^ib^{n-i}\\
+	  			  &=a\sum_{i=0}^n\binom nia^ib^{n-i} + b\sum_{i=0}^n\binom nia^ib^{n-i}\\ 
+	  			  &=\sum_{i=0}^n\binom nia^{i+1}b^{n-i} + \sum_{i=0}^n\binom nia^ib^{n+1-i}\\ 
+	  			  &=\sum_{i=0}^{n-1}\binom nia^{i+1}b^{n-i} + \binom nna^{n+1}b^{0} + \binom n0a^0b^{n+1} + \sum_{i=1}^n\binom nia^ib^{n+1-i} \\ 
+	  			  &=\binom {n}{0}a^{0}b^{n+1} +\sum_{i=0}^{n-1}\binom n{i}a^{i+1}b^{n-i} + \sum_{i=1}^n\binom nia^ib^{n+1-i} + \binom {n}{n}a^{n+1}b^{0} \\
+	  			  &=\binom {n}{0}a^{0}b^{n+1} +\sum_{i=1}^{n}\binom n{i-1}a^{i}b^{n+1-i} + \sum_{i=1}^n\binom nia^ib^{n+1-i} + \binom {n}{n}a^{n+1}b^{0} \\
+	  			  &=\binom {n+1}0a^{0}b^{n+1} +\sum_{i=1}^{n}\left(\binom n{i-1} + \binom ni\right)a^{i}b^{n+1-i} + \binom {n+1}{n+1}a^{n+1}b^{0} \\
+	  			  &=\binom {n+1}0a^{0}b^{n+1} +\sum_{i=1}^{n}\binom {n+1}i a^{i}b^{n+1-i} + \binom {n+1}{n+1}a^{n+1}b^{0} \\
+	  			  &=\sum_{i=0}^{n+1}\binom {n+1}ia^ib^{n+1-i}.
+	\end{align*}
+	So our assumption also holds for the $n+1$ case.\\
+	Thus, we have $(a+b)^n=\sum_{i=0}^n\binom nia^ib^{n-i}$.
+	
+\end{proof}
+
+
+\begin{exer}[7.1.14]
+Let $R$ be a commutative ring with identity.
+An element $x\in R$ is \emph{nilpotent} if there is an integer $n\geq 1$ such that $x^n=0$.
+The \emph{nilradical} of $R$ is the set $N(R)=\{x\in R\mid\text{$x$ is nilpotent}\}$.
+\begin{enumerate}[(a)]
+\item Prove that $N(R)$ is a (two-sided) ideal of $R$, that is, $N(R)$ is a subring of $R$ such that
+for all $x\in N(R)$ and all $r\in R$ we have $rx,xr\in N(R)$.
+\begin{proof}
+	First we show $N(R)$ is a subring of $R$.\\
+	Since $0 \in R$ and $0^1 = 0$, we have $0 \in N(R)$.\\
+	So $N(R) \neq \emptyset$.\\
+	Let $x,y \in N(R)$, then $x,y\in R$ and $\exists\ m,n\in\bbn$ such that $x^m = y^n = 0$.\\
+	Besides, $(x+y)^{m+n} \in R$.\\
+	Since $R$ is CRW1, its multiplication is commutative.\\
+	By the distributive law and the addition associative law of $R$,
+	 \begin{align*}
+	   (x+y)^{m+n} &= \sum_{i=0}^{m+n}\binom {m+n}ix^iy^{m+n-i}\\
+	   				&=\sum_{i=0}^{m}\binom {m+n}ix^iy^{m+n-i} + \sum_{i=m+1}^{m+n}\binom {m+n}ix^iy^{m+n-i} \\
+			  &=y^n\sum_{i=0}^{m}\binom {m+n}ix^iy^{m-i} + x^m\sum_{i=m+1}^{m+n}\binom {m+n}ix^{i-m}y^{m+n-i}\\
+	   	&=0\sum_{i=0}^{m}\binom {m+n}ix^iy^{m-i} + 0 \sum_{i=m+1}^{m+n}\binom {m+n}ix^{i-m}y^{m+n-i} \\
+	   	&=0.
+	\end{align*}
+	Then $x+y \in N(R)$ since $m+n \in \bbn$.\\
+ 	So $N(R)$ is closed under addition.\\
+ 	By the commutative law and associative law of multiplication, we have
+ 	\[(xy)^{m} = (x^m)y^m = 0y^m = 0.\]
+ 	Then $xy \in N(R)$.\\
+ 	So $N(R)$ is closed under multiplication.\\
+ 	\[(-x)^{m} = (-1)^mx^m =(-1)^m 0 = 0, \]
+ 	Then $-x \in N(R)$.\\
+ 	So $N(R)$ is closed under taking additive inverses.\\
+ 	Thus, $N(R)$ is a subring of $R$.\\
+	$\forall\ x \in N(R)$ and $\forall\ r \in R$, assume $x^n = 0$ for some $n \in \bbn$.\\
+	Then since the multiplication of $R$ is commutative,
+	\[(xr)^n = x^nr^n = 0r^n = 0,\]
+	and
+	\[(rx)^n = r^nx^n = r^n 0 = 0.\]
+	So 
+	\[rx, xr\in N(R).\]
+	Therefore, $N(R)$ is a (two-sided) ideal of $R$.
+
+\end{proof}
+\item Prove that for all $x\in N(R)$, the element $1+x$ is a unit of $R$, that is, $1+x\in R^\times$.
+  \begin{proof}
+	$\forall\ x \in N(R)$, assume $x^n = 0$ for some $n \in \bbn$.\\
+  	Then $1+x \in R$ and $\sum_{i=0}^{n-1}(-1)^ix^i \in R$.\\
+  	By the distributive law and the associative law of addition of $R$,
+  	\begin{align*}
+	  (1+x) \sum_{i=0}^{n-1}(-1)^ix^i &= \sum_{i=0}^{n-1}(-1)^ix^i + \sum_{i=0}^{n-1}(-1)^ix^{i+1}\\
+	   					  			  &= 1 + \sum_{i=1}^{n-1}(-1)^ix^i -\sum_{i=0}^{n-1}(-1)^{i+1}x^{i+1} \\
+	   					  			  &= 1 + \sum_{i=1}^{n-1}(-1)^ix^i -\sum_{i=1}^{n-1}(-1)^{i}x^{i} \\
+	  								  &= 1+ \sum_{i=1}^{n-1}\left((-1)^ix^i-(-1)^ix^i\right)\\
+	  								  &=1+\sum_{i=1}^{n-1} 0\\
+	  								  &=1,
+  	\end{align*}
+  	So $1+x \in R^{\times}$.
+  \end{proof}
+\item Prove that for all $x\in N(R)$ and for all $u\in R^\times$, we have $u+x\in R^\times$.
+  	\begin{proof}
+  		For all $x\in N(R)$ and for all $u\in R^\times$, there exists some $n \in \bbn$ such that $x^n = 0$.\\
+		By the commutative and associative law of multiplication, we have
+  		\[\left(u^{-1} x \right)^n = u^{-n}x^n = u^{-n} 0  = 0.\]
+		So 
+		\[u^{-1}x \in N(R).\]
+		By the conclusion from part (b), we have
+		\[1+u^{-1}x \in R^\times.\]
+		Since $u \in R^\times$, by the distributive law of $R$,
+		\[u+x = u + uu^{-1}x=u\left(1+u^{-1}x\right),\]
+		and by the associative law of multiplication of $R$,
+		\begin{align*}
+		  \left(u\left(1+u^{-1}x\right)\right) \left(\left(1+u^{-1}x\right)^{-1}u^{-1}\right) &= u \left(\left(1+u^{-1}x\right)\left(1+u^{-1}x\right)^{-1}\right)u^{-1}\\
+		  &=u1u^{-1} \\
+		  &=uu^{-1} \\
+		  &= 1, 
+	    \end{align*}
+		we have
+		\[(u+x) \left(\left(1+u^{-1}\right)^{-1}u^{-1}\right) = 1.\]
+		Thus,
+		\[u+x \in R^{\times}.\]
+  	\end{proof}
+\end{enumerate}
+
+\end{exer}
+
+\end{document}

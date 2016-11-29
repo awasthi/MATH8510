@@ -1,0 +1,162 @@
+\documentclass{amsart}
+
+% PACKAGES
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb,enumerate}
+\usepackage{amsthm,stmaryrd}
+\usepackage[all]{xy}
+\usepackage{hyperref}
+
+%\theoremstyle{definition}
+%\newtheorem{exer}{Exercise}
+
+\newcommand{\bbr}{\mathbb{R}}
+\newcommand{\bbc}{\mathbb{C}}
+\newcommand{\bbz}{\mathbb{Z}}
+\newcommand{\bbq}{\mathbb{Q}}
+\newcommand{\bbn}{\mathbb{N}}
+\newcommand{\be}{\mathbf{e}}
+\newcommand{\ba}{\mathbf{a}}
+\newcommand{\fm}{\mathfrak{m}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\renewcommand{\ker}{\operatorname{Ker}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\xra}{\xrightarrow}
+\newcommand{\wti}{\widetilde}
+
+\theoremstyle{plain}
+\newtheorem{lem}{Lemma}
+\newtheorem{cor}[lem]{Corollary}
+\newtheorem{prop}[lem]{Proposition}
+\newtheorem{thm}[lem]{Theorem}
+\newtheorem{conj}[lem]{Conjecture}
+\newtheorem{intthm}{Theorem}
+\renewcommand{\theintthm}{\Alph{intthm}}
+
+\theoremstyle{definition}
+\newtheorem{defn}[lem]{Definition}
+\newtheorem{ex}[lem]{Example}
+\newtheorem{question}[lem]{Question}
+\newtheorem{questions}[lem]{Questions}
+\newtheorem{problem}[lem]{Problem}
+\newtheorem{disc}[lem]{Remark}
+\newtheorem{rmk}[lem]{Remark}
+\newtheorem{construction}[lem]{Construction}
+\newtheorem{notn}[lem]{Notation}
+\newtheorem{fact}[lem]{Fact}
+\newtheorem{para}[lem]{}
+\newtheorem{exer}[lem]{Exercise}
+\newtheorem{remarkdefinition}[lem]{Remark/Definition}
+\newtheorem{notation}[lem]{Notation}
+\newtheorem{step}{Step}
+\newtheorem{convention}[lem]{Convention}
+\newtheorem*{Convention}{Convention}
+\newtheorem{assumption}[lem]{Assumption}
+
+\newcommand{\fmn}{F^{m\times n}}
+\newcommand{\fnn}{F^{n\times n}}
+\newcommand{\col}{\operatorname{Col}}
+\newcommand{\row}{\operatorname{Row}}
+\newcommand{\Span}{\operatorname{Span}}	
+\newcommand{\rank}{\operatorname{rank}}	
+\newcommand{\OO}[1]{\mathcal{O}_{#1}}
+\begin{document}
+
+\noindent MATH 8510, Abstract Algebra I \\
+Fall 2016\\
+Exercises 11-2\\
+Due date Thu 10 Nov 4:00PM
+
+\
+
+%\noindent
+%Throughout this homework set, let $F$ be a field
+%
+%
+%\
+
+\begin{exer}
+Let $R$ be a commutative ring with identity.
+Prove that $R/N(R)$ has no non-zero nilpotent elements, that is, that $N(R/N(R))=0$.
+\begin{proof}
+  We have shown in Exercise 10-1$\#$2(a) that $N(R) \leq R$.\\
+  By the Theorem 7.3.6., we have $R/N(R)$ is a ring and $\forall\ r,s \in R$, we have
+  \[\left(r+N(R)\right)\left(s+N(R)\right) = rs + N(R).\]
+  Let $r + N(R) \in N(R/N(R))$, then $\exists \ n \in \bbn$ such that 
+  \[\left(r + N(R)\right)^n = N(R).\]
+  Then
+  \[r^n +  N(R) = N(R).\]
+  So
+  \[r^n \in N(R).\]
+  Therefore, $\exists \ m \in \bbn$ such that 
+  \[(r^n)^m = 0.\]
+  Since $R$ is CRW1, we have
+  \[(r^n)^m = r^{mn}= 0.\]
+  As a result,
+  \[r\in N(R).\]
+  Thus, $N(R/N(R))=0$.
+\end{proof}
+\end{exer}
+
+\begin{exer}[Division Algorithm]
+Let $R$ be a commutative ring with identity.
+Let $f,g\in R[x]$ such that $f$ is monic.
+Prove that there exist unique polynomials $q,r\in R[x]$ such that
+$g=qf+r$ and $\deg(r)<\deg(f)$.
+\\
+Hint: For existence, argue by induction on $\deg(g)$. In the induction step, reduce the degree of $g$ by subtracting an appropriate multiple of $f$ to clear the top degree term.
+\end{exer}
+
+\begin{proof}	
+  First we show the existence.\\
+  \textbf{Basic step:}\\ Let $\deg(g) = 0$.\\
+  Since $\deg(f) > \deg(r)$, we have $f = 1_R \in R[x]$ which is monic and $r = 0_R \in R[x]$ with $\deg(r) = -\infty$.\\
+  Let $q = g \in R[x]$, then we have $g = qf + r$.\\
+  \textbf{Inductive step:}\\ Assume when $\deg(g) =n$, there exists $q,r \in R[x]$ such that $g = qf+r$.\\
+  Let $g = \sum_{i=0}^{n+1}a_ix^i \in R[x]$ with $a_{n+1} \neq 0_R$.\\
+  Let $h = \sum_{i=1}^{n+1}a_ix^{i-1}$, then $\deg(h) = n $. \\
+  By assumption, there exists $q,r \in R[x]$ such that $h=qf+r$.\\
+  Then
+  \begin{align*}
+  	g &= hx + a_0\\
+  	  &= (qf+r)x+ a_0 \\
+	  &=qxf + (rx + a_0). \\ 
+  \end{align*}
+  \begin{enumerate}[(a)]
+  	  \item
+  When $\deg(r)+1 < \deg(f)$, we have $rx + a_0 \in R[x]$ and $\deg(rx + a_0) < \deg(f)$.	\\
+	Then after letting $q_1 = qx\in R[x]$ and $r_1 = rx + a_0\in R[x]$, we have $g = q_1f + r_1$.\\
+	\item
+  	When $\deg(r) + 1 = \deg(f)$, assume $\deg(r) =k$ and $r = \sum_{j=1}^kr_ix^i\in R[x] $ with $r_k \neq 0_R$.\\
+  	Then $\deg(f) = k+1$ and 
+  \begin{align*}
+  	 g &=qxf + rx+a_0. \\
+  	   &=qxf + \sum_{j=1}^kr_ix^{i+1} + a_0\\
+	   	 &=(r_k+qx)f + \left(r_{k}\left(x^{k+1}-f\right) + \sum_{j=1}^{k-1}r_ix^{i+1} + a_0\right).
+  \end{align*}
+  \end{enumerate}
+  Since $\deg(f) =k +1$ and $f$ is monic, we have $\deg\left(x^{k+1}-f\right) \leq k$.\\
+  So after letting $r_2 = r_{k}\left(x^{k+1}-f\right) + \sum_{j=1}^{k-1}r_ix^{i+1} + a_0 \in R[x]$,\\
+  we have
+  \[\deg(r_2) \leq k < \deg(f).\]
+  Let $q_2 = r_k+qx \in R[x]$, then we have
+ \[g = q_2f+r_2.\]
+ Therefore, our assumption also holds when $\deg(g) = n+1$.\\
+ As a result, when $\deg(g) =n$, there exists $q,r \in R[x]$ such that $g = qf+r$.\\
+ Next, we show the uniqueness.\\ 
+ Suppose for $g,f \in R[x]$ and $f$ is monic, $\exists\ q_1,q_2,r_1,r_2$ such that $g = q_1f+r_1 = q_2f+r_2$ with $\deg(r_1)<\deg(f)$ and $\deg(r_2) < \deg(f)$.\\
+ Then 
+ \[(q_1-q_2)f = r_2-r_1.\]
+So
+\begin{equation}\label{eq:1}
+	\deg(f) \leq \deg(r_2-r_1) \leq \max\{\deg(r_1),\deg(r_2)\}.
+\end{equation}
+Since $\deg(r_1)<\deg(f)$ and $\deg(r_2) < \deg(f)$, we have
+\[\max\{\deg(r_1),\deg(r_2)\} < \deg(f),\]   
+  which is contradicted by (\ref{eq:1}).\\
+  Thus, let $g,f\in R[x]$ and $f$ is monic, there exist unique $q,r\in R[x]$ such that $g = qf+r$.
+\end{proof}  
+
+\end{document}

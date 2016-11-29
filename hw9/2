@@ -1,0 +1,192 @@
+\documentclass{amsart}
+
+% PACKAGES
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb,enumerate}
+\usepackage{amsthm,stmaryrd}
+\usepackage[all]{xy}
+\usepackage{hyperref}
+
+%\theoremstyle{definition}
+%\newtheorem{exer}{Exercise}
+
+\newcommand{\bbr}{\mathbb{R}}
+\newcommand{\bbc}{\mathbb{C}}
+\newcommand{\bbz}{\mathbb{Z}}
+\newcommand{\bbq}{\mathbb{Q}}
+\newcommand{\bbn}{\mathbb{N}}
+\newcommand{\be}{\mathbf{e}}
+\newcommand{\ba}{\mathbf{a}}
+\newcommand{\fm}{\mathfrak{m}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\renewcommand{\ker}{\operatorname{Ker}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\xra}{\xrightarrow}
+\newcommand{\wti}{\widetilde}
+
+\theoremstyle{plain}
+\newtheorem{lem}{Lemma}
+\newtheorem{cor}[lem]{Corollary}
+\newtheorem{prop}[lem]{Proposition}
+\newtheorem{thm}[lem]{Theorem}
+\newtheorem{conj}[lem]{Conjecture}
+\newtheorem{intthm}{Theorem}
+\renewcommand{\theintthm}{\Alph{intthm}}
+
+\theoremstyle{definition}
+\newtheorem{defn}[lem]{Definition}
+\newtheorem{ex}[lem]{Example}
+\newtheorem{question}[lem]{Question}
+\newtheorem{questions}[lem]{Questions}
+\newtheorem{problem}[lem]{Problem}
+\newtheorem{disc}[lem]{Remark}
+\newtheorem{rmk}[lem]{Remark}
+\newtheorem{construction}[lem]{Construction}
+\newtheorem{notn}[lem]{Notation}
+\newtheorem{fact}[lem]{Fact}
+\newtheorem{para}[lem]{}
+\newtheorem{exer}[lem]{Exercise}
+\newtheorem{remarkdefinition}[lem]{Remark/Definition}
+\newtheorem{notation}[lem]{Notation}
+\newtheorem{step}{Step}
+\newtheorem{convention}[lem]{Convention}
+\newtheorem*{Convention}{Convention}
+\newtheorem{assumption}[lem]{Assumption}
+
+\newcommand{\fmn}{F^{m\times n}}
+\newcommand{\fnn}{F^{n\times n}}
+\newcommand{\col}{\operatorname{Col}}
+\newcommand{\row}{\operatorname{Row}}
+\newcommand{\Span}{\operatorname{Span}}	
+\newcommand{\rank}{\operatorname{rank}}	
+\newcommand{\OO}[1]{\mathcal{O}_{#1}}
+\begin{document}
+
+\noindent MATH 8510, Abstract Algebra I \\
+Fall 2016\\
+Exercises 9-1\\
+Due date Thu 27 Oct 4:00PM
+
+\
+
+%\noindent
+%Throughout this homework set, let $F$ be a field
+%
+%
+%\
+
+\begin{exer}[5.5.1--2]
+Let $H$ and $K$ be groups, let $\varphi\colon K\to \operatorname{Aut}(H)$ be a homomorphism, and let $\wti H,\wti K$ be as in Theorem~5.5.3.
+Prove that $C_{\wti K}(\wti H)\cong\ker(\varphi)$
+and $C_{\wti H}(\wti K)=N_{\wti H}(\wti K)$.
+
+\begin{proof}
+	Define 
+	\begin{align*}
+	  \phi: \ker(\varphi) & \to C_{\wti K}(\wti H)\\
+	  	k &\mapsto (e_H,k)
+	\end{align*}
+	First we show $\phi$ is well defined.\\
+	Let $k \in \ker(\varphi)$, then $k \in \ker(\varphi) \leq K$ by the definition of $\varphi$.\\ 
+	$\forall (h,e_K) \in \wti H$, where $h \in H$, by Theorem 5.5.3 (d), we have 
+	\begin{align*}
+	  (e_H,k)(h,e_K)(e_H,k)^{-1} &= (\varphi(k)h, e_K).
+	\end{align*}
+	Since $k \in \ker(\varphi)$, $\varphi(k) = e_{\operatorname{Aut}(H)} $, where $e_{\operatorname{Aut}(H)}$ is the identity map from $H$ to $H$.\\
+	  Besides, $h \in H$, so 
+	  \[\varphi(k)h  = h.\]
+	  Then 
+	  \[(e_H,k)(h,e_K)(e_H,k)^{-1} =(h, e_K) \in H.\]
+	  So $\phi$ is well defined. \\
+	  Next we show $\phi$ is a homomorphism.\\
+	 $\forall\ k_1,k_2 \in \ker(\varphi)$, 
+	 \begin{align*}
+	   \phi(k_1k_2) &=(e_H,k_1k_2) \\
+	   			    &=\left(e_H\cdot\varphi(k_1)(e_H),k_1k_2\right)\\
+	   				&=(e_H,k_1)(e_H,k_2)\\
+	   				&=\phi(k_1)\phi(k_2),
+	 \end{align*}
+	 so $\phi$ is a homomorphism.\\
+	Let $k \in \ker(\varphi)$.\\
+	Then
+	\begin{align*}
+	  k \in \ker(\phi) &\Leftrightarrow \phi(k) = (e_H,e_K) \\
+	 				   &\Leftrightarrow (e_H,k) = (e_H,e_K) \\
+	  				   &\Leftrightarrow k = e_K.
+	\end{align*}
+   So 
+   \[\ker(\phi) = \{e_K\} = \{e_{\ker(\varphi)}\}.\]
+   Thus, $\phi$ is 1-1.\\
+   Let $(e_H,k) \in C_{\wti K}(\wti H)$, where $k \in K$.\\
+   Then $\forall\ (h,e_K) \in \wti H$, we have $h\in H$ is arbitrary,\\
+   and by the Theorem 5.5.3 (d),
+   \begin{align*}
+   	 (e_H,k) \in C_{\wti K}(\wti H) &\Rightarrow  (e_H,k) (h,e_K)(e_H,k)^{-1}  = (h,e_K), \ \ \forall\ h \in H\\
+   	 								&\Rightarrow (\varphi(k)h,e_K) = (h,e_K), \ \ \forall\ h \in H\\
+   	 								&\Rightarrow \varphi(k)h = h, \ \ \forall\ h \in H\\
+   	 								&\Rightarrow \varphi(k) = e_{\operatorname{Aut}(H)}.
+   \end{align*}
+	Then by the definition of $\varphi$, we have 
+  	\[k \in \ker(\varphi).\]
+  	Namely, for any $(e_H,k) \in C_{\wti K}(\wti H)$, we have $\ k \in \ker(\varphi)$ such that $\phi(k) = (e_H,k)$.\\
+  	Thus, $\phi$ is onto.\\
+  	Next we show 
+  	\[C_{\wti H}(\wti K) = N_{\wti H}(\wti K)\]
+  	By the definition of $C_{\wti H}(\wti K)$ and $N_{\wti H}(\wti K)$, we have
+  	\[C_{\wti H}(\wti K) \subset N_{\wti H}(\wti K).\]
+  	Let $(h,e_K) \in N_{\wti H}(\wti K)$, where $h \in H$.\\
+  	Then $\forall \ (e_H,k) \in \wti K$, we have $k \in K$ is arbitrary,\\
+  	and since $\varphi$ is a homomorphism,
+	\begin{align*}
+	   		  (h,e_K) (e_H,k)(h,e_K)^{-1} &=(h\cdot \varphi(e_K)(e_H),e_Kk)(h,e_K)^{-1} \\
+			   &=(he_H,k)(h,e_K)^{-1}\\
+	  		   &=(h,k)\left(\varphi(e_K^{-1})(h^{-1}),e_K^{-1}\right)\\
+			   	 &=(h,k)(\varphi(e_K)h^{-1},e_K)\\
+	  			&=(h,k)\left(h^{-1},e_K\right)\\
+	  			&=\left(h\cdot\varphi(k)(h^{-1}),ke_K\right)\\
+	  			&=\left(h\cdot\varphi(k)(h^{-1}),k\right)\\
+	  		  	&\in \wti K.
+	\end{align*}
+	So
+	\[h\cdot\varphi(k)(h^{-1}) = e_H.\]
+	Namely, $\forall\ (h,e_K) \in N_{\wti H}(\wti K)$, $\forall\ (e_H,k)\in \wti K$, we have
+	\[(h,e_K) (e_H,k)(h,e_K)^{-1} = \left(e_H,k\right).\]
+	So
+	\[(h,e_K) \in C_{\wti H}(\wti K).\]
+	Thus,
+	\[N_{\wti H}(\wti K) \subset C_{\wti H}(\wti K).\]
+	As a result,
+	\[C_{\wti H}(\wti K) = N_{\wti H}(\wti K).\]
+\end{proof}
+
+
+
+
+
+
+\end{exer}
+
+\begin{exer}[5.5.11]
+Classify all groups of order 28. (There are four isomorphism types. Feel free to use Proposition 11 and/or Exercise 6 from this section of the text;
+You do not need to solve Exercise 6.)
+\end{exer}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

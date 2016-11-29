@@ -1,0 +1,241 @@
+\documentclass{amsart}
+
+% PACKAGES
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb,enumerate}
+\usepackage{amsthm,stmaryrd}
+\usepackage[all]{xy}
+\usepackage{hyperref}
+
+%\theoremstyle{definition}
+%\newtheorem{exer}{Exercise}
+
+\newcommand{\bbr}{\mathbb{R}}
+\newcommand{\bbc}{\mathbb{C}}
+\newcommand{\bbz}{\mathbb{Z}}
+\newcommand{\bbq}{\mathbb{Q}}
+\newcommand{\bbn}{\mathbb{N}}
+\newcommand{\be}{\mathbf{e}}
+\newcommand{\ba}{\mathbf{a}}
+\newcommand{\fm}{\mathfrak{m}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\renewcommand{\ker}{\operatorname{Ker}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\xra}{\xrightarrow}
+\newcommand{\wti}{\widetilde}
+
+\theoremstyle{plain}
+\newtheorem{lem}{Lemma}
+\newtheorem{cor}[lem]{Corollary}
+\newtheorem{prop}[lem]{Proposition}
+\newtheorem{thm}[lem]{Theorem}
+\newtheorem{conj}[lem]{Conjecture}
+\newtheorem{intthm}{Theorem}
+\renewcommand{\theintthm}{\Alph{intthm}}
+
+\theoremstyle{definition}
+\newtheorem{defn}[lem]{Definition}
+\newtheorem{ex}[lem]{Example}
+\newtheorem{question}[lem]{Question}
+\newtheorem{questions}[lem]{Questions}
+\newtheorem{problem}[lem]{Problem}
+\newtheorem{disc}[lem]{Remark}
+\newtheorem{rmk}[lem]{Remark}
+\newtheorem{construction}[lem]{Construction}
+\newtheorem{notn}[lem]{Notation}
+\newtheorem{fact}[lem]{Fact}
+\newtheorem{para}[lem]{}
+\newtheorem{exer}[lem]{Exercise}
+\newtheorem{remarkdefinition}[lem]{Remark/Definition}
+\newtheorem{notation}[lem]{Notation}
+\newtheorem{step}{Step}
+\newtheorem{convention}[lem]{Convention}
+\newtheorem*{Convention}{Convention}
+\newtheorem{assumption}[lem]{Assumption}
+
+\newcommand{\fmn}{F^{m\times n}}
+\newcommand{\fnn}{F^{n\times n}}
+\newcommand{\col}{\operatorname{Col}}
+\newcommand{\row}{\operatorname{Row}}
+\newcommand{\Span}{\operatorname{Span}}	
+\newcommand{\rank}{\operatorname{rank}}	
+\newcommand{\OO}[1]{\mathcal{O}_{#1}}
+\begin{document}
+
+\noindent MATH 8510, Abstract Algebra I \\
+Fall 2016\\
+Exercises 9-2\\
+Due date Thu 27 Oct 4:00PM
+
+\
+
+%\noindent
+%Throughout this homework set, let $F$ be a field
+%
+%
+%\
+
+\begin{exer}[6.1.1]
+Let $G$ be a group. 
+Prove that $Z_i(G)$ is a characteristic subgroup of $G$ for all $i$. 
+\begin{proof}
+	We will show it by induction.\\
+	\textbf{ Basic steps:}\\
+	Let $\sigma \in \operatorname{Aut}(G)$.\\
+	$Z_0(G) =\{e_G\}$.\\
+	Since $\sigma \in \operatorname{Aut}(G)$, $\sigma(e_G) = e_G$. \\
+	So
+	\[\sigma(Z_0(G)) = \sigma(Z_0(G)).\]
+	Thus, $Z_0(G)$ is a characteristic subgroup of $G$.\\
+	$Z_1(G) = Z(G)$. \\
+	Since $\sigma \in \operatorname{Aut}(G)$, $\sigma(g^{-1})  = (\sigma(g))^{-1} \in G, \forall\ g \in G$.\\
+	Let $z \in Z(G)$\\
+	Then $z\sigma(g^{-1}) = \sigma(g^{-1})z, \forall\ g \in G$.\\
+    Then
+    \[\sigma(z\sigma(g^{-1})) = \sigma(\sigma(g^{-1})z), \forall\ g \in G\]
+    Since $\sigma \in \operatorname{Aut}(G)$, we have 
+    \[\sigma(z)\sigma\left(\sigma(g^{-1})\right) = \sigma\left(\sigma(g^{-1})\right)\sigma(z), \forall\ g \in G.\]
+    Namely,
+    \[\sigma(z)g = g\sigma(z), \forall\ g \in G.\]
+    Then 
+    \[\sigma(z) \in Z(G).\]
+    So
+	\[\sigma(Z(G)) \subset Z(G).\]
+	By the Theorem 4.4.8, $Z(G)$ is a characteristic subgroup of $G$.\\
+	\textbf{Induction steps: }\\
+	Assume $Z_i(G)$ is a characteristic subgroup of $G$.\\
+	Let $\sigma \in \operatorname{Aut}(G)$.\\
+	Then $\sigma(Z_i(G)) = Z_i(G)$.\\
+	Define 
+	\begin{align*}
+	  \overline{\sigma} : G/Z_i(G) &\to G/Z_i(G) \\
+	  						gZ_i(G) &\to \sigma(g)Z_i(G)  
+	\end{align*}
+	Then $\overline{\sigma}$ is well-defined since $Z_i(G) \unlhd G$ and $\sigma:G\to G$ is a isomomorphism.\\
+	Next we show $\overline{\sigma}$ is an automomorphism.\\
+	Let $gZ_i(G), hZ_i(G) \in G/Z_i(G)$, where $g,h\in G$.\\
+	Since $Z_i(G) \unlhd G$,
+	\begin{align*}
+	  \overline{\sigma}(gZ_i(G)hZ_i(G)) &= \overline{\sigma}(ghZ_i(G))\\
+	  								 	&= \sigma(gh)Z_i(G)\\
+	  									&=\sigma(g)\sigma(h)Z_i(G) \\
+	  									&= \sigma(g)Z_i(G)\sigma(h)Z_i(G) \\
+	  									&= \overline{\sigma}(gZ_i(G)) \overline{\sigma}(hZ_i(G)).
+  	\end{align*}
+  	So $\overline{\sigma}$ is a homomorphism.\\
+  	Since $\sigma$ is a homomorphism, and $Z_i(G)$ is a characteristic subgroup of $G$.
+  	\begin{align*}
+  	gZ_i(G) \in \ker\left(\overline{\sigma}\right) &\Leftrightarrow \overline{\sigma}(gZ_i(G)) = Z_i(G) \\
+  												   &\Leftrightarrow \sigma(g)Z_i(G) = Z_i(G) \\
+  	  											   &\Leftrightarrow \sigma(g) \in Z_i(G) \\
+  	  											   &\Leftrightarrow \sigma^{-1}(\sigma(g)) \in Z_i(G) \\
+  	  											   &\Leftrightarrow g \in Z_i(G).
+  	\end{align*}
+	So
+	\[\ker(\overline{\sigma}) = Z_i(G).\]
+	So $\overline{\sigma}$ is 1-1.\\
+	Let $kZ_i(G) \in G/Z_i(G)$, where $k \in G$.\\
+	We know $\sigma^{-1}(k) \in G$ since $\sigma^{-1} \in \operatorname{Aut}(G)$.\\
+	Then 
+	\[\sigma^{-1}(k) Z_i(G) \in G/Z_i(G).\]
+	Since 
+	\[\overline{\sigma} \left(\sigma^{-1}(k)Z_i(G)\right) = \sigma(\sigma^{-1}(k)) Z_i(G) = kZ_i(G),\]
+	$\overline{\sigma}$ is onto.\\
+	Thus, 
+	\[\overline{\sigma} \in \operatorname{Aut}\left(G/Z_i(G)\right).\]
+	Since in basic steps we have shown the center of a group is a characteristic subgroup of the group,\\
+	\[\overline{\sigma}\left(Z\left(G/Z_i(G)\right)\right) = Z\left(G/Z_i(G)\right). \]
+	By definition, we have 
+	\[Z\left(G/Z_i(G)\right)  = Z_{i+1}(G)/Z_i(G).\]
+	So
+  	\[\overline{\sigma}\left( Z_{i+1}(G)/Z_i(G) \right) = Z_{i+1}(G)/Z_i(G). \]
+	Let $z \in Z_{i+1}(G)$, then 
+		\[zZ_i(G) \in Z_{i+1}(G)/Z_i(G).\]
+	Then
+	\[\overline{\sigma}( zZ_i(G)) \in Z_{i+1}(G)/Z_i(G). \]
+	Namely,
+	\[\sigma(z)Z_i(G) \in  Z_{i+1}(G)/Z_i(G).\]
+	So 
+  	\[\sigma(z) \in Z_{i+1}(G).\]
+	Thus,
+  	\[\sigma\left(Z_{i+1}(G)\right) \subset Z_{i+1}(G).\]
+	By the Theorem 4.4.8, $Z_{i+1}(G)$ is a characteristic subgroup of $G$.\\
+	So the assumption also holds for $Z_{i+1}(G)$.\\
+	Thus, we conclude that $Z_i(G)$ is a characteristic subgroup of $G$ for each $i$.
+ \end{proof}
+\end{exer}
+
+\begin{exer}[6.1.6]
+Let $G$ be a group. 
+Prove that $G/Z(G)$ is nilpotent if and only if $G$ is nilpotent.
+\end{exer}
+\begin{proof}
+  We first find the relationship between $({G/Z(G)})^n$ and $G^n$.\\
+    $(G/Z(G))^0 = (G/Z(G)$.\\
+	 Since $Z(G) \unlhd G$,
+	\begin{align*}
+  	  ({G/Z(G)})^1 &= [G/Z(G),(G/Z(G))^0] \\ 
+  	  			 &= [G/Z(G),G/Z(G)] \\
+  	  		 	 &= \left\langle [hZ(G), kZ(G)]|hZ(G),kZ(G) \in G/Z(G)\right\rangle \\
+  	  			 &= \langle (hZ(G))^{-1}(kZ(G))^{-1}(hZ(G))(kZ(G)) | hZ(G),kZ(G) \in G/Z(G) \rangle\\
+  	  			 &=\langle (h^{-1}Z(G))(k^{-1}Z(G))(hZ(G))(kZ(G)) |  hZ(G),kZ(G) \in G/Z(G) \rangle \\
+  	  			 &=\langle h^{-1}k^{-1}hkZ(G) | h,k \in G \rangle.\\
+  	  			 &=[G,G]/Z(G)\\
+  	  			 &=G^1 / Z(G) 
+	\end{align*}
+	Then 
+	\begin{align*}
+	({G/Z(G)})^2 &=[G/Z(G),({G/Z(G)})^1] \\
+	  			 &=[G/Z(G), G^1 Z(G)]\\
+				 &= \left\langle [hZ(G), kZ(G)]|hZ(G) \in G/Z(G), kZ(G) \in G^1/ Z(G)\right\rangle \\
+  	  			 &=\langle h^{-1}k^{-1}hkZ(G) | h \in G, k \in G^1 \rangle.\\
+  	  			 &=[G,G^1]/Z(G).\\
+  	  			 &=G^2/Z(G).
+	\end{align*}
+	We guess $({G/Z(G)})^n = G^n/Z(G)$.\\
+	We will show it by induction.\\
+	We have shown the basic steps.\\
+	\textbf{Induction steps: }\\
+	Assume $({G/Z(G)})^n = G^n/Z(G)$.
+	\begin{align*}
+	  ({G/Z(G)})^{n+1} &=[G/Z(G),({G/Z(G)})^n] \\
+	  			 &=[G/Z(G), G^n/Z(G)]\\
+				 &= \left\langle [hZ(G), kZ(G)]|hZ(G) \in G/Z(G), kZ(G) \in G^n /Z(G)\right\rangle \\
+  	  			 &=\langle h^{-1}k^{-1}hkZ(G) | h \in G, k \in G^n \rangle.\\
+  	  			 &=[G,G^n]/Z(G).\\
+  	  			 &=G^{n+1}/Z(G).
+	\end{align*}
+	So the assumption holds for the $n+1$ case.\\
+	Thus, for $n \in \bbn$,
+	\[({G/Z(G)})^n = G^n/Z(G).\]
+	"$\Leftarrow$". Assume $G$ is nilpotent.\\
+	Then $G^m = e_G$ for some $m \geq 0$.\\
+	So
+	\[({G/Z(G)})^m = G^m/Z(G) = Z(G).\]
+	So $G/Z(G)$ is nilpotent.\\
+	"$\Rightarrow$". Assume $G/Z(G)$ is nilpotent.\\
+	Then $(G/Z(G))^n = Z_G$ for some $n \geq 0$.\\
+	So
+	\[G^n/Z(G) = ({G/Z(G)})^n = Z(G).\]
+	As a result, we have 
+	\[G^n \subset Z(G).\]
+	Therefore,
+	\begin{align*}
+	 	G^{n+1} &= [G,G^n] \\
+				&=\left\langle [h, k]|h \in G, k \in G^n \right\rangle \\
+				&=\left\langle h^{-1}k^{-1}hk|h \in G, k \in G^n \right\rangle \\
+				&=\left\langle h^{-1}k^{-1}kh|h \in G, k \in G^n \right\rangle \\
+				&=\left\langle e_G|h \in G, k \in G^n \right\rangle \\
+	  			&=\langle e_G \rangle \\
+	  			&= e_G,
+  	\end{align*}
+  	since $G^n \subset Z(G)$.\\
+	Thus, $G$ is nilpotent.
+ \end{proof}
+
+\end{document}
+
+
+

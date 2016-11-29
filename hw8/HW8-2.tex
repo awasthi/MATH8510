@@ -1,0 +1,299 @@
+\documentclass{amsart}
+
+% PACKAGES
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb,enumerate}
+\usepackage{amsthm,stmaryrd}
+\usepackage[all]{xy}
+\usepackage{hyperref}
+
+%\theoremstyle{definition}
+%\newtheorem{exer}{Exercise}
+
+\newcommand{\bbr}{\mathbb{R}}
+\newcommand{\bbc}{\mathbb{C}}
+\newcommand{\bbz}{\mathbb{Z}}
+\newcommand{\bbq}{\mathbb{Q}}
+\newcommand{\bbn}{\mathbb{N}}
+\newcommand{\be}{\mathbf{e}}
+\newcommand{\ba}{\mathbf{a}}
+\newcommand{\fm}{\mathfrak{m}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\renewcommand{\ker}{\operatorname{Ker}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\xra}{\xrightarrow}
+\newcommand{\wti}{\widetilde}
+
+\theoremstyle{plain}
+\newtheorem{lem}{Lemma}
+\newtheorem{cor}[lem]{Corollary}
+\newtheorem{prop}[lem]{Proposition}
+\newtheorem{thm}[lem]{Theorem}
+\newtheorem{conj}[lem]{Conjecture}
+\newtheorem{intthm}{Theorem}
+\renewcommand{\theintthm}{\Alph{intthm}}
+
+\theoremstyle{definition}
+\newtheorem{defn}[lem]{Definition}
+\newtheorem{ex}[lem]{Example}
+\newtheorem{question}[lem]{Question}
+\newtheorem{questions}[lem]{Questions}
+\newtheorem{problem}[lem]{Problem}
+\newtheorem{disc}[lem]{Remark}
+\newtheorem{rmk}[lem]{Remark}
+\newtheorem{construction}[lem]{Construction}
+\newtheorem{notn}[lem]{Notation}
+\newtheorem{fact}[lem]{Fact}
+\newtheorem{para}[lem]{}
+\newtheorem{exer}[lem]{Exercise}
+\newtheorem{remarkdefinition}[lem]{Remark/Definition}
+\newtheorem{notation}[lem]{Notation}
+\newtheorem{step}{Step}
+\newtheorem{convention}[lem]{Convention}
+\newtheorem*{Convention}{Convention}
+\newtheorem{assumption}[lem]{Assumption}
+
+\newcommand{\fmn}{F^{m\times n}}
+\newcommand{\fnn}{F^{n\times n}}
+\newcommand{\col}{\operatorname{Col}}
+\newcommand{\row}{\operatorname{Row}}
+\newcommand{\Span}{\operatorname{Span}}	
+\newcommand{\rank}{\operatorname{rank}}	
+\newcommand{\OO}[1]{\mathcal{O}_{#1}}
+\begin{document}
+
+\noindent MATH 8510, Abstract Algebra I \\
+Fall 2016\\
+Exercises 8-2\\
+Due date Thu 20 Oct 4:00PM
+
+\
+
+%\noindent
+%Throughout this homework set, let $F$ be a field
+%
+%
+%\
+
+\begin{exer}[5.2]
+Write a list of the non-isomorphic abelian groups of order 270 in terms of their elementary divisor decompositions. 
+For each group in this list, write its invariant factor decomposition. \\
+\textbf{Solution:}\\
+Let $G$ be an abelian group of order 270.
+\[270 = 2 \times 3^3\times 5.\] 
+Since $3=3$, $3=1+2$ and $3=1+1+1$,
+we have 3 non-isomorphic abelian groups of order 270 and they are
+\begin{gather*}
+(\bbz/27\bbz) \times (\bbz/2\bbz) \times (\bbz/5\bbz);\\
+\left( \bbz/9\bbz \times \bbz/3\bbz \right)\times (\bbz/2\bbz) \times (\bbz/5\bbz);\\
+\left( \bbz/3\bbz \times \bbz/3\bbz \times \bbz/3\bbz \right)\times (\bbz/2\bbz) \times (\bbz/5\bbz).
+\end{gather*}
+Next we compute their invariant factor decomposition.
+\begin{enumerate}[(1)]
+	\item
+	  \begin{align*}
+	 	(\bbz/27\bbz) \times (\bbz/2\bbz) \times (\bbz/5\bbz) &\cong \bbz/270\bbz      		
+	  \end{align*}
+	\item
+	  \begin{align*}
+	  	\left( \bbz/9\bbz \times \bbz/3\bbz \right)\times (\bbz/2\bbz) \times (\bbz/5\bbz) &\cong  \left( \bbz/9\bbz \times \bbz/2\bbz \times \bbz/5\bbz \right)\times (\bbz/3\bbz) \\
+	  			&\cong \left( \bbz/90\bbz \right)\times (\bbz/3\bbz)
+	  \end{align*}
+	\item
+	\begin{align*}
+	  &\left( \bbz/3\bbz \times \bbz/3\bbz \times \bbz/3\bbz \right)\times (\bbz/2\bbz) \times (\bbz/5\bbz) \\
+	  &\cong  \left( \bbz/3\bbz \times \bbz/2\bbz \times \bbz/5\bbz \right) \times (\bbz/3\bbz) \times (\bbz/3\bbz)  \\
+	  &\cong \left( \bbz/30\bbz \right)\times (\bbz/3\bbz) \times (\bbz/3\bbz) 
+	\end{align*}
+\end{enumerate}
+\end{exer}
+
+\begin{exer}[5.4.11]
+Let $H$ and $K$ be characteristic subgroups of a group $G$ such that $H\cap K=\{e\}$
+and $G=HK$. Prove that $\operatorname{Aut}(G)\cong\operatorname{Aut}(H)\times\operatorname{Aut}(K)$.
+
+\begin{proof}
+	Since $H$ and $K$ be characteristic subgroups of a group $G$,\\
+	\[H \unlhd G \text{ and } K \unlhd G.\]
+	Besides, 
+	\[H \cap K = \{e\}.\]
+	Then by Theorem 5.4, we have
+	\[H \times K \cong HK = G. \]
+	Let $\sigma \in \operatorname{Aut}(H)$ and $\tau \in \operatorname{Aut}(K)$.\\
+	Define $\sigma \times \tau $ as
+	\begin{align*}
+	  \sigma \times \tau: H\times K &\to H\times K \\ 
+	  (h,k) &\mapsto (\sigma(h), \tau (k))  
+	\end{align*}
+	Then we show $\sigma \times \tau \in \operatorname{Aut}(H \times K)$.\\
+	Let $(h_1,k_1),(h_2,k_2) \in H\times K$.\\
+	Since $\sigma \in \operatorname{Aut}(H)$, and $\tau \in \operatorname{Aut}(K)$, $\sigma,\tau$ are homomorphisms.
+	\begin{align*}
+	  \sigma \times \tau \left((h_1,k_1)(h_2,k_2)\right) &= \sigma \times \tau(h_1h_2,k_1k_2) \\
+	  													 &=\left(\sigma(h_1h_2),\tau(k_1k_2)\right) \\
+	  													 &=\left(\sigma(h_1)\sigma(h_2),\tau(k_1)\tau(k_2)\right) \\
+	  													 &=\left(\sigma(h_1),\tau(k_1)\right) \left(\sigma(h_2),\tau(k_2)\right)\\
+	  													 &=\left(\sigma \times \tau(h_1,k_1)\right)\left(\sigma \times \tau(h_2,k_2)\right),
+	\end{align*}
+	Therefore, $\sigma \times \tau$ is a homomorphism.\\
+	Let $(h,k) \in H \times K$ where $h \in H, k \in K$.\\
+	Since $\sigma \in \operatorname{Aut}(H)$, and $\tau \in \operatorname{Aut}(K)$, $\sigma$ and $\tau$ are isomomorphsims. \\
+	So $\sigma (h) = e_G \text{ and }\tau (k) = e_G$ if and only if $h = e_G$ and $k = e_G$.
+	\begin{align*}
+	  (h,k) \in \ker(\sigma \times \tau) & \Leftrightarrow \sigma \times \tau (h,k) =(e_G,e_G) \\
+	  									 & \Leftrightarrow  (\sigma (h), \tau (k)) = (e_G,e_G) \\
+	  									 & \Leftrightarrow  \sigma (h) = e_G \text{ and }\tau( k) = e_G \\
+	  									 & \Leftrightarrow  h = e_G \text{ and } k = e_G \\
+	  									 & \Leftrightarrow (h,k) = (e_G,e_G),
+	\end{align*}
+   so 
+   \[\ker(\sigma \times \tau) = (e_G,e_G).\]
+   So $\sigma \times \tau$ is 1-1.\\
+   Let $(h^{\textprime},k^{\textprime}) \in (H,K)$, where $h \in H, k \in K$.\\
+   We have shown before that $\sigma^{-1} \in \operatorname{Aut}(H)$ and $\tau^{-1} \in \operatorname{Aut}(K)$ when $\sigma \in \operatorname{Aut}(H)$ and $\tau \in \operatorname{Aut}(K)$.\\
+   Then $\sigma^{-1}(h^{\textprime}) \in H$ and $\tau^{-1}(k^{\textprime}) \in K$.\\
+   So 
+   \[\left(\sigma^{-1}(h^{\textprime}),\tau^{-1}(k^{\textprime})\right) \in H \times K.\]
+   Since by the definition of $\sigma \times \tau$, 
+   \[\sigma \times \tau \left(\sigma^{-1}(h^{\textprime}), \tau^{-1}(k^{\textprime}) \right) = (h^{\textprime},k^{\textprime}),\]
+   $\sigma \times \tau$ is onto.\\
+   Therefore, 
+   \[\sigma \times \tau \in \operatorname{Aut}(G).\] 
+   Next we define $\phi$ as 
+   \begin{align*}
+	 \phi: \operatorname{Aut}(H) \times \operatorname{Aut}(K) &\to \operatorname{Aut}(H \times K) \\
+	 					(\sigma, \tau) &\mapsto \sigma \times \tau
+   \end{align*}
+   Since we have show $\sigma \times \tau \in \operatorname{Aut}(H \times K)$, $\phi$ is well-defined.\\
+   Let $(\sigma_1,\tau_1),(\sigma_2,\tau_2) \in \operatorname{Aut}(H) \times \operatorname{Aut}(K)$, where $\sigma_1,\sigma_2 \in \operatorname{Aut}(H)$ and $\tau_1,\tau_2 \in \operatorname{Aut}(K)$.\\
+   Let $(h,k) \in H \times K$ where $h \in H, k \in K$.
+   \begin{align*}
+	 \left((\sigma_1\sigma_2) \times (\tau_1\tau_2)\right)(h,k) &= \left((\sigma_1\sigma_2)(h), (\tau_1\tau_2)(k) \right)\\	
+	 							  								&=(\sigma_1(\sigma_2(h)), \tau_1(\tau_2(k)))\\
+	 												  &=(\sigma_1 \times \tau_1)(\sigma_2(h),\tau_2(k))\\
+	 												  &=(\sigma_1 \times \tau_1) \left((\sigma_2 \times \tau_2)(h,k)\right) \\
+	 												  &=\left((\sigma_1 \times \tau_1) (\sigma_2 \times \tau_2)\right)(h,k), 
+   \end{align*}
+   so
+   \[(\sigma_1\sigma_2)\times (\tau_1\tau_2) = (\sigma_1 \times \tau_1) (\sigma_2 \times \tau_2)\]
+   Then
+   \begin{align*}
+   	 \phi\left((\sigma_1,\tau_1)(\sigma_2,\tau_2)\right) &= \phi (\sigma_1\sigma_2,\tau_1\tau_2)\\
+   	 													 &=(\sigma_1\sigma_2) \times (\tau_1\tau_2) \\
+   	 													 &=(\sigma_1 \times \tau_1) (\sigma_2 \times \tau_2) \\
+   	 													 &=\left(\phi(\sigma_1,\tau_1)\right)\left(\phi(\sigma_2,\tau_2)\right).
+   \end{align*}
+   So $\phi$ is a homomorphism.\\
+   Let $(\sigma,\tau) \in \operatorname{Aut}(H) \times \operatorname{Aut}(K)$, where $\sigma \in \operatorname{Aut}(H)$ and $\tau \in \operatorname{Aut}(K)$.\\
+   Let $id_H$ and $id_K$ be the identity maps of $\operatorname{H}$ and $\operatorname{K}$, respectively.\\
+   Let $id_{H\times K}$ be the identity map of $\operatorname{Aut}(H\times K)$.
+   \begin{align*}
+	 (\sigma,\tau) \in \ker(\phi) &\Leftrightarrow \phi(\sigma,\tau) = id_{H \times K} \\
+	 							  &\Leftrightarrow \sigma\times \tau = id_{H \times K}\\
+	 							  &\Leftrightarrow \sigma \times \tau = id_{H} \times id_{K} \\
+	 							  &\Leftrightarrow (\sigma,\tau) = (id_{H},id_{K})
+   \end{align*}
+	So $\phi$ is 1-1.\\
+	Let $\pi \in \operatorname{Aut}(H \times K)$.\\
+	Define two maps $\pi_H:H\to H$ and $\pi_K: K\to K$ by $\left(\pi_H(h),1\right) = \pi(h,1)$ and $ \left(1,\pi_K(k)\right) = \pi(1,k)$(Not true in general for cartesian products).\\
+	Repeat the similar processes as previous ones, \\
+	we have $\pi_H$ and $\pi_K$ are well-defined and $\pi_H \in \operatorname{Aut}(H)$ and $\pi_K \in \operatorname{Aut}(K)$.\\
+	Let $(h,k) \in H \times K$ where $h \in H, k \in K$.
+	\begin{align*}
+	  \pi(h,k) &= \pi((h,1)(1,k)) \\
+	  		   &=\pi(h,1) \pi(1,k) \\
+	  		   &=\left(\pi_H(h),1\right) \left(1,\pi_K(k)\right) \\
+	  		   &=\left(\pi_H(h), \pi_K(k)\right) \\
+	  		   &= \pi_H \times \pi_K (h,k),
+	\end{align*}
+	so $\pi = \pi_H \times \pi_K$.\\
+	Thus, $\phi$ is onto.\\
+	As a result, 
+	\[\operatorname{Aut}(H) \times \operatorname{Aut}(K) \cong \operatorname{Aut}(H \times K) \]
+   Since we have show 
+   \[ H\times K \cong G,\] 
+   \[\operatorname{Aut}(G) \cong \operatorname{Aut}(H \times K).\]
+   Hence,
+   \[\operatorname{Aut}(G) \cong \operatorname{Aut}(H) \times \operatorname{Aut}(K)\]
+\end{proof}
+
+Use this to prove that if $G$ is a finite abelian group, then $\operatorname{Aut}(G)$ is isomorphic to the direct product of the automorphism groups of its Sylow subgroups.
+\begin{proof}
+  Let $\{P_i\}_{i=1}^n$ be the collection of all the Sylow subgroups of $G_n$(Use $G$ is better, in the following just use one grp G, not the whole group).\\
+	Then $G_n =  P_1P_2\ldots P_n$.\\
+	Since $G_n$ is abelian and $P_i \leq G_n$ for $1\leq i \leq n$,\\
+	\[P_i \unlhd G_n.\]
+	So the Sylow $|P_i|$-subgroup is unique for $1\leq i \leq n$. \\
+	Thus, $P_i \cap P_j = \{e_{G_n}\}$ for $1 \leq i,j \leq n$ and $i\neq j$.\\
+	Besides, by Corollary 4.5.6, $P_i$ is a characteristic subgroup of $G_n$ for $1\leq i \leq n$.\\ 
+	We will show it by induction.\\
+	\textbf{Basic steps:}\\
+	When $n=1$, it is a trivial case since the only Sylow subgroup is $G_n$ and $ \operatorname{Aut}(G_n) \cong \operatorname{Aut}(G_n)$.\\
+	We have just showed the case for $n=2$.\\
+	\textbf{Inductive steps:}\\
+	Assume 
+	\[\operatorname{Aut}(G_n)  = \operatorname{Aut}(P_1P_2\ldots P_n) \cong \prod_{i=1}^{n} \operatorname{Aut}(P_i).\]
+    Let $\{Q_i\}_{i=1}^{n+1}$ be the collection of all the Sylow subgroups of $J_{n+1}$.\\
+	Then $J_{n+1} =  Q_1Q_2\ldots Q_{n+1}$.\\
+	Similarly, we have for $i=1,2,\ldots,n+1$,
+	\[Q_i \unlhd J_{n+1}.\]
+	For $1 \leq i,j \leq n+1$ and $i\neq j$,
+	\[Q_i \cap Q_j = \{e_{J_{n+1}}\}.\]
+	For $1\leq i \leq n+1$, $Q_i$ is a characteristic subgroup of $J_{n+1}$.\\
+	Let $J_n = Q_1Q_2\ldots Q_n$.\\
+	Then it is obvious that $\{Q_i\}_{i=1}^{n}$ is the collection of all the Sylow subgroups of $J_{n}$. \\
+	Let $\sigma \in \operatorname{Aut}(J_{n+1})$.\\
+	Then for $i = 1,2,\ldots,n$, $\sigma(Q_i)  = Q_i$ since $Q_i$ is a characteristic subgroup of $J_{n+1}$.\\ 
+	Since $\sigma$ is a homomorphism,
+	\begin{align*}
+	 	\sigma(J_n) &= \sigma(Q_1Q_2\ldots Q_n)\\
+	  				&= \sigma(Q_1)\sigma(Q_2)\ldots \sigma(Q_n) \\
+	  				&=Q_1 Q_2\dots Q_n \\
+	  			   &=J_n.
+	\end{align*}
+	So $J_n$ is a characteristic subgroup of $J_{n+1}$.\\
+ 	Since for $1 \leq i,j \leq n+1$ and $i\neq j$,
+ 		\[Q_i \cap Q_j = \{e_{J_{n+1}}\},\]
+ 	and $J_n =Q_1Q_2\ldots Q_n$, we have 
+ 	\[J_n \cap Q_{n+1} = \{e_{J_{n+1}}\}.\]
+	We already have $Q_{n+1}$ is a characteristic subgroup of $J_{n+1}$.\\
+	Besides,
+	\[J_{n+1} = J_nQ_{n+1}.\]
+	By the conclusion we just made,
+	\[\operatorname{Aut}(J_{n+1}) \cong \operatorname{Aut}(J_n) \times \operatorname{Aut}(Q_{n+1}).\]
+	By the inductive assumption, we have
+	\[\operatorname{Aut}(J_n)  = \operatorname{Aut}(Q_1Q_2\ldots Q_n) \cong \prod_{i=1}^{n} \operatorname{Aut}(Q_i).\]
+	Thus,
+  	\[\operatorname{Aut}(J_{n+1}) \cong \left(\prod_{i=1}^{n} \operatorname{Aut}(Q_i) \right)\times \operatorname{Aut}(Q_{n+1}).\]
+	Namely,
+	\[\operatorname{Aut}(J_{n+1}) \cong \prod_{i=1}^{n+1} \operatorname{Aut}(Q_i).\]
+	Thus, the assumption also holds for $J_{n+1}$.\\
+	As a result, if $\{P_i\}_{i=1}^n$ is the collection of all the Sylow subgroups of a finite abelian group $G$, then
+	\[\operatorname{Aut}(G) \cong \prod_{i=1}^{n} \operatorname{Aut}(P_i).\]
+\end{proof}
+
+\begin{align*}
+\end{align*}
+
+\end{exer}
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

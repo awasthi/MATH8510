@@ -1,0 +1,164 @@
+\documentclass{amsart}
+
+% PACKAGES
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb,enumerate}
+\usepackage{amsthm,stmaryrd}
+\usepackage[all]{xy}
+\usepackage{hyperref}
+
+%\theoremstyle{definition}
+%\newtheorem{exer}{Exercise}
+
+\newcommand{\bbr}{\mathbb{R}}
+\newcommand{\bbc}{\mathbb{C}}
+\newcommand{\bbz}{\mathbb{Z}}
+\newcommand{\bbq}{\mathbb{Q}}
+\newcommand{\bbn}{\mathbb{N}}
+\newcommand{\be}{\mathbf{e}}
+\newcommand{\ba}{\mathbf{a}}
+\newcommand{\fm}{\mathfrak{m}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\renewcommand{\ker}{\operatorname{Ker}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\xra}{\xrightarrow}
+\newcommand{\wti}{\widetilde}
+
+\theoremstyle{plain}
+\newtheorem{lem}{Lemma}
+\newtheorem{cor}[lem]{Corollary}
+\newtheorem{prop}[lem]{Proposition}
+\newtheorem{thm}[lem]{Theorem}
+\newtheorem{conj}[lem]{Conjecture}
+\newtheorem{intthm}{Theorem}
+\renewcommand{\theintthm}{\Alph{intthm}}
+
+\theoremstyle{definition}
+\newtheorem{defn}[lem]{Definition}
+\newtheorem{ex}[lem]{Example}
+\newtheorem{question}[lem]{Question}
+\newtheorem{questions}[lem]{Questions}
+\newtheorem{problem}[lem]{Problem}
+\newtheorem{disc}[lem]{Remark}
+\newtheorem{rmk}[lem]{Remark}
+\newtheorem{construction}[lem]{Construction}
+\newtheorem{notn}[lem]{Notation}
+\newtheorem{fact}[lem]{Fact}
+\newtheorem{para}[lem]{}
+\newtheorem{exer}[lem]{Exercise}
+\newtheorem{remarkdefinition}[lem]{Remark/Definition}
+\newtheorem{notation}[lem]{Notation}
+\newtheorem{step}{Step}
+\newtheorem{convention}[lem]{Convention}
+\newtheorem*{Convention}{Convention}
+\newtheorem{assumption}[lem]{Assumption}
+
+\newcommand{\fmn}{F^{m\times n}}
+\newcommand{\fnn}{F^{n\times n}}
+\newcommand{\col}{\operatorname{Col}}
+\newcommand{\row}{\operatorname{Row}}
+\newcommand{\Span}{\operatorname{Span}}	
+\newcommand{\rank}{\operatorname{rank}}	
+\newcommand{\OO}[1]{\mathcal{O}_{#1}}
+\begin{document}
+
+\noindent MATH 8510, Abstract Algebra I \\
+Fall 2016\\
+Exercises 10-1\\
+Due date Thu 03 Nov 4:00PM \\
+Name: Shuai Wei \\
+Collaborator: DaoZhou Zhu, Yuanxiao Liu
+\
+
+%\noindent
+%Throughout this homework set, let $F$ be a field
+%
+%
+%\
+
+\begin{exer}[6.1.14]
+Let $G$ be a group. 
+Prove that $G^{i}$ is a characteristic subgroup of $G$ for all $i$. 
+\begin{proof}
+	Let $\sigma \in \operatorname{Aut}(G)$.\\
+	We will show it by induction.\\
+	\textbf{Basic steps:}\\
+	$G^0 = G$, $\sigma(G) = G$ as $\sigma\in \operatorname{Aut}(G)$.\\
+	So $G^0$ is a characteristic subgroup of $G$.\\
+	\textbf{Inductive steps:}\\
+	Assume $G^n$ is a characteristic subgroup of $G$ for $n \geq 2$ and $n \in \bbn$.\\
+	Then $\sigma(G^n) = G^n$.\\
+	Since 
+  	\begin{align*}
+	  G^{n+1} &= \langle h^{-1}k^{-1}hk|h \in G, k \in G^n\rangle.
+  	\end{align*}
+  	let $g \in G^{n+1}$, then by the definition of the span $\langle\cdot\rangle$, $\exists \ n \in \bbn$ and $m_1,m_2,\cdots,m_n \in \bbn$ and $h_1,h_2,\cdots,h_n \in G$ and $k_1,k_2,\cdots,k_n \in G^n$ such that
+  	\[g = \left(h_1^{-1}k_1^{-1}h_1k_1\right)^{m_1}\left(h_2^{-1}k_2^{-1}h_2k_2\right)^{m_2}\cdots \left(h_n^{-1}k_n^{-1}h_nk_n\right)^{m_n} .\]
+  	Since $\sigma \in \operatorname{Aut}(G)$, 
+  	\begin{align*}
+  	  \sigma(g) &= \sigma \left(\left(h_1^{-1}k_1^{-1}h_1k_1\right)^{m_1}\left(h_2^{-1}k_2^{-1}h_2k_2\right)^{m_2}\cdots \left(h_n^{-1}k_n^{-1}h_nk_n\right)^{m_n}  \right)\\
+  	  			  	   	&=\sigma \left(\left(h_1^{-1}k_1^{-1}h_1k_1\right)^{m_1}\right) \sigma \left(\left(h_2^{-1}k_2^{-1}h_2k_2\right)^{m_2}\right)\cdots \sigma\left(\left (h_n^{-1}k_n^{-1}h_nk_n\right) ^{m_n}\right)		\\
+  	  			  	   &=\left(\sigma\left(h_1^{-1}k_1^{-1}h_1k_1\right)\right)^{m_1}  \left(\sigma\left(h_2^{-1}k_2^{-1}h_2k_2\right)\right)^{m_2}\cdots \left(\sigma\left (h_n^{-1}k_n^{-1}h_nk_n\right)\right) ^{m_n}.	
+  	\end{align*}
+  	For $i = 1,2,\cdots,n$, $h_i \in G$ and $k_i \in G^n$, since $\sigma(G^n) = G^n$ by assumption and $\sigma(G) = G$, we have $\sigma(h_i) \in G$ and $\sigma(k_i)\in G^n$.\\
+  	For $i = 1,2,\cdots,n$, let $g_i = \sigma\left(h_i^{-1}k_i^{-1}h_ik_i\right)$, since $\sigma \in \operatorname{Aut}(G)$,
+  	\begin{align*}
+  		g_i &= \sigma({h_i}^{-1})\sigma({k_i}^{-1}) \sigma(h_i) \sigma(k_i) \\
+  			&= \left(\sigma(h_i)\right)^{-1}\left(\sigma(k_i)\right)^{-1}\sigma(h_i)\sigma(k_i) \\
+  	  	    &\in G^{n+1}.
+    \end{align*}
+    So
+    \begin{align*}
+		\sigma(g) = g_1^{m_1}g_2^{m_2}\cdots g_n^{m_n} \in G^{n+1}. 
+    \end{align*}
+    As a result, $\sigma(G^{n+1}) \subset  G^{n+1}$.\\
+    So $G^{n+1}$ is a characteristic subgroup of $G$.\\
+	It implies our assumption also holds for the $n+1$ case.\\
+	Thus, $G^i$ is characteristic subgroup of $G$ for all $i$.
+\end{proof}
+\end{exer}
+
+\begin{exer}[6.1.17]
+Let $G$ be a group. 
+Prove that $G^{(i)}$ is a characteristic subgroup of $G$ for all $i$. 
+\begin{proof}
+	Let $\sigma \in \operatorname{Aut}(G)$.\\
+	We will show it by induction.\\
+	\textbf{Basic steps:}\\
+	$G^{(0)} = G$, $\sigma(G) = G$ as $\sigma\in \operatorname{Aut}(G)$.\\
+	So $G^{(0)}$ is a characteristic subgroup of $G$.\\
+	\textbf{Inductive steps:}\\
+	Assume $G^{(n)}$ is a characteristic subgroup of $G$ for $n \geq 2$ and $n \in \bbn$.\\
+	Then $\sigma(G^{(n)}) = G^{(n)}$.\\
+	Since 
+  	\begin{align*}
+	  G^{(n+1)} &= \langle h^{-1}k^{-1}hk|h \in G^{(n)}, k \in G^{(n)}\rangle.
+  	\end{align*}
+  	let $g \in G^{(n+1)}$, then by the definition of the span $\langle\cdot\rangle$, $\exists \ n \in \bbn$ and $m_1,m_2,\cdots,m_n \in \bbn$ and $h_1,h_2,\cdots,h_n \in G^{(n)}$ and $k_1,k_2,\cdots,k_n \in G^{(n)}$ such that
+  	\[g = \left(h_1^{-1}k_1^{-1}h_1k_1\right)^{m_1}\left(h_2^{-1}k_2^{-1}h_2k_2\right)^{m_2}\cdots \left(h_n^{-1}k_n^{-1}h_nk_n\right)^{m_n} .\]
+  	Since $\sigma \in \operatorname{Aut}(G)$, 
+  	\begin{align*}
+  	  \sigma(g) &= \sigma \left(\left(h_1^{-1}k_1^{-1}h_1k_1\right)^{m_1}\left(h_2^{-1}k_2^{-1}h_2k_2\right)^{m_2}\cdots \left(h_n^{-1}k_n^{-1}h_nk_n\right)^{m_n}  \right)\\
+  	  			  	   	&=\sigma \left(\left(h_1^{-1}k_1^{-1}h_1k_1\right)^{m_1}\right) \sigma \left(\left(h_2^{-1}k_2^{-1}h_2k_2\right)^{m_2}\right)\cdots \sigma\left(\left (h_n^{-1}k_n^{-1}h_nk_n\right) ^{m_n}\right)		\\
+  	  			  	   &=\left(\sigma\left(h_1^{-1}k_1^{-1}h_1k_1\right)\right)^{m_1}  \left(\sigma\left(h_2^{-1}k_2^{-1}h_2k_2\right)\right)^{m_2}\cdots \left(\sigma\left (h_n^{-1}k_n^{-1}h_nk_n\right)\right) ^{m_n}.	
+  	\end{align*}
+  	For $i = 1,2,\cdots,n$, $h_i \in G^{(n)}$ and $k_i \in G^{(n)}$, since $\sigma(G^n) = G^{(n)}$ by assumption, we have $\sigma(h_i) \in G^{(n)}$ and $\sigma(k_i)\in G^{(n)}$.\\
+  	For $i = 1,2,\cdots,n$, let $g_i = \sigma\left(h_i^{-1}k_i^{-1}h_ik_i\right)$, since $\sigma \in \operatorname{Aut}(G)$,
+  	\begin{align*}
+  		g_i &= \sigma({h_i}^{-1})\sigma({k_i}^{-1}) \sigma(h_i) \sigma(k_i) \\
+  			&= \left(\sigma(h_i)\right)^{-1}\left(\sigma(k_i)\right)^{-1}\sigma(h_i)\sigma(k_i) \\
+  	  		&\in G^{(n+1)}.
+    \end{align*}
+    So
+    \begin{align*}
+		\sigma(g) = g_1^{m_1}g_2^{m_2}\cdots g_n^{m_n} \in G^{n+1}. 
+    \end{align*}
+    As a result, $\sigma(G^{(n+1)}) \subset  G^{(n+1)}$.\\
+    So $G^{(n+1)}$ is a characteristic subgroup of $G$.\\
+	It implies our assumption also holds for the $n+1$ case.\\
+  	Thus, $G^{(i)}$ is characteristic subgroup of $G$ for all $i$.
+  \end{proof}
+\end{exer}
+\end{document}

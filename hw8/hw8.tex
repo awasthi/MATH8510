@@ -1,0 +1,539 @@
+\documentclass{amsart}
+
+% PACKAGES
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb,enumerate}
+\usepackage{amsthm,stmaryrd}
+\usepackage[all]{xy}
+\usepackage{hyperref}
+
+%\theoremstyle{definition}
+%\newtheorem{exer}{Exercise}
+
+\newcommand{\bbr}{\mathbb{R}}
+\newcommand{\bbc}{\mathbb{C}}
+\newcommand{\bbz}{\mathbb{Z}}
+\newcommand{\bbq}{\mathbb{Q}}
+\newcommand{\bbn}{\mathbb{N}}
+\newcommand{\be}{\mathbf{e}}
+\newcommand{\ba}{\mathbf{a}}
+\newcommand{\fm}{\mathfrak{m}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\renewcommand{\ker}{\operatorname{Ker}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\xra}{\xrightarrow}
+\newcommand{\wti}{\widetilde}
+
+\theoremstyle{plain}
+\newtheorem{lem}{Lemma}
+\newtheorem{cor}[lem]{Corollary}
+\newtheorem{prop}[lem]{Proposition}
+\newtheorem{thm}[lem]{Theorem}
+\newtheorem{conj}[lem]{Conjecture}
+\newtheorem{intthm}{Theorem}
+\renewcommand{\theintthm}{\Alph{intthm}}
+
+\theoremstyle{definition}
+\newtheorem{defn}[lem]{Definition}
+\newtheorem{ex}[lem]{Example}
+\newtheorem{question}[lem]{Question}
+\newtheorem{questions}[lem]{Questions}
+\newtheorem{problem}[lem]{Problem}
+\newtheorem{disc}[lem]{Remark}
+\newtheorem{rmk}[lem]{Remark}
+\newtheorem{construction}[lem]{Construction}
+\newtheorem{notn}[lem]{Notation}
+\newtheorem{fact}[lem]{Fact}
+\newtheorem{para}[lem]{}
+\newtheorem{exer}[lem]{Exercise}
+\newtheorem{remarkdefinition}[lem]{Remark/Definition}
+\newtheorem{notation}[lem]{Notation}
+\newtheorem{step}{Step}
+\newtheorem{convention}[lem]{Convention}
+\newtheorem*{Convention}{Convention}
+\newtheorem{assumption}[lem]{Assumption}
+
+\newcommand{\fmn}{F^{m\times n}}
+\newcommand{\fnn}{F^{n\times n}}
+\newcommand{\col}{\operatorname{Col}}
+\newcommand{\row}{\operatorname{Row}}
+\newcommand{\Span}{\operatorname{Span}}	
+\newcommand{\rank}{\operatorname{rank}}	
+\newcommand{\OO}[1]{\mathcal{O}_{#1}}
+\begin{document}
+
+\noindent MATH 8510, Abstract Algebra I \\
+Fall 2016\\
+Exercises 8-1\\
+Name: Shuai Wei\\
+Collaborator: Xiaoyuan Liu, Daozhou Zhu
+
+\
+
+%\noindent
+%Throughout this homework set, let $F$ be a field
+%
+%
+%\
+
+\begin{exer}[UMP: Universal Mapping Property]
+Let $(G,+)$ be an abelian group and let $g_1,\ldots,g_t\in G$. 
+For $i=1,\ldots,t$ let $e_i=(0,\ldots,0,1,0,\ldots,0)\in\bbz^t$ be the ``$i$th standard basis vector''.
+\begin{enumerate}[(a)]
+\item 
+Prove that there exists a unique abelian group homomorphism $\phi\colon\bbz^t\to G$ such that $\phi(e_i)=g_i$ for $i=1,\ldots,t$.
+\begin{proof}
+  Let $z_i \in \bbz$ for $i = 1,\ldots,t$.\\
+  Define $\phi$ as
+  \begin{align*}
+  	\phi: \bbz^t &\to G \\
+  			(z_1,\dots,z_t) & \mapsto \sum_{i=1}^tz_ig_i 
+  \end{align*}
+  For $i = 1,\ldots,t$, $z_i\in \bbz$ and $g_i \in (G,+)$, so $z_ig_i \in G$.\\
+  Then 
+  \[\sum_{i=1}^tz_ig_i \in G.\]
+  So $\phi$ is well-defined.\\
+  At first, we verify that for $i = 1,\ldots,t$,
+  \[\phi(e_i) = 0g_1 + ...0g_{i-1} + 1g_i + 0g_{i+1} + \ldots + 0g_{t} = g_i.\]
+  We then show $\phi$ is a homomorphism.\\
+  Let $x=(x_1,x_2,\ldots,x_t), y=(y_1,y_2,\ldots,y_t) \in \bbz^t$, where $x_i,y_i \in \bbz$ for i = $1,2,\ldots,t$.\\
+  Since $G$ is abelian,
+  \begin{align*}
+  	\phi(x+y) &= \phi((x_1+y_1,x_2+y_2,\ldots,x_t+y_t)) \\
+  			 &= \sum_{i=1}^t(x_i+y_i)g_i \\
+  			 &= \sum_{i=1}^tx_ig_i+\sum_{i=1}^ty_ig_i \\
+  			 &= \phi(x)+\phi(y).
+  \end{align*}
+  So $\phi$ is a homomorphism.\\ 
+  Suppose there exists another abelian group homomorphism $\varphi\colon\bbz^t\to G$ such that 
+  \[\varphi(e_i)=g_i, \text{ for } {i=1,\ldots,t}.\]
+  Let $z = (z_1,z_2,\ldots,z_t) \in \bbz^t$, then $z_i \in \bbz$ for $i=1,2,\ldots,t$.\\
+  Then
+  \[z = \sum_{i=1}^{t}z_ie_i.\]
+  Since $\phi$ and $\varphi$ are homomorphisms,
+  \begin{align*} 
+  	\phi (z) &=\sum_{i=1}^tz_ig_i \\
+  			 &=\sum_{i=1}^tz_i\varphi(e_i) \\
+  			 &=\sum_{i=1}^t\varphi(z_ie_i) \\
+			 &= \varphi(z)
+  \end{align*}
+  Since $z \in \bbz ^t$ is arbitrary, $\phi = \varphi$.\\
+  Thus, such abelian group homomorphism is unique.
+
+\end{proof}
+\item 
+Prove that $\im(\phi)=\langle g_1,\ldots,g_t\rangle$.
+In particular, $\phi$ is surjective if and only if $G=\langle g_1,\ldots,g_t\rangle$.
+\begin{proof}
+  Let $z = (z_1,z_2,\ldots,z_t) \in \bbz^t$, then $z_i \in \bbz$ for $i=1,2,\ldots,t$. \\
+  Then
+    \[z = \sum_{i=1}^{t}z_ie_i.\]
+  By the definition of $\phi$,
+  	\[ \phi (z) = \sum_{i=1}^tz_ig_i \in \langle g_1,g_2,\ldots,g_t\rangle, \]    
+  	so 
+  	\[ \im(\phi) \subset \langle g_1,g_2,\ldots,g_t\rangle.\]
+  	On the other hand, let $x \in \langle g_1,g_2,\ldots,g_t\rangle$, then $\exists\ x_1, x_2,\ldots,x_t \in \bbz$ such that 
+  	\[x = \sum_{i=1}^tg_i{x_i}.\]
+	Let $y= (x_1,x_2,...,x_t)$, then 
+	\[x=\phi (y) = \sum_{i=1}^{t}x_i g_i \in \im(\phi). \]
+	So
+	\[\langle g_1,g_2,\ldots,g_t\rangle \subset \im(\phi).\]
+	Thus,
+	\[ \im(\phi) = \langle g_1,g_2,\ldots,g_t\rangle.\]
+	Then we show the second statement.\\
+	"$\Leftarrow$". Assume $G= \langle g_1,g_2,\ldots,g_t\rangle $.\\
+	Since $\im(\phi) = G$, $\phi$ is surjective.\\
+	"$\Rightarrow$". Assume $\phi$ is surjective.\\
+	We show it by contradiction.\\
+	Suppose $\exists \ g \in G$ but $g \not\in \langle g_1,g_2,\ldots,g_t\rangle$. \\
+	By the assumption that $\phi$ is surjective, \\
+	so $\exists \ f \in \bbz^t$ such that $\phi(f) = g$, where $f=(f_1,f_2,\ldots,f_t)$ and $f_i \in \bbz$ for $i=1,2,\ldots,t$.\\
+	Then we have
+	\[g = \phi (f) = \sum_{i=1}^tg_i{f_i} \in \langle g_1,g_2,\ldots,g_t\rangle,\]
+	which is contradicted by the other assumption that $g \not\in \langle g_1,g_2,\ldots,g_t\rangle$.\\
+	Thus, if $g \in G$, then $g \in \langle g_1,g_2,\ldots,g_t\rangle$.\\
+	Namely, $G \subset \langle g_1,g_2,\ldots,g_t\rangle = \im(\phi)$.\\
+	Besides, $\im(\phi) \subset G$ by the definition of $\phi$.\\
+	Therefore,
+	\[G = \im(\phi) = \langle g_1,g_2,\ldots,g_t\rangle.\]
+	In summary, $\phi$ is surjective if and only if $G=\langle g_1,\ldots,g_t\rangle$.
+\end{proof}
+
+
+\item 
+Prove that the following conditions are equivalent.
+\begin{enumerate}[(i)]
+\item $G$ is finitely generated.
+\item 
+There is an integer $t\geq 0$ and an epimorphism $\phi\colon\bbz^t\to G$.
+\item There is an integer $t\geq 0$ and a subgroup $K\leq\bbz^t$ such that $G\cong\bbz^t/K$.
+\begin{proof}
+  "(i)$\Rightarrow$ (ii)".\\
+  Let $G = \langle g_1,g_2,\ldots,g_n\rangle$.\\
+  Define 
+  \begin{align*}
+	\phi: \bbz^t &\to G \\
+  	(z_1,\ldots,z_t) &\mapsto \sum_{i=1}^tz_ig_i 
+  \end{align*}
+  Then by part (a), we have $\phi$ is a homomorphism.\\
+  Besides, since $G$ is finitely generated, by part (b), $\phi$ is surjective.\\
+  So $\phi$ is an epimorphism.\\
+  Thus, there is an integer $t= n$ and an epimorphism $\phi:\bbz^t \to G$.\\
+  "(ii) $\Rightarrow$ (iii)".\\
+  	Since $\phi$ is epimorphism, it is a homomorphism. \\
+	So by the First Isomorphism Theorem, we have
+	\[\im(\bbz_t) \cong \bbz_t/\ker{\bbz_t}.\]
+	Since $\phi$ is epimorphism, it is surjective.\\
+	So 
+	\[\im(\bbz_t) = G.\]
+	Then
+	\[G \cong \bbz_t/\ker{\bbz_t}.\]
+  	Thus, there exists $t \in \bbn$ and a subgroup $K = \ker{\bbz_t} \leq \bbz_t$ such that $G \cong \bbz_t/K$.\\
+  	"(iii) $\Rightarrow$ (ii)".\\
+  	Since the possilbe subgroups of $\bbz$ are \{0\} and $\bbz_n$ for $ n \in \bbn$ and $n \geq 1$,
+  	it is obvious $K = \{e_{\bbz^t}\}$ and $(n_1\bbz)\times (n_2\bbz)\times \ldots \times (n_t\bbz)$ are the possible subgroup of $\bbz^t$, where $e_{\bbz^t}$ is a $t$-dimensional zero vector and $n_i \in \bbz, n_i\geq 1$ for $i=1,2,\ldots,t$.\\
+  	We will show it by the following two cases.
+  	\begin{enumerate}[(1)]
+  		\item
+		Let $K=\{e_{\bbz^t}\}$.\\ 
+		Then
+		\[G \cong \bbz^t/K \cong \bbz^t.\]
+		Define
+  		\begin{align*}
+			\phi: \bbz^t &\to G \\
+  		  (z_1,\ldots,z_t) &\mapsto \sum_{i=1}^tz_ig_i 
+  		\end{align*}
+  		Then $\phi$ is an isomorphism, and then it is an epimorphism.\\
+  		By part (b), we have $G$ is finitely generated.\\
+		\item
+		  Let $K = (n_1\bbz)\times (n_2\bbz)\times \ldots \times (n_t\bbz)$.\\
+		  Then $\bbz^t / K = (\bbz/n_1\bbz) \times (\bbz/n_2\bbz)\times \ldots \times (\bbz/n_t\bbz)$.\\
+		  So $\left| \bbz^t/K \right| =  n_1n_2 \ldots n_t$.\\
+		  Since 
+		  \[G \cong \bbz^t/K\]
+			\[|G| = n_1n_2\ldots n_t < \infty.\]
+		  So $G$ is finitely generated.
+	\end{enumerate}
+	Thus, $G$ is finitely generated if there is an integer $t\geq 0$ and a subgroup $K\leq\bbz^t$ such that $G\cong\bbz^t/K$.
+\end{proof}
+
+
+\end{enumerate}
+\item Let $s\leq t$ and let $n_1,\ldots,n_s\in\bbz$. 
+Prove that 
+there is an isomorphism $$\bbz^t/\langle n_1e_1,\ldots,n_se_s\rangle\cong(\bbz/n_1\bbz)\times\cdots\times(\bbz/n_s\bbz)\times\bbz^{t-s}.$$
+\begin{proof}
+  	Let $G = (\bbz/n_1\bbz)\times\cdots\times(\bbz/n_s\bbz)\times\bbz^{t-s}$.\\
+  	Let $g_i = (\bar{0},\ldots,\bar{0},\bar{1},\bar{0},\ldots,\bar{0},0,\ldots,0)\in \bbz^t$ be the $i$th basis vetor with the $i$-th element $\bar{1}$ for $1 \leq i \leq s$.\\
+  	Let $g_i = (\bar{0},\ldots,\bar{0},0,\ldots,0,1,0,\ldots,1)$ be the $i$th basis vector with the $i$-th element $1$ for $s+1 \leq i \leq t$.\\
+  	Then it is obvious that $G = \langle g_1,\ldots,g_s,g_{s+1},\ldots,g_t \rangle$.\\
+  Define $\phi$ as
+  \begin{align*}
+  	\phi: \bbz^t &\to G \\
+  			(z_1,\dots,z_t) & \mapsto \sum_{i=1}^tz_ig_i 
+  \end{align*}
+	So by part (a), $\phi$ is a homomorphism.\\
+	Since $G$ is finitely generated, by part (b),
+	\[\im(\phi) = G.\]
+	Next we show 
+	\[\ker(\phi) = \langle n_1e_1,\ldots,n_se_s \rangle.\]
+	$\forall h=(h_1,\ldots,h_t)\in \bbz_t$, where $h_i \in \bbz$ for $i = 1,2,\ldots,t$, we have
+	\[\phi(h) = g_1{h_1}+\ldots +g_t{h_t}.\]
+  	\begin{align*}
+  	  h \in \ker(\phi) &\Leftrightarrow \phi(h) = e_G = (\bar{0},\ldots,\bar{0},0,\ldots,0) \\   
+  	 			     				   	  &\Leftrightarrow g_1{h_1}+\ldots +g_t{h_t} = (\bar{0},\ldots,\bar{0},0,\ldots,0) \\
+  	 			     				   	  &\Leftrightarrow (\bar{h_1},\ldots,\bar{h_s},h_{s+1},\ldots,h_t) = (\bar{0},\ldots,\bar{0},0,\ldots,0) \\
+  	  					  			      &\Leftrightarrow h_1 \in (n_1\bbz),\ldots,h_s \in (n_s\bbz),h_{s+1} = 0,\ldots,h_{t} = 0 \\
+  	  									  &\Leftrightarrow h  \in \langle n_1e_1,\ldots,n_se_s \rangle.
+  	\end{align*}
+    Thus,
+    \[\ker(\phi) = \langle n_1e_1,\ldots,n_se_s \rangle.\]
+    By the First Isomorphism Theorem, we have
+    \[\bbz^t/\langle n_1e_1,\ldots,n_se_s\rangle\cong(\bbz/n_1\bbz)\times\cdots\times(\bbz/n_s\bbz)\times\bbz^{t-s}.\]
+\end{proof}
+
+\end{enumerate}
+\end{exer}
+
+\begin{exer}
+\begin{enumerate}[(a)]
+\item Let $a,b\in\bbz^+$ be relatively prime. Use Exercise~5-1\#3
+to prove that $\bbz/(ab)\bbz\cong(\bbz/a\bbz)\times(\bbz/b\bbz)$.
+\begin{proof}
+ 	 Since $(\bbz, +)$ is abelian and $a\bbz \leq \bbz$ and $b\bbz \leq \bbz$,
+	 \[a\bbz \unlhd \bbz \text{ and } b\bbz \unlhd \bbz.\]
+	 Since $a$ and $b$ are relatively prime, $(a,b) = 1$.\\
+	 Then $\exists \ x,y\in \bbz$ such that
+	 \[ax+by = 1.\]
+	 Let $z \in \bbz$, then 
+	 \[a(xz) + b(yz) = z\]
+	 Since $x,y,z\in\bbz$, $xz,yz \in \bbz$.\\
+	 Then 
+	 $a(xz) \in a\bbz$,and $b(yz) \in b\bbz$.\\
+	 Then 
+	 \[z \in a\bbz + b\bbz.\]
+	 So
+	 \[\bbz \subset a\bbz + b\bbz.\]
+	 Besides, 
+	 \[ a\bbz + b\bbz \subset \bbz.\]
+	 Thus,
+	 \[\bbz = a\bbz + b\bbz.\]	
+	 Since $a,b \in \bbz$, $\text{lcm}(a,b) = ab$.\\
+	 So 
+	 \[(a\bbz)\cap (b\bbz) = (ab)\bbz.\]
+	 Therefore, according to the conclusion from the Exercise~5-1\#3, \\
+	 we have
+	 \[\bbz/(ab)\bbz\cong(\bbz/a\bbz)\times(\bbz/b\bbz).\]
+\end{proof}
+
+\item Let $m\in\bbz^+$, let $p_1,\ldots,p_m$ be distinct prime numbers, and let $e_1,\ldots,e_m\in\bbz^{\geq 0}$.
+%and set
+%$n=p_1^{e_1}\cdots p_m^{e_m}$. 
+Prove that
+$\bbz/n\bbz\cong\prod_{i=1}^m\bbz/p_i^{e_i}\bbz$.
+\begin{proof}
+We will show it by induction.
+\begin{enumerate}[(1)]
+	\item
+		Basic step: when $m=1$, $n=p_1^{e_1}$, \\
+		then it is obvious that 
+		\[ \bbz / n\bbz \cong \bbz/p_1^{e_1}\bbz.\]
+	\item
+	  Inductive step: assume when $m=k$, we have $n = \prod_{i=1}^kp_i^{e_i}$ and 
+	  \[ \bbz / n\bbz \cong \prod_{i=1}^k\bbz/p_i^{e_i}\bbz.\]
+	  Let $p_{k+1}$ be a prime such that $p_1,...,p_k,p_{k+1}$ are distinct and $e_{k+1} \in \bbz^{\geq 0}$.\\
+	  Then $\prod_{i=1}^kp_i^{e_i}$ and $p_{k+1}^{e_{k+1}}$ are relatively primes.\\
+	  According to the conclusion from part (a), we have 
+	  \[\bbz/ \left(\left( \prod_{i=1}^kp_i^{e_i} \right) p_{k+1}^{e_{k+1}} \right)\bbz\cong \left(\bbz/\left( \prod_{i=1}^kp_i^{e_i} \right) \bbz \right)\times \left(\bbz/ p_{k+1}^{e_{k+1}} \bbz\right).\]
+	  Namely,
+	\[\bbz/ \left(\left( \prod_{i=1}^{k+1}p_i^{e_i} \right) \right)\bbz\cong ( \bbz /n\bbz )\times \left(\bbz/ p_{k+1}^{e_{k+1}} \bbz\right).\]
+	  By the inductive assumption, we know
+	  \[ \bbz / n\bbz \cong \prod_{i=1}^k\bbz/p_i^{e_i}\bbz.\]
+	  So
+	  \[\bbz/ \left(\left( \prod_{i=1}^{k+1}p_i^{e_i} \right) \right)\bbz\cong \left( \prod_{i=1}^k\bbz/p_i^{e_i}\bbz \right)\times \left(\bbz/ p_{k+1}^{e_{k+1}} \bbz\right).\]
+	  Namely,
+	  \[\bbz/ \left(\left( \prod_{i=1}^{k+1}p_i^{e_i} \right) \right)\bbz\cong \left( \prod_{i=1}^{k+1}\bbz/p_i^{e_i}\bbz \right).\] 
+	  Thus, the assumption also holds for $m=k+1$.\\ 
+\end{enumerate}
+    Therefore,
+	\[ \bbz/n\bbz\cong\prod_{i=1}^m\bbz/p_i^{e_i}\bbz.\]
+\end{proof}
+
+\end{enumerate}
+\end{exer}
+
+\newpage
+
+
+\begin{exer}[5.2]
+Write a list of the non-isomorphic abelian groups of order 270 in terms of their elementary divisor decompositions. 
+For each group in this list, write its invariant factor decomposition. \\
+\textbf{Solution:}\\
+Let $G$ be an abelian group of order 270.
+\[270 = 2 \times 3^3\times 5.\] 
+Since $3=3$, $3=1+2$ and $3=1+1+1$,
+we have 3 non-isomorphic abelian groups of order 270 and they are
+\begin{gather*}
+(\bbz/27\bbz) \times (\bbz/2\bbz) \times (\bbz/5\bbz);\\
+\left( \bbz/9\bbz \times \bbz/3\bbz \right)\times (\bbz/2\bbz) \times (\bbz/5\bbz);\\
+\left( \bbz/3\bbz \times \bbz/3\bbz \times \bbz/3\bbz \right)\times (\bbz/2\bbz) \times (\bbz/5\bbz).
+\end{gather*}
+Next we compute their invariant factor decomposition.
+\begin{enumerate}[(1)]
+	\item
+	  \begin{align*}
+	 	(\bbz/27\bbz) \times (\bbz/2\bbz) \times (\bbz/5\bbz) &\cong \bbz/270\bbz      		
+	  \end{align*}
+	\item
+	  \begin{align*}
+	  	\left( \bbz/9\bbz \times \bbz/3\bbz \right)\times (\bbz/2\bbz) \times (\bbz/5\bbz) &\cong  \left( \bbz/9\bbz \times \bbz/2\bbz \times \bbz/5\bbz \right)\times (\bbz/3\bbz) \\
+	  			&\cong \left( \bbz/90\bbz \right)\times (\bbz/3\bbz)
+	  \end{align*}
+	\item
+	\begin{align*}
+	  &\left( \bbz/3\bbz \times \bbz/3\bbz \times \bbz/3\bbz \right)\times (\bbz/2\bbz) \times (\bbz/5\bbz) \\
+	  &\cong  \left( \bbz/3\bbz \times \bbz/2\bbz \times \bbz/5\bbz \right) \times (\bbz/3\bbz) \times (\bbz/3\bbz)  \\
+	  &\cong \left( \bbz/30\bbz \right)\times (\bbz/3\bbz) \times (\bbz/3\bbz) 
+	\end{align*}
+\end{enumerate}
+\end{exer}
+
+\begin{exer}[5.4.11]
+Let $H$ and $K$ be characteristic subgroups of a group $G$ such that $H\cap K=\{e\}$
+and $G=HK$. Prove that $\operatorname{Aut}(G)\cong\operatorname{Aut}(H)\times\operatorname{Aut}(K)$.
+
+\begin{proof}
+	Since $H$ and $K$ be characteristic subgroups of a group $G$,\\
+	\[H \unlhd G \text{ and } K \unlhd G.\]
+	Besides, 
+	\[H \cap K = \{e\}.\]
+	Then by Theorem 5.4, we have
+	\[H \times K \cong HK = G. \]
+	Let $\sigma \in \operatorname{Aut}(H)$ and $\tau \in \operatorname{Aut}(K)$.\\
+	Define $\sigma \times \tau $ as
+	\begin{align*}
+	  \sigma \times \tau: H\times K &\to H\times K \\ 
+	  (h,k) &\mapsto (\sigma(h), \tau (k))  
+	\end{align*}
+	Then we show $\sigma \times \tau \in \operatorname{Aut}(H \times K)$.\\
+	Let $(h_1,k_1),(h_2,k_2) \in H\times K$.\\
+	Since $\sigma \in \operatorname{Aut}(H)$, and $\tau \in \operatorname{Aut}(K)$, $\sigma,\tau$ are homomorphisms.
+	\begin{align*}
+	  \sigma \times \tau \left((h_1,k_1)(h_2,k_2)\right) &= \sigma \times \tau(h_1h_2,k_1k_2) \\
+	  													 &=\left(\sigma(h_1h_2),\tau(k_1k_2)\right) \\
+	  													 &=\left(\sigma(h_1)\sigma(h_2),\tau(k_1)\tau(k_2)\right) \\
+	  													 &=\left(\sigma(h_1),\tau(k_1)\right) \left(\sigma(h_2),\tau(k_2)\right)\\
+	  													 &=\left(\sigma \times \tau(h_1,k_1)\right)\left(\sigma \times \tau(h_2,k_2)\right),
+	\end{align*}
+	Therefore, $\sigma \times \tau$ is a homomorphism.\\
+	Let $(h,k) \in H \times K$ where $h \in H, k \in K$.\\
+	Since $\sigma \in \operatorname{Aut}(H)$, and $\tau \in \operatorname{Aut}(K)$, $\sigma$ and $\tau$ are isomomorphsims. \\
+	So $\sigma (h) = e_G \text{ and }\tau (k) = e_G$ if and only if $h = e_G$ and $k = e_G$.
+	\begin{align*}
+	  (h,k) \in \ker(\sigma \times \tau) & \Leftrightarrow \sigma \times \tau (h,k) =(e_G,e_G) \\
+	  									 & \Leftrightarrow  (\sigma (h), \tau (k)) = (e_G,e_G) \\
+	  									 & \Leftrightarrow  \sigma (h) = e_G \text{ and }\tau( k) = e_G \\
+	  									 & \Leftrightarrow  h = e_G \text{ and } k = e_G \\
+	  									 & \Leftrightarrow (h,k) = (e_G,e_G),
+	\end{align*}
+   so 
+   \[\ker(\sigma \times \tau) = (e_G,e_G).\]
+   So $\sigma \times \tau$ is 1-1.\\
+   Let $(h^{\textprime},k^{\textprime}) \in (H,K)$, where $h \in H, k \in K$.\\
+   We have shown before that $\sigma^{-1} \in \operatorname{Aut}(H)$ and $\tau^{-1} \in \operatorname{Aut}(K)$ when $\sigma \in \operatorname{Aut}(H)$ and $\tau \in \operatorname{Aut}(K)$.\\
+   Then $\sigma^{-1}(h^{\textprime}) \in H$ and $\tau^{-1}(k^{\textprime}) \in K$.\\
+   So 
+   \[\left(\sigma^{-1}(h^{\textprime}),\tau^{-1}(k^{\textprime})\right) \in H \times K.\]
+   Since by the definition of $\sigma \times \tau$, 
+   \[\sigma \times \tau \left(\sigma^{-1}(h^{\textprime}), \tau^{-1}(k^{\textprime}) \right) = (h^{\textprime},k^{\textprime}),\]
+   $\sigma \times \tau$ is onto.\\
+   Therefore, 
+   \[\sigma \times \tau \in \operatorname{Aut}(G).\] 
+   Next we define $\phi$ as 
+   \begin{align*}
+	 \phi: \operatorname{Aut}(H) \times \operatorname{Aut}(K) &\to \operatorname{Aut}(H \times K) \\
+	 					(\sigma, \tau) &\mapsto \sigma \times \tau
+   \end{align*}
+   Since we have show $\sigma \times \tau \in \operatorname{Aut}(H \times K)$, $\phi$ is well-defined.\\
+   Let $(\sigma_1,\tau_1),(\sigma_2,\tau_2) \in \operatorname{Aut}(H) \times \operatorname{Aut}(K)$, where $\sigma_1,\sigma_2 \in \operatorname{Aut}(H)$ and $\tau_1,\tau_2 \in \operatorname{Aut}(K)$.\\
+   Let $(h,k) \in H \times K$ where $h \in H, k \in K$.
+   \begin{align*}
+	 \left((\sigma_1\sigma_2) \times (\tau_1\tau_2)\right)(h,k) &= \left((\sigma_1\sigma_2)(h), (\tau_1\tau_2)(k) \right)\\	
+	 							  								&=(\sigma_1(\sigma_2(h)), \tau_1(\tau_2(k)))\\
+	 												  &=(\sigma_1 \times \tau_1)(\sigma_2(h),\tau_2(k))\\
+	 												  &=(\sigma_1 \times \tau_1) \left((\sigma_2 \times \tau_2)(h,k)\right) \\
+	 												  &=\left((\sigma_1 \times \tau_1) (\sigma_2 \times \tau_2)\right)(h,k), 
+   \end{align*}
+   so
+   \[(\sigma_1\sigma_2)\times (\tau_1\tau_2) = (\sigma_1 \times \tau_1) (\sigma_2 \times \tau_2)\]
+   Then
+   \begin{align*}
+   	 \phi\left((\sigma_1,\tau_1)(\sigma_2,\tau_2)\right) &= \phi (\sigma_1\sigma_2,\tau_1\tau_2)\\
+   	 													 &=(\sigma_1\sigma_2) \times (\tau_1\tau_2) \\
+   	 													 &=(\sigma_1 \times \tau_1) (\sigma_2 \times \tau_2) \\
+   	 													 &=\left(\phi(\sigma_1,\tau_1)\right)\left(\phi(\sigma_2,\tau_2)\right).
+   \end{align*}
+   So $\phi$ is a homomorphism.\\
+   Let $(\sigma,\tau) \in \operatorname{Aut}(H) \times \operatorname{Aut}(K)$, where $\sigma \in \operatorname{Aut}(H)$ and $\tau \in \operatorname{Aut}(K)$.\\
+   Let $id_H$ and $id_K$ be the identity maps of $\operatorname{H}$ and $\operatorname{K}$, respectively.\\
+   Let $id_{H\times K}$ be the identity map of $\operatorname{Aut}(H\times K)$.
+   \begin{align*}
+	 (\sigma,\tau) \in \ker(\phi) &\Leftrightarrow \phi(\sigma,\tau) = id_{H \times K} \\
+	 							  &\Leftrightarrow \sigma\times \tau = id_{H \times K}\\
+	 							  &\Leftrightarrow \sigma \times \tau = id_{H} \times id_{K} \\
+	 							  &\Leftrightarrow (\sigma,\tau) = (id_{H},id_{K})
+   \end{align*}
+	So $\phi$ is 1-1.\\
+	Let $\pi \in \operatorname{Aut}(H \times K)$.\\
+	Define two maps $\pi_H:H\to H$ and $\pi_K: K\to K$ by $\left(\pi_H(h),1\right) = \pi(h,1)$ and $ \left(1,\pi_K(k)\right) = \pi(1,k)$.\\
+	Repeat the similar processes as previous ones, \\
+	we have $\pi_H$ and $\pi_K$ are well-defined and $\pi_H \in \operatorname{Aut}(H)$ and $\pi_K \in \operatorname{Aut}(K)$.\\
+	Let $(h,k) \in H \times K$ where $h \in H, k \in K$.
+	\begin{align*}
+	  \pi(h,k) &= \pi((h,1)(1,k)) \\
+	  		   &=\pi(h,1) \pi(1,k) \\
+	  		   &=\left(\pi_H(h),1\right) \left(1,\pi_K(k)\right) \\
+	  		   &=\left(\pi_H(h), \pi_K(k)\right) \\
+	  		   &= \pi_H \times \pi_K (h,k),
+	\end{align*}
+	so $\pi = \pi_H \times \pi_K$.\\
+	Thus, $\phi$ is onto.\\
+	As a result, 
+	\[\operatorname{Aut}(H) \times \operatorname{Aut}(K) \cong \operatorname{Aut}(H \times K) \]
+   Since we have show 
+   \[ H\times K \cong G,\] 
+   \[\operatorname{Aut}(G) \cong \operatorname{Aut}(H \times K).\]
+   Hence,
+   \[\operatorname{Aut}(G) \cong \operatorname{Aut}(H) \times \operatorname{Aut}(K)\]
+\end{proof}
+
+Use this to prove that if $G$ is a finite abelian group, then $\operatorname{Aut}(G)$ is isomorphic to the direct product of the automorphism groups of its Sylow subgroups.
+\begin{proof}
+	Let $\{P_i\}_{i=1}^n$ be the collection of all the Sylow subgroups of $G_n$.\\
+	Then $G_n =  P_1P_2\ldots P_n$.\\
+	Since $G_n$ is abelian and $P_i \leq G_n$ for $1\leq i \leq n$,\\
+	\[P_i \unlhd G_n.\]
+	So the Sylow $|P_i|$-subgroup is unique for $1\leq i \leq n$. \\
+	Thus, $P_i \cap P_j = \{e_{G_n}\}$ for $1 \leq i,j \leq n$ and $i\neq j$.\\
+	Besides, by Corollary 4.5.6, $P_i$ is a characteristic subgroup of $G_n$ for $1\leq i \leq n$.\\ 
+	We will show it by induction.\\
+	\textbf{Basic steps:}\\
+	When $n=1$, it is a trivial case since the only Sylow subgroup is $G_n$ and $ \operatorname{Aut}(G_n) \cong \operatorname{Aut}(G_n)$.\\
+	We have just showed the case for $n=2$.\\
+	\textbf{Inductive steps:}\\
+	Assume 
+	\[\operatorname{Aut}(G_n)  = \operatorname{Aut}(P_1P_2\ldots P_n) \cong \prod_{i=1}^{n} \operatorname{Aut}(P_i).\]
+    Let $\{Q_i\}{i=1}^{n+1}$ be the collection of all the Sylow subgroups of $J_{n+1}$.\\
+	Then $J_{n+1} =  Q_1Q_2\ldots Q_{n+1}$.\\
+	Similarly, we have for $i=1,2,\ldots,n+1$,
+	\[Q_i \unlhd J_{n+1}.\]
+	For $1 \leq i,j \leq n+1$ and $i\neq j$,
+	\[Q_i \cap Q_j = \{e_{J_{n+1}}\}.\]
+	For $1\leq i \leq n+1$, $Q_i$ is a characteristic subgroup of $J_{n+1}$.\\
+	Let $J_n = Q_1Q_2\ldots Q_n$.\\
+	Then it is obvious that $\{Q_i\}_{i=1}^{n}$ is the collection of all the Sylow subgroups of $J_{n}$. \\
+	Let $\sigma \in \operatorname{Aut}(J_{n+1})$.\\
+	Then for $i = 1,2,\ldots,n$, $\sigma(Q_i)  = Q_i$ since $Q_i$ is a characteristic subgroup of $J_{n+1}$.\\ 
+	Since $\sigma$ is a homomorphism,
+	\begin{align*}
+	 	\sigma(J_n) &= \sigma(Q_1Q_2\ldots Q_n)\\
+	  				&= \sigma(Q_1)\sigma(Q_2)\ldots \sigma(Q_n) \\
+	  				&=Q_1 Q_2\dots Q_n \\
+	  			   &=J_n.
+	\end{align*}
+	So $J_n$ is a characteristic subgroup of $J_{n+1}$.\\
+ 	Since for $1 \leq i,j \leq n+1$ and $i\neq j$,
+ 		\[Q_i \cap Q_j = \{e_{J_{n+1}}\},\]
+ 	and $J_n =Q_1Q_2\ldots Q_n$, we have 
+ 	\[J_n \cap Q_{n+1} = \{e_{J_{n+1}}\}.\]
+	We already have $Q_{n+1}$ is a characteristic subgroup of $J_{n+1}$.\\
+	Besides,
+	\[J_{n+1} = J_nQ_{n+1}.\]
+	By the conclusion we just made,
+	\[\operatorname{Aut}(J_{n+1}) \cong \operatorname{Aut}(J_n) \times \operatorname{Aut}(Q_{n+1}).\]
+	By the inductive assumption, we have
+	\[\operatorname{Aut}(J_n)  = \operatorname{Aut}(Q_1Q_2\ldots Q_n) \cong \prod_{i=1}^{n} \operatorname{Aut}(Q_i).\]
+	Thus,
+  	\[\operatorname{Aut}(J_{n+1}) \cong \left(\prod_{i=1}^{n} \operatorname{Aut}(Q_i) \right)\times \operatorname{Aut}(Q_{n+1}).\]
+	Namely,
+	\[\operatorname{Aut}(J_{n+1}) \cong \prod_{i=1}^{n+1} \operatorname{Aut}(Q_i).\]
+	Thus, the assumption also holds for $J_{n+1}$.\\
+	As a result, if $\{P_i\}_{i=1}^n$ is the collection of all the Sylow subgroups of a finite abelian group $G$, then
+	\[\operatorname{Aut}(G) \cong \prod_{i=1}^{n} \operatorname{Aut}(P_i).\]
+\end{proof}
+
+\begin{align*}
+\end{align*}
+
+\end{exer}
+
+
+\end{document}
+
+
+
+
+
+

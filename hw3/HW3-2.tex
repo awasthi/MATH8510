@@ -1,0 +1,227 @@
+\documentclass{amsart}
+
+% PACKAGES
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb,enumerate}
+\usepackage{amsthm,stmaryrd}
+\usepackage[all]{xy}
+\usepackage{hyperref}
+
+%\theoremstyle{definition}
+%\newtheorem{exer}{Exercise}
+
+\newcommand{\bbr}{\mathbb{R}}
+\newcommand{\bbc}{\mathbb{C}}
+\newcommand{\bbz}{\mathbb{Z}}
+\newcommand{\bbq}{\mathbb{Q}}
+\newcommand{\bbn}{\mathbb{N}}
+\newcommand{\be}{\mathbf{e}}
+\newcommand{\ba}{\mathbf{a}}
+\newcommand{\fm}{\mathfrak{m}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\renewcommand{\ker}{\operatorname{Ker}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\xra}{\xrightarrow}
+\newcommand{\wti}{\widetilde}
+
+\theoremstyle{plain}
+\newtheorem{lem}{Lemma}
+\newtheorem{cor}[lem]{Corollary}
+\newtheorem{prop}[lem]{Proposition}
+\newtheorem{thm}[lem]{Theorem}
+\newtheorem{conj}[lem]{Conjecture}
+\newtheorem{intthm}{Theorem}
+\renewcommand{\theintthm}{\Alph{intthm}}
+
+\theoremstyle{definition}
+\newtheorem{defn}[lem]{Definition}
+\newtheorem{ex}[lem]{Example}
+\newtheorem{question}[lem]{Question}
+\newtheorem{questions}[lem]{Questions}
+\newtheorem{problem}[lem]{Problem}
+\newtheorem{disc}[lem]{Remark}
+\newtheorem{rmk}[lem]{Remark}
+\newtheorem{construction}[lem]{Construction}
+\newtheorem{notn}[lem]{Notation}
+\newtheorem{fact}[lem]{Fact}
+\newtheorem{para}[lem]{}
+\newtheorem{exer}[lem]{Exercise}
+\newtheorem{remarkdefinition}[lem]{Remark/Definition}
+\newtheorem{notation}[lem]{Notation}
+\newtheorem{step}{Step}
+\newtheorem{convention}[lem]{Convention}
+\newtheorem*{Convention}{Convention}
+\newtheorem{assumption}[lem]{Assumption}
+
+\newcommand{\fmn}{F^{m\times n}}
+\newcommand{\fnn}{F^{n\times n}}
+\newcommand{\col}{\operatorname{Col}}
+\newcommand{\row}{\operatorname{Row}}
+\newcommand{\Span}{\operatorname{Span}}	
+\newcommand{\rank}{\operatorname{rank}}	
+\begin{document}
+
+\noindent MATH 8510, Abstract Algebra I \\
+Fall 2016\\
+Exercises 3-2\\
+Due date Thu 08 Sep 4:00PM
+
+\
+
+%\noindent
+%Throughout this homework set, let $F$ be a field
+%
+%
+%\
+
+\begin{exer}[2.3.18--19 $+5\epsilon$]
+Let $G$ be a group, and let $g\in G$.
+\begin{enumerate}[(a)]
+\item Prove that there exists a unique group homomorphism $f_g\colon\bbz\to G$ such that $f_g(1)=g$. 
+	\begin{proof}
+		Define
+		\begin{align*}
+			f_g:\bbz & \to G \\
+			n & \mapsto g^n
+		\end{align*}
+		Then $f_g$ is a homomorphism since $\forall m,n \in \bbz, f_g(m+n) = g^{m+n} = g^mg^n = f_g(m)f_g(n)$ and also satisfies $f_g(1) = g$.\\
+		So there exists a group homomorphism $f_g\colon\bbz\to G$ such that $f_g(1)=g$.\\
+		Next we show it is unique.\\
+		Assume there exists another homomorphism $h_g$ differing from $f_g$ such that $h_g(1) = g$. 
+		\begin{enumerate}
+			\item If $n > 0$, $h_g(n) = h_g(\sum_{i=1}^n1) = \prod_{i=1}^nh_g(1) = \prod_{i=1}^n g = g^n$ since $h_g$ is homomorphism.
+			\item If $n < 0$, then $-n > 0$ and $h_g(n) = h_g(-(-n)) = (h_g(-n))^{-1} = (g^{-n})^{-1} = g^n$ since $h_g$ is homomorphism.
+			\item If $n = 0$, then $h_g(0) = h_g(n-n) = h_g(n)h_g(-n) = g^ng^{-n} = g^0 = f_g(0)$.
+		\end{enumerate}
+		So $h_g(n) = g^n = f_g(n), \forall n \in \bbz$. \\
+		Thus, $f_g = h_g$, which is contradicted by the assumption.\\
+		Hence, such group homomorphism is unique.
+	\end{proof}
+	
+\item Prove that $\im(f_g)=\langle g\rangle$.
+	\begin{proof}
+		$ $\newline
+		$\im(f_g) = \{g^n | n \in \bbz\} \subset G$.\\
+		So $g^n \in G, \forall n \in \bbz$.\\
+		Thus, $\langle g \rangle = \{g^n \in G | n \in \bbz\} = \{g^n | n \in \bbz\} = \im(f_g)$.
+	\end{proof}
+\item Prove that $f_g$ is a monomorphism if and only if $|g|=\infty$.
+	\begin{proof}
+		$ $\newline
+		\begin{enumerate}
+			\item
+				Assume $f_g$ is a monomorphism, then $f_g$ is 1-1 since $f_g$ is homomorphism.\\
+				Then $\infty= |\bbz| = |\im(f_g)| = |\langle g \rangle| = |g|$.\\
+				So $|g| = \infty$.
+			\item 
+				Assume $|g| = \infty$.\\
+				Suppose $f_g$ is not a monomorphism, then $f_g$ is not 1-1.\\
+				So $\exists$ $m,n \in \bbz$ with $m > n$ such that $f_g(m) = g^m = g^n= f_g(n)$.\\
+				Then $g^{m-n} = e_G$.\\
+				So $|g| = |\langle g \rangle| \leq m-n < \infty$ since $0< m-n < \infty$.\\
+				It is a contradion since $|g| = \infty$ by assumption.\\
+				So $f_g$ is a monomorphism.
+		\end{enumerate}
+
+	\end{proof}
+
+\item Assume that $|g|=n<\infty$.
+\begin{enumerate}[(1)]
+\item Prove that $\ker(f_g)=n\bbz:=\{nm\in\bbz\mid m\in\bbz\}$.
+	\begin{proof}
+		$ $\newline
+		$f_g(n\bbz) = g^{n\bbz} = g^0 = e_G$ since $|g| = n$.\\
+		So $n\bbz \in \ker(f_g)$.
+		Moreover, for other $k = 1,2,...n-1$, $g^{k+n\bbz} = g^k \neq e_G$ since $|g| = n$.\\
+		Thus, $\ker(f_g) = n\bbz$.
+	\end{proof}
+\item Prove that 
+there is a unique group monomorphism $\phi_g\colon\bbz/n\bbz\to G$ such that $\phi_g(\overline 1)=g$. 
+\begin{proof}
+	$ $\newline
+	Define
+	\begin{align*}
+		\phi_g:\bbz / n \bbz & \to G \\
+		\bar{m} & \mapsto g^{m} \\
+	\end{align*}
+	Then $\phi_g(\bar{1}) = g^{1} = g$. \\
+	We first show $\phi_g$ is well defined. \\
+	Let $p = m + n\bbz$ and $q = m + l\bbz$, where $m, n,l \in \bbz$. \\
+	So $\phi_g(p) = g^{m+n\bbz} = g^m = g^{m+l\bbz} = \phi_g(q)$ since $|g| = n $.\\
+	So it is well defined.\\
+	Next, we show it is a homomorphism. \\
+	$\forall \bar{p}, \bar{q} \in \bbz/n\bbz, \phi_g(\overline{p}\bar{q}) = \phi_g(\bar{pq}) = g^{pq} = g^pg^q = \phi_g(\bar{p})\phi_g(\bar{q})$.\\
+	Then we show $\phi_g$ is 1-1.\\ 
+	Let $g^{\bar{p}} = g^{\bar{q}}$, then $g^{\bar{p} - \bar{q}} = e^G$.\\
+	Then $\bar{p} - \bar{q} \in \ker(f_g)$.\\
+	So $\bar{p} - \bar{q} = n\bbz = \bar{0}$.\\
+	Thus $\bar{p} = \bar{q}$. \\ 
+	As aresult, it is a group monomorphism. \\ 
+	Suppose there exists another group monomorphism $h_g\colon\bbz/n\bbz\to G$ such that $h_g(\bar{1}) = g$.\\
+	Then when $1 < k \leq n-1, h_g(\bar{k}) = h_g(\sum_{i=1}^k \bar{1}) = \prod_{i=1}^k h_g(\bar{1}) = g^k$ since $h_g$ is a monomorphism.\\
+	Besides, $h_g(\bar{0}) = h_g(\bar{n}) = (h_g(\bar{1}))^n = g^n = e_G = \phi_g(\bar{0})$.\\
+	So $\phi_g(\bar{k}) = h_g(\bar{k})$ for all $0 \leq k \leq n-1$.\\
+	Therefore, $\phi_g = h_g$.\\
+	We conclude that such a group monomorphism is unique.
+\end{proof}
+
+\item Prove that $\im(\phi_g)=\langle g\rangle$.
+	\begin{proof}
+		$ $\newline
+		$\im(\phi_g) = \{g^n| n = 0,1,2,...n - 1\} = \{e_G, g,g^2,...,g^{n-1}\} $\\
+		$\langle g \rangle =\{e_G, g,g^2,...,g^{n-1}\}$ since $|g| = n$.\\
+		So $\im(\phi_g) = \langle g \rangle$.
+	\end{proof}
+\item We say that a diagram 
+of group homomorphisms
+$$\xymatrix{A\ar[r]^-\alpha\ar[rd]_{\alpha'}&B\ar[d]^\beta \\ & C}$$
+``commutes'' when $\beta\circ\alpha=\alpha'$.
+Let $\pi\colon \bbz\to\bbz/n\bbz$ be the canonical epimorphism, and prove that the following diagram commutes.
+$$\xymatrix{\bbz\ar[r]^-{\pi}\ar[rd]_{f_g}&\bbz/n\bbz\ar[d]^{\phi_g} \\ & G}$$
+
+\begin{proof}
+	$ $\newline
+	$\forall m \in \bbz$, $\phi_g\pi(m) = \phi_g(\bar{m}) = g^m$.\\
+	On the other hand, $\forall m \in \bbz$, $f_g(m) = g^m$.\\
+	Namely, $\forall m \in \bbz$, $\phi_g\pi(m) = f_g(m)$.\\
+	So $\phi_g\pi = f_g$. \\
+	Thus, the diagram commutes.
+\end{proof}
+
+\end{enumerate}
+	
+\end{enumerate}
+
+\end{exer}
+
+
+\begin{exer}
+In your free time, read the statements of the  exercises from Section~2.3.
+\end{exer}
+
+
+\end{document}
+
+
+\begin{exer}
+\begin{enumerate}[(a)]
+\item 
+\end{enumerate}
+\end{exer}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,169 @@
+\documentclass{amsart}
+
+% PACKAGES
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb,enumerate}
+\usepackage{amsthm,stmaryrd}
+\usepackage[all]{xy}
+\usepackage{hyperref}
+
+%\theoremstyle{definition}
+%\newtheorem{exer}{Exercise}
+
+\newcommand{\bbr}{\mathbb{R}}
+\newcommand{\bbc}{\mathbb{C}}
+\newcommand{\bbz}{\mathbb{Z}}
+\newcommand{\bbq}{\mathbb{Q}}
+\newcommand{\bbn}{\mathbb{N}}
+\newcommand{\be}{\mathbf{e}}
+\newcommand{\ba}{\mathbf{a}}
+\newcommand{\fm}{\mathfrak{m}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\renewcommand{\ker}{\operatorname{Ker}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\xra}{\xrightarrow}
+\newcommand{\wti}{\widetilde}
+
+\theoremstyle{plain}
+\newtheorem{lem}{Lemma}
+\newtheorem{cor}[lem]{Corollary}
+\newtheorem{prop}[lem]{Proposition}
+\newtheorem{thm}[lem]{Theorem}
+\newtheorem{conj}[lem]{Conjecture}
+\newtheorem{intthm}{Theorem}
+\renewcommand{\theintthm}{\Alph{intthm}}
+
+\theoremstyle{definition}
+\newtheorem{defn}[lem]{Definition}
+\newtheorem{ex}[lem]{Example}
+\newtheorem{question}[lem]{Question}
+\newtheorem{questions}[lem]{Questions}
+\newtheorem{problem}[lem]{Problem}
+\newtheorem{disc}[lem]{Remark}
+\newtheorem{rmk}[lem]{Remark}
+\newtheorem{construction}[lem]{Construction}
+\newtheorem{notn}[lem]{Notation}
+\newtheorem{fact}[lem]{Fact}
+\newtheorem{para}[lem]{}
+\newtheorem{exer}[lem]{Exercise}
+\newtheorem{remarkdefinition}[lem]{Remark/Definition}
+\newtheorem{notation}[lem]{Notation}
+\newtheorem{step}{Step}
+\newtheorem{convention}[lem]{Convention}
+\newtheorem*{Convention}{Convention}
+\newtheorem{assumption}[lem]{Assumption}
+
+\newcommand{\fmn}{F^{m\times n}}
+\newcommand{\fnn}{F^{n\times n}}
+\newcommand{\col}{\operatorname{Col}}
+\newcommand{\row}{\operatorname{Row}}
+\newcommand{\Span}{\operatorname{Span}}	
+\newcommand{\rank}{\operatorname{rank}}	
+\newcommand{\OO}[1]{\mathcal{O}_{#1}}
+\begin{document}
+
+\noindent MATH 8510, Abstract Algebra I \\
+Fall 2016\\
+Exercises 8-1\\
+Due date Thu 20 Oct 4:00PM
+
+\
+
+%\noindent
+%Throughout this homework set, let $F$ be a field
+%
+%
+%\
+
+\begin{exer}[UMP: Universal Mapping Property]
+Let $(G,+)$ be an abelian group and let $g_1,\ldots,g_t\in G$. 
+For $i=1,\ldots,t$ let $e_i=(0,\ldots,0,1,0,\ldots,0)\in\bbz^t$ be the ``$i$th standard basis vector''.
+\begin{enumerate}[(a)]
+\item 
+Prove that there exists a unique abelian group homomorphism $\phi\colon\bbz^t\to G$ such that $\phi(e_i)=g_i$ for $i=1,\ldots,t$.
+\begin{proof}
+  We first show such abelian group homomorphism exists.\\
+  It is obvious $\phi$ is well-defined.\\
+  Let $x=(x_1,x_2,...,x_t), y=(y_1,y_2,...,y_t) \in \bbz^t$, where $x_i,y_i \in \bbz$ for i = $1,2,...,t$.\\
+  Then 
+  \[x = \sum_{i=1}^t{x_i} \text{ and } y = \sum_{i=1}^t{y_i}. \]
+  Besides, since $x_iy_i \in \bbz$ for $i=1,2,...,t$,
+  \[xy = (x_1y_1,x_2y_2,...,x_ty_t) = \sum_{i=1}^{t}(x_iy_i)e_i.\]
+  So
+  \begin{align*}
+  	\phi(xy) &= \sum_{i=1}^t\phi((x_iy_i)e_i) \\
+  			 &= 
+  \end{align*}
+  Suppose there exists another abelian group homomorphism $\varphi\colon\bbz^t\to G$ such that 
+  \[\varphi(e_i)=g_i, \text{ for } {i=1,\ldots,t}.\]
+  Let $z = (z_1,z_2,...,z_t) \in \bbz^t$, then \\
+  \[z = \sum_{i=1}^{t}z_ie_i.\]
+  Since $\phi$ is a homomorphism,
+  \begin{align*} 
+  	\phi (z) &= \sum_{i=1}^{t}(z_ie_i) \\
+  			 &= \sum_{i=1}^{t}\phi(e_i)^{z_i} \\
+  			 &= \sum_{i=1}^{t}g_i^{z_i}.
+  \end{align*}
+  Similarly, since $\varphi$ is a homomorphism, we have 
+  \[ \phi (z) = \sum_{i=1}^{t}g_i^{z_i} = \phi (z).\]
+  Since $z \in \bbz ^t$ is arbitrary, $\phi = \varphi$.\\
+  Thus, 
+
+
+\end{proof}
+\item 
+Prove that $\im(\phi)=\langle g_1,\ldots,g_t\rangle$.
+In particular, $\phi$ is surjective if and only if $G=\langle g_1,\ldots,g_t\rangle$.
+\item 
+Prove that the following conditions are equivalent.
+\begin{enumerate}[(i)]
+\item $G$ is finitely generated.
+\item 
+There is an integer $t\geq 0$ and an epimorphism $\phi\colon\bbz^t\to G$.
+\item There is an integer $t\geq 0$ and a subgroup $K\leq\bbz^t$ such that $G\cong\bbz^t/K$.
+\end{enumerate}
+\item Let $s\leq t$ and let $n_1,\ldots,n_s\in\bbz$. 
+Prove that 
+there is an isomorphism $$\bbz^r/\langle n_1e_1,\ldots,n_se_s\rangle\cong(\bbz/n_1\bbz)\times\cdots\times(\bbz/n_s\bbz)\times\bbz^{t-s}.$$
+\end{enumerate}
+\end{exer}
+
+\begin{exer}
+\begin{enumerate}[(a)]
+\item Let $a,b\in\bbz^+$ be relatively prime. Use Exercise~5-1\#3
+to prove that $\bbz/(ab)\bbz\cong(\bbz/a\bbz)\times(\bbz/b\bbz)$.
+\item Let $m\in\bbz^+$, let $p_1,\ldots,p_m$ be distinct prime numbers, and let $e_1,\ldots,e_m\in\bbz^{\geq 0}$.
+%and set
+%$n=p_1^{e_1}\cdots p_m^{e_m}$. 
+Prove that
+$\bbz/n\bbz\cong\prod_{i=1}^m\bbz/p_i^{e_i}\bbz$.
+\end{enumerate}
+\end{exer}
+
+
+
+\end{document}
+
+
+\begin{exer}
+\begin{enumerate}[(a)]
+\item 
+\end{enumerate}
+\end{exer}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,183 @@
+\documentclass{amsart}
+
+% PACKAGES
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb,enumerate}
+\usepackage{amsthm,stmaryrd}
+\usepackage[all]{xy}
+\usepackage{hyperref}
+
+%\theoremstyle{definition}
+%\newtheorem{exer}{Exercise}
+
+\newcommand{\bbr}{\mathbb{R}}
+\newcommand{\bbc}{\mathbb{C}}
+\newcommand{\bbz}{\mathbb{Z}}
+\newcommand{\bbq}{\mathbb{Q}}
+\newcommand{\bbn}{\mathbb{N}}
+\newcommand{\be}{\mathbf{e}}
+\newcommand{\ba}{\mathbf{a}}
+\newcommand{\fm}{\mathfrak{m}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\renewcommand{\ker}{\operatorname{Ker}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\xra}{\xrightarrow}
+\newcommand{\wti}{\widetilde}
+
+\theoremstyle{plain}
+\newtheorem{lem}{Lemma}
+\newtheorem{cor}[lem]{Corollary}
+\newtheorem{prop}[lem]{Proposition}
+\newtheorem{thm}[lem]{Theorem}
+\newtheorem{conj}[lem]{Conjecture}
+\newtheorem{intthm}{Theorem}
+\renewcommand{\theintthm}{\Alph{intthm}}
+
+\theoremstyle{definition}
+\newtheorem{defn}[lem]{Definition}
+\newtheorem{ex}[lem]{Example}
+\newtheorem{question}[lem]{Question}
+\newtheorem{questions}[lem]{Questions}
+\newtheorem{problem}[lem]{Problem}
+\newtheorem{disc}[lem]{Remark}
+\newtheorem{rmk}[lem]{Remark}
+\newtheorem{construction}[lem]{Construction}
+\newtheorem{notn}[lem]{Notation}
+\newtheorem{fact}[lem]{Fact}
+\newtheorem{para}[lem]{}
+\newtheorem{exer}[lem]{Exercise}
+\newtheorem{remarkdefinition}[lem]{Remark/Definition}
+\newtheorem{notation}[lem]{Notation}
+\newtheorem{step}{Step}
+\newtheorem{convention}[lem]{Convention}
+\newtheorem*{Convention}{Convention}
+\newtheorem{assumption}[lem]{Assumption}
+
+\newcommand{\fmn}{F^{m\times n}}
+\newcommand{\fnn}{F^{n\times n}}
+\newcommand{\col}{\operatorname{Col}}
+\newcommand{\row}{\operatorname{Row}}
+\newcommand{\Span}{\operatorname{Span}}	
+\newcommand{\rank}{\operatorname{rank}}	
+\newcommand{\OO}[1]{\mathcal{O}_{#1}}
+\begin{document}
+
+\noindent MATH 8510, Abstract Algebra I \\
+Fall 2016\\
+Exercises 10-1\\
+Name: Shuai Wei\\
+Collabrators: Xiaoyuan Liu, Daozhou Zhu
+
+
+%\noindent
+%Throughout this homework set, let $F$ be a field
+%
+%
+%\
+\begin{exer}
+Let $R$ be a commutative ring with identity, and let $f=\sum_{i=0}^nr_iX^i\in R[X]$.
+\begin{enumerate}[(a)]
+\item Prove that $f$ is nilpotent in $R[X]$ if and only if all of its coefficients $r_0,\ldots,r_n$ are nilpotent,
+that is, $f\in N(R[X])$ if and only if $r_0,\ldots,r_n\in N(R)$.
+
+\begin{proof}
+  Since $R$ is CRW1, $R[x]$ is CRW1.\\
+  Then by the conclusion from Exercise 10-2$\#$2(a), $N(R[x]) \leq R[x]$.\\
+  "$\Leftarrow$". Assume $r_i \in N(R)$ for $i=1,2,\cdots,n$.\\
+  	Since $R \subset R[x]$, we have $N(R) \subset N(R[x])$.\\ 
+	For $i=1,2,\cdots,n$, since $r_i \in N(R) \subseteq N(R[x])$, and $x^i \in R[x]$,\\
+	by the definition of the ideal, we have
+	\[r_ix^i \in N(R[x]).\]
+	Since $N(R[x])$ is closed under addition, 
+	\[\sum_{i=1}^nr_ix^i \in N(R[x]).\]
+	"$\Rightarrow$". We will show it by induction.\\
+	Let $f= a_R \in R \subset R[x]$. \\
+	If $f\in N(R[x])$, it is obvious that the coefficient $a\in N(R)$.\\
+	Assume for any $f=\sum_{i=0}^nr_ix^i \in N(R[x])$, where $r_i \in R$ and $r_n\neq 0_R$, then $r_i \in N(R)$ for $i=1,2,\cdots,n$.\\
+	Let $g = \sum_{i=0}^{n+1}s_ix^i \in N(R[x])$, where $s_i \in R$ and $s_{n+1}\neq 0_R$.\\
+	Then $\exists \ m \in \bbn$ such that $g^m = 0$.\\
+	So
+	\begin{align*}
+		0 &= g^m\\
+	  	  &=\left( \sum_{i=0}^{n+1}s_ix^i \right) ^m\\
+	  	  &=\left( \sum_{i=0}^{n}s_ix^i  + s_{n+1}x^{n+1}\right)^m\\
+	  	  &= s_{n+1}^mx^{mn+m} +\sum_{j=0}^{m} \binom mj \left(\sum_{i=0}^{n}s_ix^i \right)^{j}  \left(s_{n+1}x^{n+1}\right)^{m-j}.
+	\end{align*}
+	The degree of $\sum_{j=0}^{m} \binom mj\left(\sum_{i=0}^{n}s_ix^i \right)^{j}  \left(s_{n+1}x^{n+1}\right)^{m-j}$ is $mn+m-1$, which is less than the degree of $s_{n+1}x^{mn+m}$.\\
+	So 
+	\[s_{n+1}^m = 0. \]
+	Thus,
+	\[s_{n+1} \in N(R).\]
+	Then 
+	\[0 = g^m = \left(\sum_{i=1}^{n}s_ix^i \right)^m \in N(R[x]).\]
+	So by the assumption, we have for $i = 1,2,\cdots,n$, 
+	\[s_i \in N(R).\]
+	Therefore, when $g = \sum_{i=1}^{n+1}s_ix^i \in N(R[x])$, $s_i \in N(R)$ for $i = 1,2,\cdots,n+1$.\\
+	As a result, our assumption also holds when $g \in R[x]$ and $\deg(g) = n+1$.\\
+	Thus, for any $f=\sum_{i=1}^nr_ix^i \in N(R[x])$, we have $r_i \in N(R)$ for $i=1,2,\cdots,n$.\\
+\end{proof}
+
+\item Prove that $f$ is a unit in $R[X]$ if and only if $r_0$ is a unit in $R$ and $r_1,\ldots,r_n$ are nilpotent in $R$.
+\begin{proof}	
+    "$\Rightarrow$". Assume $r_0$ is a unit in $R$ and $r_1,\cdots,r_n \in N(R)$.\\
+	Since $r_1,\cdots,r_n$ are nilpotent, by the conclusion from Exercise 11-1$\#$1(a),
+	\[\sum_{i=1}^nr_ix^i \in N(R[x]).\]
+	Since $r_0 \in R^{\times} \subset (R[x])^{\times}$ by what we have shown in class,\\
+	using the conclusion from Exercise 11-1$\#$1(a), we have
+	\[r_0 + \sum_{i=1}r_ix^i \in  (R[x])^{\times}.\]
+	Since $R$ is CRW1, there exists multiplicative identity $1_R$, then $x^0  = 1_R$ for any $x \in R$.\\
+	So 
+	\[r_0 = r_0x^0.\]
+	By the associative law of multiplication of $R[x]$, we have
+	\[f = \sum_{i=0}^nr_ix^i \in  (R[x])^{\times}.\]
+	"$\Leftarrow$". Assume $f \in (R[x])^{\times}$.\\
+	We will show it by induction.\\
+	Let $g = \sum_{j=0}^ps_jX^j$ be the non-zero multiplicative inverse for $f$.\\
+	We claim for $0 \leq q  \leq  p-1$, we have $r_n^{q+1}s_{p-q} = 0$.\\
+	Since $fg = \left(\sum_{i=0}^nr_ix^i \right) \left(\sum_{j=0}^ps_jx^j \right) = 1$, 
+	\[r_ns_p = 0.\]
+	Then we have shown the basic case for $q = 1$ holds.\\
+	\textbf{Inductive step:} Consider the case $p-1 \geq k \geq 0$ and $k \in \bbn$.\\ 
+	Assume for $0 \leq q  \leq  k$, we have $r_n^{q+1}s_{p-q} = 0$, where $ p-2 \geq k \geq 0$ and $k \in \bbn$.\\
+	Since $fg = \left(\sum_{i=0}^nr_ix^i \right) \left(\sum_{j=0}^ps_jx^j \right) = 1$, the coefficient of $x^{n+k-q}$ satisfies
+	\[r_{n-q-1}s_{k+1} + r_{n-q}s_{k} + \cdots + r_{n-1}s_{k+1-q} + r_ns_{k-q} = 0.\]
+	Since $R$ is CRW1, its multiplication is commutative.\\
+	Multiply by $r_n^{q+1}$ on both sides of the above equation,
+	\[r_{n-q-1}r_n^{q+1}s_{k+1} + r_{n-q}r_n^{q+1}s_{k} + \cdots+ r_{n-1}r_n^{q+1}s_{k+1-q}  + r_n^{q+2}s_{k-q} = 0.\]
+	Namely,
+	\[\left(r_{n-q-1}r_n^{q}\right)(r_ns_{k+1}) + \left(r_{n-q}r_n^{q-1}\right)(r_n^2s_{k}) + \cdots+ \left(r_{n-1}r_n^{0}\right)(r_{n}^{q+1}s_{k+1-q} ) + r_n^{q+2}s_{k-q} = 0.\]
+	By assumption, for $0 \leq q  \leq  k-1$, we have $r_n^{q+1}s_{k+1-q}=0$.\\
+	Then 
+	\[\left(r_{n-q-1}r_n^{q}\right)0 + \left(r_{n-q}r_n^{q-1}\right)0 + \cdots+ \left(r_{n-1}r_n^{0}\right)0 + r_n^{q+2}s_{k-q} = 0.\]
+	So
+	\[r_n^{q+2}s_{k-q} = 0.\]
+	Thus, for $0 \leq q  \leq  k$, we have $r_n^{q+1}s_{k+1-q} = 0$.\\
+	Therefore, for $0 \leq q  \leq  p-1$, we have $r_n^{q+1}s_{p-q} = 0$.\\
+	Assume $r_n^k \neq 0$ for $k = 1,2,\cdots,p$, then $s_1,s_{2},\cdots,s_{p} = 0$. \\
+	Then 
+	\[fg = \left(\sum_{i=0}^nr_ix^i \right) s_0 = \sum_{i=0}^ns_0r_ix^i = 1.\]
+	Since $g = s_0\neq 0$, we have $r_0 = 0$, which is a contradiction since $r_0 \in R$ is arbitrary.\\
+	So $\exists \ 0\leq q \leq p-1$ such that $r_n^{q+1} = 0$.\\
+	Thus,
+	\[r_n \in N(R).\]
+	Then by the conclusion from Exercise 11-1$\#$1(a), $r_nx^{n} \in N(R[x])$.\\
+	$N(R[x])$ is a subring of $R[x]$, so $N(R[x])$ is closed under taking inverses.\\
+ 	 So 
+  	\[-r_nx^{n} \in  N(R[x]).\]
+	Since $\sum_{i=0}^{n}r_ix^i \in  (R[x])^{\times}$, by the conclusion from Exercise 10-2$\#$2(c),
+	\[\sum_{i=0}^{n}r_ix^i + (-r_nx^{n}) = \sum_{i=0}^{n-1}r_ix^i \in (R[x])^{\times}.\]
+	We will show the $r_{i} \in N(R)$ by induction for $i = 1,2\cdots,n-1$.\\
+	Assume $\sum_{i=0}^{k}r_ix^i \in (R[x])^{\times}$, where $1\leq k \leq n$.\\
+	We have just shown the basic case of $r_n \in N(R)$.\\
+	Then when $k < n$, repeat the totally same process we find $r_k \in N(R)$ and $\sum_{i=0}^{k-1}r_ix^i \in (R[x])^{\times}$.\\
+	So our assumption also holds for the $k-1$ case.\\
+	Thus, $r_i \in N(R)$ for $i = 1,2,\cdots,n$.
+	
+\end{proof}
+\end{enumerate}
+\end{exer}
+
+
+\end{document}

@@ -1,0 +1,330 @@
+\documentclass{article}
+
+% PACKAGES
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb,enumerate}
+\usepackage{amsthm,stmaryrd}
+\usepackage[all]{xy}
+\usepackage{hyperref}
+
+%\theoremstyle{definition}
+%\newtheorem{exer}{Exercise}
+
+\newcommand{\bbr}{\mathbb{R}}
+\newcommand{\bbc}{\mathbb{C}}
+\newcommand{\bbz}{\mathbb{Z}}
+\newcommand{\bbq}{\mathbb{Q}}
+\newcommand{\bbn}{\mathbb{N}}
+\newcommand{\be}{\mathbf{e}}
+\newcommand{\ba}{\mathbf{a}}
+\newcommand{\fm}{\mathfrak{m}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\renewcommand{\ker}{\operatorname{Ker}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\xra}{\xrightarrow}
+\newcommand{\wti}{\widetilde}
+
+\theoremstyle{plain}
+\newtheorem{lem}{Lemma}
+\newtheorem{cor}[lem]{Corollary}
+\newtheorem{prop}[lem]{Proposition}
+\newtheorem{thm}[lem]{Theorem}
+\newtheorem{conj}[lem]{Conjecture}
+\newtheorem{intthm}{Theorem}
+\renewcommand{\theintthm}{\Alph{intthm}}
+
+\theoremstyle{definition}
+\newtheorem{defn}[lem]{Definition}
+\newtheorem{ex}[lem]{Example}
+\newtheorem{question}[lem]{Question}
+\newtheorem{questions}[lem]{Questions}
+\newtheorem{problem}[lem]{Problem}
+\newtheorem{disc}[lem]{Remark}
+\newtheorem{rmk}[lem]{Remark}
+\newtheorem{construction}[lem]{Construction}
+\newtheorem{notn}[lem]{Notation}
+\newtheorem{fact}[lem]{Fact}
+\newtheorem{para}[lem]{}
+\newtheorem{exer}[lem]{Exercise}
+\newtheorem{remarkdefinition}[lem]{Remark/Definition}
+\newtheorem{notation}[lem]{Notation}
+\newtheorem{step}{Step}
+\newtheorem{convention}[lem]{Convention}
+\newtheorem*{Convention}{Convention}
+\newtheorem{assumption}[lem]{Assumption}
+
+\newcommand{\fmn}{F^{m\times n}}
+\newcommand{\fnn}{F^{n\times n}}
+\newcommand{\col}{\operatorname{Col}}
+\newcommand{\row}{\operatorname{Row}}
+\newcommand{\Span}{\operatorname{Span}}	
+\newcommand{\rank}{\operatorname{rank}}	
+\newcommand{\OO}[1]{\mathcal{O}_{#1}}
+\begin{document}
+
+\noindent MATH 8510, Abstract Algebra I \\
+Fall 2016\\
+Exercises 8-1\\
+Name: Shuai Wei\\
+Collaborator: Xiaoyuan Liu, Daozhou Zhu
+
+\
+
+%\noindent
+%Throughout this homework set, let $F$ be a field
+%
+%
+%\
+
+\begin{exer}[UMP: Universal Mapping Property]
+Let $(G,+)$ be an abelian group and let $g_1,\ldots,g_t\in G$. 
+For $i=1,\ldots,t$ let $e_i=(0,\ldots,0,1,0,\ldots,0)\in\bbz^t$ be the ``$i$th standard basis vector''.
+\begin{enumerate}[(a)]
+\item 
+Prove that there exists a unique abelian group homomorphism $\phi\colon\bbz^t\to G$ such that $\phi(e_i)=g_i$ for $i=1,\ldots,t$.
+\begin{proof}
+  Let $z_i \in \bbz$ for $i = 1,\ldots,t$.\\
+  Define $\phi$ as
+  \begin{align*}
+  	\phi: \bbz^t &\to G \\
+  			(z_1,\dots,z_t) & \mapsto \sum_{i=1}^tz_ig_i 
+  \end{align*}
+  For $i = 1,\ldots,t$, $z_i\in \bbz$ and $g_i \in (G,+)$, so $z_ig_i \in G$.\\
+  Then 
+  \[\sum_{i=1}^tz_ig_i \in G.\]
+  So $\phi$ is well-defined.\\
+  At first, we verify that for $i = 1,\ldots,t$,
+  \[\phi(e_i) = 0g_1 + ...0g_{i-1} + 1g_i + 0g_{i+1} + \ldots + 0g_{t} = g_i.\]
+  We then show $\phi$ is a homomorphism.\\
+  Let $x=(x_1,x_2,\ldots,x_t), y=(y_1,y_2,\ldots,y_t) \in \bbz^t$, where $x_i,y_i \in \bbz$ for i = $1,2,\ldots,t$.\\
+  Since $G$ is abelian,
+  \begin{align*}
+  	\phi(x+y) &= \phi((x_1+y_1,x_2+y_2,\ldots,x_t+y_t)) \\
+  			 &= \sum_{i=1}^t(x_i+y_i)g_i \\
+  			 &= \sum_{i=1}^tx_ig_i+\sum_{i=1}^ty_ig_i \\
+  			 &= \phi(x)+\phi(y).
+  \end{align*}
+  So $\phi$ is a homomorphism.\\ 
+  Suppose there exists another abelian group homomorphism $\varphi\colon\bbz^t\to G$ such that 
+  \[\varphi(e_i)=g_i, \text{ for } {i=1,\ldots,t}.\]
+  Let $z = (z_1,z_2,\ldots,z_t) \in \bbz^t$, then $z_i \in \bbz$ for $i=1,2,\ldots,t$.\\
+  Then
+  \[z = \sum_{i=1}^{t}z_ie_i.\]
+  Since $\phi$ and $\varphi$ are homomorphisms,
+  \begin{align*} 
+  	\phi (z) &=\sum_{i=1}^tz_ig_i \\
+  			 &=\sum_{i=1}^tz_i\varphi(e_i) \\
+  			 &=\sum_{i=1}^t\varphi(z_ie_i) \\
+			 &= \varphi(z)
+  \end{align*}
+  Since $z \in \bbz ^t$ is arbitrary, $\phi = \varphi$.\\
+  Thus, such abelian group homomorphism is unique.
+
+\end{proof}
+\item 
+Prove that $\im(\phi)=\langle g_1,\ldots,g_t\rangle$.
+In particular, $\phi$ is surjective if and only if $G=\langle g_1,\ldots,g_t\rangle$.
+\begin{proof}
+  Let $z = (z_1,z_2,\ldots,z_t) \in \bbz^t$, then $z_i \in \bbz$ for $i=1,2,\ldots,t$. \\
+  Then
+    \[z = \sum_{i=1}^{t}z_ie_i.\]
+  By the definition of $\phi$,
+  	\[ \phi (z) = \sum_{i=1}^tz_ig_i \in \langle g_1,g_2,\ldots,g_t\rangle, \]    
+  	so 
+  	\[ \im(\phi) \subset \langle g_1,g_2,\ldots,g_t\rangle.\]
+  	On the other hand, let $x \in \langle g_1,g_2,\ldots,g_t\rangle$, then $\exists\ x_1, x_2,\ldots,x_t \in \bbz$ such that 
+  	\[x = \sum_{i=1}^tg_i{x_i}.\]
+	Let $y= (x_1,x_2,...,x_t)$, then 
+	\[x=\phi (y) = \sum_{i=1}^{t}x_i g_i \in \im(\phi). \]
+	So
+	\[\langle g_1,g_2,\ldots,g_t\rangle \subset \im(\phi).\]
+	Thus,
+	\[ \im(\phi) = \langle g_1,g_2,\ldots,g_t\rangle.\]
+	Then we show the second statement.\\
+	"$\Leftarrow$". Assume $G= \langle g_1,g_2,\ldots,g_t\rangle $.\\
+	Since $\im(\phi) = G$, $\phi$ is surjective.\\
+  	"$\Rightarrow$". Assume $\im(\phi) = G$.\\
+	We show it by contradiction.\\
+	Suppose $\exists \ g \in G$ but $g \not\in \langle g_1,g_2,\ldots,g_t\rangle$. \\
+	By the assumption that $\phi$ is surjective, \\
+	so $\exists \ f \in \bbz^t$ such that $\phi(f) = g$, where $f=(f_1,f_2,\ldots,f_t)$ and $f_i \in \bbz$ for $i=1,2,\ldots,t$.\\
+	Then we have
+	\[g = \phi (f) = \sum_{i=1}^tg_i{f_i} \in \langle g_1,g_2,\ldots,g_t\rangle,\]
+	which is contradicted by the other assumption that $g \not\in \langle g_1,g_2,\ldots,g_t\rangle$.\\
+	Thus, if $g \in G$, then $g \in \langle g_1,g_2,\ldots,g_t\rangle$.\\
+	Namely, $G \subset \langle g_1,g_2,\ldots,g_t\rangle = \im(\phi) = G$.\\
+	Therefore,
+	\[G = \langle g_1,g_2,\ldots,g_t\rangle.\]
+	In summary, $\phi$ is surjective if and only if $G=\langle g_1,\ldots,g_t\rangle$.
+\end{proof}
+
+
+\item 
+Prove that the following conditions are equivalent.
+\begin{enumerate}[(i)]
+\item $G$ is finitely generated.
+\item 
+There is an integer $t\geq 0$ and an epimorphism $\phi\colon\bbz^t\to G$.
+\item There is an integer $t\geq 0$ and a subgroup $K\leq\bbz^t$ such that $G\cong\bbz^t/K$.
+\begin{proof}
+  "(i)$\Rightarrow$ (ii)".\\
+  Let $G = \langle g_1,g_2,\ldots,g_n\rangle$.\\
+  Define 
+  \begin{align*}
+	\phi: \bbz^t &\to G \\
+  	(z_1,\ldots,z_t) &\mapsto \sum_{i=1}^tz_ig_i 
+  \end{align*}
+  Then by part (a), we have $\phi$ is a homomorphism.\\
+  Besides, since $G$ is finitely generated, by part (b), $\phi$ is surjective.\\
+  So $\phi$ is an epimorphism.\\
+  Thus, there is an integer $t= n$ and an epimorphism $\phi:\bbz^t \to G$.\\
+  "(ii) $\Rightarrow$ (iii)".\\
+  	Since $\phi$ is epimorphism, it is a homomorphism. \\
+	So by the First Isomorphism Theorem, we have
+	\[\im(\bbz_t) \cong \bbz_t/\ker{\phi}.\]
+	Since $\phi$ is epimorphism, it is surjective.\\
+	So 
+	\[\im(\bbz_t) = G.\]
+	Then
+	\[G \cong \bbz_t/\ker{\bbz_t}.\]
+  	Thus, there exists $t \in \bbn$ and a subgroup $K = \ker{\bbz_t} \leq \bbz_t$ such that $G \cong \bbz_t/K$.\\
+  	"(iii) $\Rightarrow$ (ii)".\\
+  	Since the possible subgroups of $\bbz$ are \{0\} and $n\bbz$ for $ n \in \bbn$ and $n \geq 1$),
+  	it is obvious $K = \{e_{\bbz^t}\}$ and $(n_1\bbz)\times (n_2\bbz)\times \ldots \times (n_t\bbz)$ are the possible subgroup of $\bbz^t$, where $e_{\bbz^t}$ is a $t$-dimensional identity vector and $n_i \in \bbz, n_i\geq 1$ for $i=1,2,\ldots,t$.((there are many others, like $\langle (1,1,\ldots,1)\rangle$)\\
+  	We will show it by the following two cases.
+  	\begin{enumerate}[(1)]
+  		\item
+		Let $K=\{e_{\bbz^t}\}$.\\ 
+		Then
+		\[G \cong \bbz^t/K \cong \bbz^t.\]
+		Define
+  		\begin{align*}
+			\phi: \bbz^t &\to G \\
+  		  (z_1,\ldots,z_t) &\mapsto \sum_{i=1}^tz_ig_i 
+  		\end{align*}
+  		Then $\phi$ is an isomorphism, and then it is an epimorphism.\\
+  		By part (b), we have $G$ is finitely generated.\\
+		\item
+		  Let $K = (n_1\bbz)\times (n_2\bbz)\times \ldots \times (n_t\bbz)$.\\
+		  Then $\bbz^t / K = (\bbz/n_1\bbz) \times (\bbz/n_2\bbz)\times \ldots \times (\bbz/n_t\bbz)$.\\
+		  So $\left| \bbz^t/K \right| =  n_1n_2 \ldots n_t$.\\
+		  Since 
+		  \[G \cong \bbz^t/K\]
+			\[|G| = n_1n_2\ldots n_t < \infty.\]
+		  So $G$ is finitely generated.
+	\end{enumerate}
+	Thus, $G$ is finitely generated if there is an integer $t\geq 0$ and a subgroup $K\leq\bbz^t$ such that $G\cong\bbz^t/K$.
+\end{proof}
+
+
+\end{enumerate}
+\item Let $s\leq t$ and let $n_1,\ldots,n_s\in\bbz$. 
+Prove that 
+there is an isomorphism $$\bbz^t/\langle n_1e_1,\ldots,n_se_s\rangle\cong(\bbz/n_1\bbz)\times\cdots\times(\bbz/n_s\bbz)\times\bbz^{t-s}.$$
+\begin{proof}
+  	Let $G = (\bbz/n_1\bbz)\times\cdots\times(\bbz/n_s\bbz)\times\bbz^{t-s}$.\\
+  	Let $g_i = (\bar{0},\ldots,\bar{0},\bar{1},\bar{0},\ldots,\bar{0},0,\ldots,0)\in \bbz^t$ be the $i$th basis vetor with the $i$-th element $\bar{1}$ for $1 \leq i \leq s$.\\
+  	Let $g_i = (\bar{0},\ldots,\bar{0},0,\ldots,0,1,0,\ldots,1)$ be the $i$th basis vector with the $i$-th element $1$ for $s+1 \leq i \leq t$.\\
+  	Then it is obvious that $G = \langle g_1,\ldots,g_s,g_{s+1},\ldots,g_t \rangle$.\\
+  Define $\phi$ as
+  \begin{align*}
+  	\phi: \bbz^t &\to G \\
+  			(z_1,\dots,z_t) & \mapsto \sum_{i=1}^tz_ig_i 
+  \end{align*}
+	So by part (a), $\phi$ is a homomorphism.\\
+	Since $G$ is finitely generated, by part (b),
+	\[\im(\phi) = G.\]
+	Next we show 
+	\[\ker(\phi) = \langle n_1e_1,\ldots,n_se_s \rangle.\]
+	$\forall h=(h_1,\ldots,h_t)\in \bbz_t$, where $h_i \in \bbz$ for $i = 1,2,\ldots,t$, we have
+	\[\phi(h) = g_1{h_1}+\ldots +g_t{h_t}.\]
+  	\begin{align*}
+  	  h \in \ker(\phi) &\Leftrightarrow \phi(h) = e_G = (\bar{0},\ldots,\bar{0},0,\ldots,0) \\   
+  	 			     				   	  &\Leftrightarrow g_1{h_1}+\ldots +g_t{h_t} = (\bar{0},\ldots,\bar{0},0,\ldots,0) \\
+  	 			     				   	  &\Leftrightarrow (\bar{h_1},\ldots,\bar{h_s},h_{s+1},\ldots,h_t) = (\bar{0},\ldots,\bar{0},0,\ldots,0) \\
+  	  					  			      &\Leftrightarrow h_1 \in (n_1\bbz),\ldots,h_s \in (n_s\bbz),h_{s+1} = 0,\ldots,h_{t} = 0 \\
+  	  									  &\Leftrightarrow h  \in \langle n_1e_1,\ldots,n_se_s \rangle.
+  	\end{align*}
+    Thus,
+    \[\ker(\phi) = \langle n_1e_1,\ldots,n_se_s \rangle.\]
+    By the First Isomorphism Theorem, we have
+    \[\bbz^t/\langle n_1e_1,\ldots,n_se_s\rangle\cong(\bbz/n_1\bbz)\times\cdots\times(\bbz/n_s\bbz)\times\bbz^{t-s}.\]
+\end{proof}
+
+\end{enumerate}
+\end{exer}
+
+\begin{exer}
+\begin{enumerate}[(a)]
+\item Let $a,b\in\bbz^+$ be relatively prime. Use Exercise~5-1\#3
+to prove that $\bbz/(ab)\bbz\cong(\bbz/a\bbz)\times(\bbz/b\bbz)$.
+\begin{proof}
+ 	 Since $(\bbz, +)$ is abelian and $a\bbz \leq \bbz$ and $b\bbz \leq \bbz$,
+	 \[a\bbz \unlhd \bbz \text{ and } b\bbz \unlhd \bbz.\]
+	 Since $a$ and $b$ are relatively prime, $(a,b) = 1$.\\
+	 Then $\exists \ x,y\in \bbz$ such that
+	 \[ax+by = 1.\]
+	 Let $z \in \bbz$, then 
+	 \[a(xz) + b(yz) = z\]
+	 Since $x,y,z\in\bbz$, $xz,yz \in \bbz$.\\
+	 Then 
+	 $a(xz) \in a\bbz$,and $b(yz) \in b\bbz$.\\
+	 Then 
+	 \[z \in a\bbz + b\bbz.\]
+	 So
+	 \[\bbz \subset a\bbz + b\bbz.\]
+	 Also, 
+	 \[ a\bbz + b\bbz \subset \bbz.\]
+	 Thus,
+	 \[\bbz = a\bbz + b\bbz.\]	
+	 Since $a,b \in \bbz$ and $a,~b$ are relatively prime, $\text{lcm}(a,b) = ab$.\\
+	 So (need detailed proof here.)
+	 \[(a\bbz)\cap (b\bbz) = (ab)\bbz.\]
+	 Therefore, according to the conclusion from the Exercise~5-1\#3, \\
+	 we have
+	 \[\bbz/(ab)\bbz\cong(\bbz/a\bbz)\times(\bbz/b\bbz).\]
+\end{proof}
+
+\item Let $m\in\bbz^+$, let $p_1,\ldots,p_m$ be distinct prime numbers, and let $e_1,\ldots,e_m\in\bbz^{\geq 0}$.
+%and set
+%$n=p_1^{e_1}\cdots p_m^{e_m}$. 
+Prove that
+$\bbz/n\bbz\cong\prod_{i=1}^m\bbz/p_i^{e_i}\bbz$.
+\begin{proof}
+We will show it by induction.
+\begin{enumerate}[(1)]
+	\item
+		Basic step: when $m=1$, $n=p_1^{e_1}$, \\
+		then it is obvious that 
+		\[ \bbz / n\bbz \cong \bbz/p_1^{e_1}\bbz.\]
+	\item
+	  Inductive step: assume when $m=k$, we have $n = \prod_{i=1}^kp_i^{e_i}$ and 
+	  \[ \bbz / n\bbz \cong \prod_{i=1}^k\bbz/p_i^{e_i}\bbz.\]
+	  Let $p_{k+1}$ be a prime such that $p_1,...,p_k,p_{k+1}$ are distinct and $e_{k+1} \in \bbz^{\geq 0}$.\\
+	  Then $\prod_{i=1}^kp_i^{e_i}$ and $p_{k+1}^{e_{k+1}}$ are relatively primes.\\
+	  According to the conclusion from part (a), we have 
+	  \[\bbz/ \left(\left( \prod_{i=1}^kp_i^{e_i} \right) p_{k+1}^{e_{k+1}} \right)\bbz\cong \left(\bbz/\left( \prod_{i=1}^kp_i^{e_i} \right) \bbz \right)\times \left(\bbz/ p_{k+1}^{e_{k+1}} \bbz\right).\]
+	  Namely,
+	\[\bbz/ \left(\left( \prod_{i=1}^{k+1}p_i^{e_i} \right) \right)\bbz\cong ( \bbz /n\bbz )\times \left(\bbz/ p_{k+1}^{e_{k+1}} \bbz\right).\]
+	  By the inductive assumption, we know
+	  \[ \bbz / n\bbz \cong \prod_{i=1}^k\bbz/p_i^{e_i}\bbz.\]
+	  So
+	  \[\bbz/ \left(\left( \prod_{i=1}^{k+1}p_i^{e_i} \right) \right)\bbz\cong \left( \prod_{i=1}^k\bbz/p_i^{e_i}\bbz \right)\times \left(\bbz/ p_{k+1}^{e_{k+1}} \bbz\right).\]
+	  Namely,
+	  \[\bbz/ \left(\left( \prod_{i=1}^{k+1}p_i^{e_i} \right) \right)\bbz\cong \left( \prod_{i=1}^{k+1}\bbz/p_i^{e_i}\bbz \right).\] 
+	  Thus, the assumption also holds for $m=k+1$.\\ 
+\end{enumerate}
+    Therefore,
+	\[ \bbz/n\bbz\cong\prod_{i=1}^m\bbz/p_i^{e_i}\bbz.\]
+\end{proof}
+
+\end{enumerate}
+\end{exer}
+
+
+
+\end{document}
+
+
