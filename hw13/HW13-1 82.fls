@@ -97,10 +97,6 @@ INPUT /usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/stringenc.sty
 INPUT /usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/stringenc.sty
 INPUT /usr/local/texlive/2016/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
 INPUT /usr/local/texlive/2016/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
-INPUT /usr/local/texlive/2016/texmf-dist/tex/latex/commath/commath.sty
-INPUT /usr/local/texlive/2016/texmf-dist/tex/latex/commath/commath.sty
-INPUT /usr/local/texlive/2016/texmf-dist/tex/latex/base/ifthen.sty
-INPUT /usr/local/texlive/2016/texmf-dist/tex/latex/base/ifthen.sty
 INPUT HW13-1.aux
 INPUT HW13-1.aux
 OUTPUT HW13-1.aux

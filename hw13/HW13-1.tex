@@ -8,6 +8,7 @@
 \usepackage{amsthm,stmaryrd}
 \usepackage[all]{xy}
 \usepackage{hyperref}
+\usepackage{commath}
 
 %\theoremstyle{definition}
 %\newtheorem{exer}{Exercise}
@@ -236,6 +237,8 @@ and $K\subsetneq K+sR\leq R$.
 \end{enumerate}
 \end{exer}
 
+\newpage
+\noindent Exercises 13-2\\
 \begin{exer}
 Let $i=\sqrt{-1}\in\bbc$, and consider the following subrings of $\bbc$.
 \begin{align*}
@@ -245,11 +248,11 @@ Let $i=\sqrt{-1}\in\bbc$, and consider the following subrings of $\bbc$.
 \end{align*}
 Prove that $\bbq[i]$ is isomorphic to the field of fractions of $\bbz[i]$.
 \begin{proof}
-    Let $R = Z[i]$ and $S = Q[i]$.\\
+    Let $R = \bbz[i]$ and $S = \bbq[i]$.\\
     By the Theorem 7.5.9, there exists well-defined ring monomorphsim 
     \begin{align*}
         \rho: R &\to D^{-1}R \\
-        r &\to \frac{rd}{d} ,\; d\in D
+        r &\mapsto \frac{rd}{d} ,\; d\in D
     \end{align*}
     We know $S$ is a field in Chapter 1, so $S$ is an integral domain.\\
     By the subring test, we have $R$ is a subring of $S$.\\
@@ -258,19 +261,43 @@ Prove that $\bbq[i]$ is isomorphic to the field of fractions of $\bbz[i]$.
    Define
    \begin{align*}
        \phi: R &\to S \\
-             r &\to r
+             r &\mapsto r
    \end{align*}
-   Since $\phi$ is an identity map from integral domain $R$ to integral domain $S$, \\
+   Since $\phi$ is an identity map from integral domain $R$ to integral domain $S$ and  $R \subseteq S$, $\phi$ is well-defined.\\
+   $\forall \ r,s \in R$,
+   \begin{align*}
+       \phi(r+s) &= r+s = \phi(r) +\phi(s)\\
+       \phi(rs) &=rs = \phi(r)\phi(s),
+   \end{align*}
    it is a ring homomorphism.\\
    Also $S$ is CRW1 since it is an integral domain.\\
    Since $S$ is a field, it is a division ring and then $S^{\times} = S\setminus 0$.\\
    Since $R \subseteq S$,
-   \[\phi(D) = D = R\setminus 0 \subseteq S\setminus 0 = S^{\times}.\]    By the Universal Mapping Proerty, there exists a unque ring homomorphism 
-   \[\Phi:D^{-1}R \to S\]
-   such that $\Phi\circ \rho = \phi$ and $\Phi(1) = 1$.
-
-
-
+   \[\phi(D) = D = R\setminus 0 \subseteq S\setminus 0 = S^{\times}.\]    By the Universal Mapping Proerty, there exists a unque well-defined ring homomorphism 
+   \begin{align*}
+       \Phi:D^{-1}R &\to S\\
+       \frac{r}{d} &\mapsto \frac{\phi(r)}{\phi(d)}=\frac{r}{d},\; d \in D,r \in R.
+   \end{align*}
+   such that $\Phi\circ \rho = \phi$.\\
+   Let $\frac{r}{d} \in D^{-1}R$, where $r \in R$ and $d\in D$. 
+   \begin{align*}
+       \frac{r}{d} \in \ker(\Phi)&\Longleftrightarrow \frac{r}{d} = 0. \\
+   \end{align*}
+   So $\Phi$ is 1-1.\\
+   Let $a+bi \in S$, where $a,b\in \bbq$.\\
+   Then $\exists \ s,t,p,q \in \bbz$ and $t,q\neq 0$ such that $\frac{s}{t} = a$ and $\frac{p}{q} = b$.\\
+Since $sq,pt \in \bbz$, 
+\[sq+pt i \in R\]
+Since $tq \in \bbz$ and $tq \neq 0$, we have $tq \in \bbz\setminus 0 = D$.\\
+So 
+\[\frac{sq+pti}{tq} \in D^{-1}R\]
+Since
+   \[\phi\left(\frac{sq+pti}{tq}\right) = \frac{sq+pti}{tq} = \frac{s}{t}+\frac{p}{q}i = a+bi,\]
+   $\phi$ is onto.\\
+   Thus, $\phi$ is an isomomorphism.\\
+   Therefore, \[\bbq[i]= S \cong D^{-1}R.\]
+   Since $R = \bbz[i]$, we have\\
+   $\bbq[i]$ is isomorphic to the field of fractions of $\bbz[i]$.
 \end{proof}
 
 \end{exer}
@@ -280,10 +307,41 @@ Let $R$ be an integral domain and consider the ring homomorphism $\psi\colon\bbz
 (You do not need to show that this is a well-defined ring homomorphism.)
 \begin{enumerate}[(a)]
 \item Prove that $\ker(\psi)=0$ or $\ker(\psi)=p\bbz$ for some prime number $p\in\bbz$.
-\item Prove that if $p$ is a prime number such that $\ker(\psi)=p\bbz$, then $R$ contains a finite field as a subring.
+    \begin{proof}
+        Let $n \in \ker(\psi)$.
+        \begin{align*}
+            n \in \ker(\psi) &\Longleftrightarrow n\cdot 1_R =0_R.
+        \end{align*}
+            \begin{enumerate}[(1)]
+                \item
+                    Let $\abs{R} = \infty$.\\
+                    Since $R$ is an integral domain,
+                    \begin{align*}
+                        n\cdot 1_R =0_R \Longleftrightarrow n = 0.
+                    \end{align*}
+                \item Let $1<\abs{R} < \infty$ and the group $(R,+)$ not be cyclic.\\
+                    Since $R$ is an integral domain,
+                    \begin{align*}
+                        n\cdot 1_R =0_R \Longleftrightarrow n = 0.
+                    \end{align*}
+                \item Let $1<\abs{R}  < \infty$ and the group $(R,+)$ be cyclic. \\
+                    Since $\ker(\psi) \subseteq \bbz$ is a subring and the subrings of $\bbz$ are $m\bbz$ for all $m \in \bbz^{\geq 0}$,
+                    \begin{align*}
+                        n\cdot 1_R =0_R \Longleftrightarrow n \in p\bbz \text{ for some } p \in \bbn \text{ or } n = 0
+                    \end{align*}
+                    Assume $\exists \ p \in 2\bbz^{> 0}$ such that $n \in p \bbz$,
+            \end{enumerate}
+    \end{proof}
+\item 
+    Prove that if $p$ is a prime number such that $\ker(\psi)=p\bbz$, then $R$ contains a finite field as a subring.
+
 \item Prove that if $R$ is a field and $\ker(\psi)=0$, then $R$ has a subring $Q\cong\bbq$.
+    \begin{proof}
+    \end{proof}
 \end{enumerate}
 \end{exer}
+
+\newpage 
 
 
 \end{document}
