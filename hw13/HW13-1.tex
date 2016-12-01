@@ -249,10 +249,10 @@ Let $i=\sqrt{-1}\in\bbc$, and consider the following subrings of $\bbc$.
 Prove that $\bbq[i]$ is isomorphic to the field of fractions of $\bbz[i]$.
 \begin{proof}
     Let $R = \bbz[i]$ and $S = \bbq[i]$.\\
-    By the Theorem 7.5.9, there exists well-defined ring monomorphsim 
+    By the Theorem 7.5.9, there exists a well-defined ring monomorphsim 
     \begin{align*}
         \rho: R &\to D^{-1}R \\
-        r &\mapsto \frac{rd}{d} ,\; d\in D
+        r &\mapsto \frac{rd}{d} ,\; d\in D\subseteq R.
     \end{align*}
     We know $S$ is a field in Chapter 1, so $S$ is an integral domain.\\
     By the subring test, we have $R$ is a subring of $S$.\\
@@ -261,7 +261,7 @@ Prove that $\bbq[i]$ is isomorphic to the field of fractions of $\bbz[i]$.
    Define
    \begin{align*}
        \phi: R &\to S \\
-             r &\mapsto r
+             r &\mapsto r.
    \end{align*}
    Since $\phi$ is an identity map from integral domain $R$ to integral domain $S$ and  $R \subseteq S$, $\phi$ is well-defined.\\
    $\forall \ r,s \in R$,
@@ -273,15 +273,17 @@ Prove that $\bbq[i]$ is isomorphic to the field of fractions of $\bbz[i]$.
    Also $S$ is CRW1 since it is an integral domain.\\
    Since $S$ is a field, it is a division ring and then $S^{\times} = S\setminus 0$.\\
    Since $R \subseteq S$,
-   \[\phi(D) = D = R\setminus 0 \subseteq S\setminus 0 = S^{\times}.\]    By the Universal Mapping Proerty, there exists a unque well-defined ring homomorphism 
+   \[\phi(D) = D = R\setminus 0 \subseteq S\setminus 0 = S^{\times}.\]    By the Universal Mapping Proerty, there exists a unique well-defined ring homomorphism 
    \begin{align*}
        \Phi:D^{-1}R &\to S\\
-       \frac{r}{d} &\mapsto \frac{\phi(r)}{\phi(d)}=\frac{r}{d},\; d \in D,r \in R.
+       \frac{r}{d} &\mapsto {\phi(d)}^{-1} \phi(r)=d^{-1}r,\; d \in D,r \in R.
    \end{align*}
    such that $\Phi\circ \rho = \phi$.\\
    Let $\frac{r}{d} \in D^{-1}R$, where $r \in R$ and $d\in D$. 
    \begin{align*}
-       \frac{r}{d} \in \ker(\Phi)&\Longleftrightarrow \frac{r}{d} = 0. \\
+       \frac{r}{d} \in \ker(\Phi)&\Longleftrightarrow d^{-1}r = 0 \\
+       &\Longleftrightarrow r = 0 \\
+       &\Longleftrightarrow \frac{r}{d} = \frac{0}{d} = 0_{D^{-1}R}.
    \end{align*}
    So $\Phi$ is 1-1.\\
    Let $a+bi \in S$, where $a,b\in \bbq$.\\
@@ -292,9 +294,14 @@ Since $tq \in \bbz$ and $tq \neq 0$, we have $tq \in \bbz\setminus 0 = D$.\\
 So 
 \[\frac{sq+pti}{tq} \in D^{-1}R\]
 Since
-   \[\phi\left(\frac{sq+pti}{tq}\right) = \frac{sq+pti}{tq} = \frac{s}{t}+\frac{p}{q}i = a+bi,\]
+\begin{align*}
+    \Phi\left(\frac{sq+pti}{tq}\right) &= (tq)^{-1}(sq+pti) \\
+    &=\frac{1}{tq}(sq+pti) \\
+    &=\frac{s}{t}+\frac{p}{q}i \\
+    &= a+bi,
+\end{align*}
    $\phi$ is onto.\\
-   Thus, $\phi$ is an isomomorphism.\\
+   Thus, $\Phi$ is an isomomorphism.\\
    Therefore, \[\bbq[i]= S \cong D^{-1}R.\]
    Since $R = \bbz[i]$, we have\\
    $\bbq[i]$ is isomorphic to the field of fractions of $\bbz[i]$.
@@ -308,30 +315,15 @@ Let $R$ be an integral domain and consider the ring homomorphism $\psi\colon\bbz
 \begin{enumerate}[(a)]
 \item Prove that $\ker(\psi)=0$ or $\ker(\psi)=p\bbz$ for some prime number $p\in\bbz$.
     \begin{proof}
-        \begin{enumerate}[(1)]
-            \item
-            Let $\abs{R} = \infty$.\\
-             Let $n \in \bbz$.
-             \begin{align*}
-                  n \in \ker(\psi) &\Longleftrightarrow n\cdot 1_R =0_R \\
-                 &\Longleftrightarrow n = 0.
-            \end{align*}
-            since $R$ is an integral domain.\\
-            So $\ker(\psi)  = 0$.
-        \item Let $1<\abs{R}  < \infty$. \\
-            Since $\psi$ is a ring homomorphism, by the First Isomorphsim Theorem,  
-            \[\bbz / \ker(\psi) \cong \im(\psi).\]
-            Since $\psi(1) = 1\cdot 1_R = 1_R$, $1_R \in \im(\psi)$.\\
-            Also $R$ is an integral domain, so $\im(\psi)$ is an integral domain.\\
-            Also $\abs{\im(\psi)} \leq \abs{R} < \infty$, $\im(\psi)$ is a field.\\
-            As a result, $\bbz / \ker(\psi)$ is also a field.\\
-            Then, obviously, $\bbz / \ker(\psi)$ is an integral domain.\\
-            Since $\psi$ is a ring homomorphsim, $\ker(\psi) \leq \bbz$.\\
-            So $\ker(\psi)$ is prime ideal of $\bbz$.\\
-            Thus, $\ker(\psi) = p \bbz$ for some prime $p \in \bbz$ or $\ker(\psi) = 0$.
-    \end{enumerate}
-    In summary, $\ker(\psi) = 0$ or $\ker(\psi) = p \bbz$ for some prime $p \in \bbz$. 
-    \end{proof}
+        Since $\psi$ is a ring homomorphism, by the First Isomorphsim Theorem,  
+        \[\bbz / \ker(\psi) \cong \im(\psi).\]
+        Since $\psi(1) = 1\cdot 1_R = 1_R$, $1_R \in \im(\psi)$.\\
+        Also $R$ is an integral domain, so $\im(\psi)$ is an integral domain.\\
+        Then $\bbz / \ker(\psi)$ is also an integral domain.\\
+        Since $\psi$ is a ring homomorphsim, $\ker(\psi) \leq \bbz$.\\
+        So $\ker(\psi)$ is prime ideal of $\bbz$.\\
+        Thus, $\ker(\psi) = 0$ or $\ker(\psi) = p \bbz$ for some prime $p \in \bbz$.
+\end{proof}
 \item 
     Prove that if $p$ is a prime number such that $\ker(\psi)=p\bbz$, then $R$ contains a finite field as a subring.
     \begin{proof}
@@ -341,14 +333,60 @@ Let $R$ be an integral domain and consider the ring homomorphism $\psi\colon\bbz
     \[\bbz / \ker(\phi) \cong \im(\psi),\]
     we have
     \[\abs{\im(\psi)} = p.\]
-    Also by part (a),
-    \[\]
-
-
+    By part (a), $\im(\psi)$ is an integral domain,\\
+    so $\im(\psi)$ is a finite field.\\
+    Since $\im(\psi) \subseteq R$ is a subring of $R$,\\
+    $R$ contains a finite field as a subring.
     \end{proof}
 
 \item Prove that if $R$ is a field and $\ker(\psi)=0$, then $R$ has a subring $Q\cong\bbq$.
     \begin{proof}
+    Let $R = \bbz$.\\
+    Let $D = R \setminus 0$.\\
+    Then $D^{-1}R = \bbq$.\\
+    Since $1_R = 1 \in \bbz \setminus 0 =D$, by the Theorem 7.5.9,\\
+    there exists a well-defined ring monomorphsim 
+    \begin{align*}
+        \rho:R &\to \bbq \\
+             r &\mapsto \frac{r}{1}.
+    \end{align*}
+    Let $S = \im(\psi)$.\\
+    Then $\psi:R\to S$ is a ring homomorphsim.\\
+    By part (a), $S$ is an integral domain, so $S$ is CRW1.\\
+    $\forall \ n\in D = \bbz \setminus 0$, since $\ker(\psi) = 0$,
+    \[ 0_R \neq n \cdot 1_R = \phi(n) \in \im(\psi) = S.\]
+    Since $R$ is a field and $S \subseteq R$, $\phi(n) \in S^{\times}$.\\ 
+    So 
+    \[\phi(D) \subset S^{\times}.\]
+    By the Universal Mapping Property, there exists a unique well-defined ring homomorphsim 
+    \begin{align*}
+    \Phi: \bbq &\to S\\
+    \frac{r}{d} &\mapsto {\phi(d)}^{-1}\phi(r) = (d\cdot 1_R)^{-1}(r \cdot 1_R)
+    \end{align*}
+   Let $\frac{r}{d} \in D^{-1}R$, where $r \in R$ and $d\in D$. \\
+   Since $\ker(\psi) = 0$,
+   \begin{align*}
+       \frac{r}{d} \in \ker(\Phi)&\Longleftrightarrow (d\cdot 1_R)^{-1}(r\cdot 1_R) = 0_R \\
+       &\Longleftrightarrow r\cdot 1_R = 0_R \\
+       &\Longleftrightarrow r = 0\\
+       &\Longleftrightarrow \frac{r}{d} = \frac{0}{d} = 0_{D^{-1}R}.
+   \end{align*}
+   So $\Phi$ is 1-1.\\
+   Let $n\cdot 1_R \in S$, where $n \in \bbz$.\\
+   Since 
+   \begin{align*}
+       \Phi\left(\frac{n}{1}\right) &= (1\cdot 1_R)^{-1}(n\cdot 1_R)\\
+       &= 1_R (n\cdot 1_R)\\
+       &=n\cdot 1_R, 
+   \end{align*}
+   $\Phi$ is onto.\\
+   Thus, $\Phi$ is an isomomorphism.\\
+   Therefore, \[ \bbq \cong S = \im(\phi).\]
+   Since $\im(\phi) \subset R$ is a subring, letting $Q = \im(\phi)$,\\
+   R has a subring $Q \cong \bbq$.
+
+    
+
     \end{proof}
 \end{enumerate}
 \end{exer}
