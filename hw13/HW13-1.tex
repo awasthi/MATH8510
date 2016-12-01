@@ -308,32 +308,44 @@ Let $R$ be an integral domain and consider the ring homomorphism $\psi\colon\bbz
 \begin{enumerate}[(a)]
 \item Prove that $\ker(\psi)=0$ or $\ker(\psi)=p\bbz$ for some prime number $p\in\bbz$.
     \begin{proof}
-        Let $n \in \ker(\psi)$.
-        \begin{align*}
-            n \in \ker(\psi) &\Longleftrightarrow n\cdot 1_R =0_R.
-        \end{align*}
-            \begin{enumerate}[(1)]
-                \item
-                    Let $\abs{R} = \infty$.\\
-                    Since $R$ is an integral domain,
-                    \begin{align*}
-                        n\cdot 1_R =0_R \Longleftrightarrow n = 0.
-                    \end{align*}
-                \item Let $1<\abs{R} < \infty$ and the group $(R,+)$ not be cyclic.\\
-                    Since $R$ is an integral domain,
-                    \begin{align*}
-                        n\cdot 1_R =0_R \Longleftrightarrow n = 0.
-                    \end{align*}
-                \item Let $1<\abs{R}  < \infty$ and the group $(R,+)$ be cyclic. \\
-                    Since $\ker(\psi) \subseteq \bbz$ is a subring and the subrings of $\bbz$ are $m\bbz$ for all $m \in \bbz^{\geq 0}$,
-                    \begin{align*}
-                        n\cdot 1_R =0_R \Longleftrightarrow n \in p\bbz \text{ for some } p \in \bbn \text{ or } n = 0
-                    \end{align*}
-                    Assume $\exists \ p \in 2\bbz^{> 0}$ such that $n \in p \bbz$,
-            \end{enumerate}
+        \begin{enumerate}[(1)]
+            \item
+            Let $\abs{R} = \infty$.\\
+             Let $n \in \bbz$.
+             \begin{align*}
+                  n \in \ker(\psi) &\Longleftrightarrow n\cdot 1_R =0_R \\
+                 &\Longleftrightarrow n = 0.
+            \end{align*}
+            since $R$ is an integral domain.\\
+            So $\ker(\psi)  = 0$.
+        \item Let $1<\abs{R}  < \infty$. \\
+            Since $\psi$ is a ring homomorphism, by the First Isomorphsim Theorem,  
+            \[\bbz / \ker(\psi) \cong \im(\psi).\]
+            Since $\psi(1) = 1\cdot 1_R = 1_R$, $1_R \in \im(\psi)$.\\
+            Also $R$ is an integral domain, so $\im(\psi)$ is an integral domain.\\
+            Also $\abs{\im(\psi)} \leq \abs{R} < \infty$, $\im(\psi)$ is a field.\\
+            As a result, $\bbz / \ker(\psi)$ is also a field.\\
+            Then, obviously, $\bbz / \ker(\psi)$ is an integral domain.\\
+            Since $\psi$ is a ring homomorphsim, $\ker(\psi) \leq \bbz$.\\
+            So $\ker(\psi)$ is prime ideal of $\bbz$.\\
+            Thus, $\ker(\psi) = p \bbz$ for some prime $p \in \bbz$ or $\ker(\psi) = 0$.
+    \end{enumerate}
+    In summary, $\ker(\psi) = 0$ or $\ker(\psi) = p \bbz$ for some prime $p \in \bbz$. 
     \end{proof}
 \item 
     Prove that if $p$ is a prime number such that $\ker(\psi)=p\bbz$, then $R$ contains a finite field as a subring.
+    \begin{proof}
+    Since 
+    \[\abs{\bbz / \ker(\phi)} = \abs{\bbz / p\bbz} =  p,\]
+    and by part (a),
+    \[\bbz / \ker(\phi) \cong \im(\psi),\]
+    we have
+    \[\abs{\im(\psi)} = p.\]
+    Also by part (a),
+    \[\]
+
+
+    \end{proof}
 
 \item Prove that if $R$ is a field and $\ker(\psi)=0$, then $R$ has a subring $Q\cong\bbq$.
     \begin{proof}

@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1480557522 "HW13-1.tex" "HW13-1.pdf" "HW13-1" 1480557522
+["pdflatex"] 1480561266 "HW13-1.tex" "HW13-1.pdf" "HW13-1" 1480561266
   "/usr/local/texlive/2016/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2016/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1136768653 1528 f853c4d1b4e0550255e02831fdc8496f ""
   "/usr/local/texlive/2016/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
@@ -76,9 +76,9 @@
   "/usr/local/texlive/2016/texmf-dist/web2c/texmf.cnf" 1463093894 31953 b9489e6e586f798610c60aec1f5ec548 ""
   "/usr/local/texlive/2016/texmf-var/web2c/xetex/xelatex.fmt" 1463979168 3520378 010aaf5a738348f136b1de9595fa7567 ""
   "/usr/local/texlive/2016/texmf.cnf" 1463979140 577 2938757e76f31531e65cc647e3507693 ""
-  "HW13-1.aux" 1480557522 796 025083fe722cda1f7216752cbb47f137 ""
-  "HW13-1.out" 1480557522 0 d41d8cd98f00b204e9800998ecf8427e ""
-  "HW13-1.tex" 1480557507 13207 8fdfb44156cf5866c21f7e0d83cbe972 ""
+  "HW13-1.aux" 1480561266 796 025083fe722cda1f7216752cbb47f137 ""
+  "HW13-1.out" 1480561266 0 d41d8cd98f00b204e9800998ecf8427e ""
+  "HW13-1.tex" 1480561265 13479 0a4f7df547e42463aa647fbf9442f521 ""
   (generated)
   "HW13-1.pdf"
   "HW13-1.out"
